@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../_FudgeCore/FudgeCore.js"></script>
+  <script src="../_FudgeAid/FudgeAid.js"></script>
+  <script src="index.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <title>Prototype</title>
+</head>
+<body>
+  <div id="container">
+    <img id="muteButton" src="../Assets/UI/muteOn.png" />
+    <div id="menu">
+      <p id="playButton">Play</p>
+      <p id="openControlBoxButton">Controls</p>
+      <p id="openSettingBoxButton">Settings</p>
+    </div>
+  
+    <div id="controlBox">
+      <p>W - Jump</p>
+      <p>A - Left</p>
+      <p>S - Crouch</p>
+      <p>D - Right</p>
+      <p>Space - Attack</p>
+      <p>Q - PowerUp01</p>
+      <p>E - PowerUp02</p>
+  
+      <p id="closeControlBoxButton">Close</p>
+    </div>
+  
+    <div id="settingBox">
+      <p>Sounds</p>
+      <input type="range" min="0" max="100" value="100" id="soundSlider">
+  
+      <p>Music</p>
+      <input type="range" min="0" max="100" value="100" id="musicSlider">
+  
+      <p id="closeSettingBoxButton">Close</p>
+    </div>
+  </div>
+</body>
+</html>

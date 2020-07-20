@@ -1,0 +1,42 @@
+@font-face {
+  font-family: '8bit';
+  src: url('../Assets/UI/Font/8bit.ttf');
+}
+
+body {
+  margin: 0;
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+#container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+p {
+  font-family: '8bit', sans-serif;
+  font-size: 5em;
+  line-height: 0.1em;
+  color: black;
+}
+
+#controlBox, #settingBox {
+  visibility: hidden;
+}
+
+#muteButton {
+  position: absolute;
+  z-index: 1;
+  width: 50px;
+  top: 50px;
+  right: 50px;;
+}
