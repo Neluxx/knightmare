@@ -15,7 +15,7 @@ namespace Game {
 
     //find spritesheet and generate Sprites
     let img: HTMLImageElement = document.querySelector("img");
-    let spritesheet: ƒ.CoatTextured = ƒAid.createSpriteSheet("Hare", img);
+    let spritesheet: ƒ.CoatTextured = ƒAid.createSpriteSheet("spritesheet", img);
     SpriteGenerator.generateSprites(spritesheet);
 
     //create Game

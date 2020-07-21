@@ -10,7 +10,7 @@ var Game;
         let canvas = document.querySelector("canvas");
         //find spritesheet and generate Sprites
         let img = document.querySelector("img");
-        let spritesheet = Game.ƒAid.createSpriteSheet("Hare", img);
+        let spritesheet = Game.ƒAid.createSpriteSheet("spritesheet", img);
         Game.SpriteGenerator.generateSprites(spritesheet);
         //create Game
         Game.game = new Game.ƒ.Node("Game");
