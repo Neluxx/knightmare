@@ -2,18 +2,25 @@ namespace Game {
 
   import ƒ = FudgeCore;
 
+  export class Character extends ƒ.Node {
+    node: ƒ.Node;
+    health: number;
+    strength: number;
+    speed: number;
+
+    public constructor() {
+      super("Character");
+    }
+  }
+
   export enum ACTION {
-    PLAYER_IDLE = "Player Idle",
-    PLAYER_WALK = "Player Walk",
-    PLAYER_JUMP = "Player Jump"
+    IDLE = "Idle",
+    WALK = "Walk",
+    JUMP = "Jump"
   }
 
   export enum DIRECTION {
     LEFT,
     RIGHT,
-  }
-
-  export class Character extends ƒ.Node {
-
   }
 }

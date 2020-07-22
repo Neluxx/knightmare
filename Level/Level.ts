@@ -10,7 +10,7 @@ namespace Game {
       //create Level
       let level: ƒ.Node = new ƒ.Node("Level");
       let element: Element;
-  
+
       //add Element to Level
       element = new Element();
       element.cmpTransform.local.scaleY(0.2);

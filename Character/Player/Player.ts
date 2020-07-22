@@ -12,13 +12,13 @@ namespace Game {
     constructor(_name: string = "Player") {
       super(_name);
       this.addComponent(new ƒ.ComponentTransform());
-      this.show(ACTION.PLAYER_IDLE);
+      this.show(ACTION.IDLE);
       ƒ.Loop.addEventListener(ƒ.EVENT.LOOP_FRAME, this.update);
     }
 
     public show(_action: ACTION): void {
       //show only the animation defined for the action
-      if (_action == ACTION.PLAYER_JUMP)
+      if (_action == ACTION.JUMP)
         return;
       this.setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.animations[_action]);
     }
@@ -26,15 +26,15 @@ namespace Game {
     public act(_action: ACTION, _direction?: DIRECTION): void {
       //move, jump or attack
       switch (_action) {
-        case ACTION.PLAYER_IDLE:
+        case ACTION.IDLE:
           this.speed.x = 0;
           break;
-        case ACTION.PLAYER_WALK:
+        case ACTION.WALK:
           let direction: number = (_direction == DIRECTION.RIGHT ? 1 : -1);
           this.speed.x = Player.speedMax.x; // * direction;
           this.cmpTransform.local.rotation = ƒ.Vector3.Y(90 - 90 * direction);
           break;
-        case ACTION.PLAYER_JUMP:
+        case ACTION.JUMP:
           this.speed.y = 2;
           break;
       }

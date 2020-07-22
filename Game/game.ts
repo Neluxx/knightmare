@@ -7,6 +7,7 @@ namespace Game {
   export let level: ƒ.Node;
   let viewport: ƒ.Viewport
   let player: Player;
+  //let enemies: Enemy[];
 
   window.addEventListener("load", init);
 
@@ -14,8 +15,8 @@ namespace Game {
     let canvas: HTMLCanvasElement = document.querySelector("canvas");
 
     //find spritesheet and generate Sprites
-    let img: HTMLImageElement = document.querySelector("img");
-    let spritesheet: ƒ.CoatTextured = ƒAid.createSpriteSheet("spritesheet", img);
+    let img: HTMLImageElement = document.querySelector("#spritesheet");
+    let spritesheet: ƒ.CoatTextured = ƒAid.createSpriteSheet("Spritesheet", img);
     SpriteGenerator.generateSprites(spritesheet);
 
     //create Game
@@ -25,10 +26,20 @@ namespace Game {
     game.appendChild(level);
     game.appendChild(player);
 
+    //create Background
+    let bgImg: HTMLImageElement = document.querySelector("#background");
+    let mesh: ƒ.MeshSprite = new ƒ.MeshSprite();
+    let mtr: ƒ.Material = SpriteGenerator.getTextureMaterial("Background", bgImg);
+    let background: ƒAid.Node = new ƒAid.Node("Background", ƒ.Matrix4x4.IDENTITY(), mtr, mesh);
+    background.cmpTransform.local.scaleX(15);
+    background.cmpTransform.local.scaleY(15);
+    game.appendChild(background);
+
     //create Camera
     let cmpCamera: ƒ.ComponentCamera = new ƒ.ComponentCamera();
     cmpCamera.pivot.translateZ(10);
-    cmpCamera.pivot.lookAt(ƒ.Vector3.ZERO());
+    //cmpCamera.pivot.lookAt(ƒ.Vector3.ZERO());
+    cmpCamera.pivot.lookAt(player.mtxLocal.translation);
     cmpCamera.backgroundColor = ƒ.Color.CSS("white");
 
     //create Viewport
@@ -55,20 +66,20 @@ namespace Game {
   function handleKeyboard(_event: ƒ.EventKeyboard): void {
     //handle KeyBoard Input
     if (_event.code == ƒ.KEYBOARD_CODE.SPACE) {
-      player.act(ACTION.PLAYER_JUMP);
+      player.act(ACTION.JUMP);
     }
   }
 
   function handleInput(): void {
     //handle KeyBoard Input
     if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.A, ƒ.KEYBOARD_CODE.ARROW_LEFT])) {
-      player.act(ACTION.PLAYER_WALK, DIRECTION.LEFT);
+      player.act(ACTION.WALK, DIRECTION.LEFT);
     }
     else if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.D, ƒ.KEYBOARD_CODE.ARROW_RIGHT])) {
-      player.act(ACTION.PLAYER_WALK, DIRECTION.RIGHT);
+      player.act(ACTION.WALK, DIRECTION.RIGHT);
     }
     else {
-      player.act(ACTION.PLAYER_IDLE);
+      player.act(ACTION.IDLE);
     }
   }
 }

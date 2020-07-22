@@ -5,12 +5,13 @@ var Game;
     Game.ƒAid = FudgeAid;
     let viewport;
     let player;
+    //let enemies: Enemy[];
     window.addEventListener("load", init);
     function init() {
         let canvas = document.querySelector("canvas");
         //find spritesheet and generate Sprites
-        let img = document.querySelector("img");
-        let spritesheet = Game.ƒAid.createSpriteSheet("spritesheet", img);
+        let img = document.querySelector("#spritesheet");
+        let spritesheet = Game.ƒAid.createSpriteSheet("Spritesheet", img);
         Game.SpriteGenerator.generateSprites(spritesheet);
         //create Game
         Game.game = new Game.ƒ.Node("Game");
@@ -18,10 +19,19 @@ var Game;
         Game.level = Game.Level.createLevel();
         Game.game.appendChild(Game.level);
         Game.game.appendChild(player);
+        //create Background
+        let bgImg = document.querySelector("#background");
+        let mesh = new Game.ƒ.MeshSprite();
+        let mtr = Game.SpriteGenerator.getTextureMaterial("Background", bgImg);
+        let background = new Game.ƒAid.Node("Background", Game.ƒ.Matrix4x4.IDENTITY(), mtr, mesh);
+        background.cmpTransform.local.scaleX(15);
+        background.cmpTransform.local.scaleY(15);
+        Game.game.appendChild(background);
         //create Camera
         let cmpCamera = new Game.ƒ.ComponentCamera();
         cmpCamera.pivot.translateZ(10);
-        cmpCamera.pivot.lookAt(Game.ƒ.Vector3.ZERO());
+        //cmpCamera.pivot.lookAt(ƒ.Vector3.ZERO());
+        cmpCamera.pivot.lookAt(player.mtxLocal.translation);
         cmpCamera.backgroundColor = Game.ƒ.Color.CSS("white");
         //create Viewport
         viewport = new Game.ƒ.Viewport();
@@ -42,19 +52,19 @@ var Game;
     function handleKeyboard(_event) {
         //handle KeyBoard Input
         if (_event.code == Game.ƒ.KEYBOARD_CODE.SPACE) {
-            player.act(Game.ACTION.PLAYER_JUMP);
+            player.act(Game.ACTION.JUMP);
         }
     }
     function handleInput() {
         //handle KeyBoard Input
         if (Game.ƒ.Keyboard.isPressedOne([Game.ƒ.KEYBOARD_CODE.A, Game.ƒ.KEYBOARD_CODE.ARROW_LEFT])) {
-            player.act(Game.ACTION.PLAYER_WALK, Game.DIRECTION.LEFT);
+            player.act(Game.ACTION.WALK, Game.DIRECTION.LEFT);
         }
         else if (Game.ƒ.Keyboard.isPressedOne([Game.ƒ.KEYBOARD_CODE.D, Game.ƒ.KEYBOARD_CODE.ARROW_RIGHT])) {
-            player.act(Game.ACTION.PLAYER_WALK, Game.DIRECTION.RIGHT);
+            player.act(Game.ACTION.WALK, Game.DIRECTION.RIGHT);
         }
         else {
-            player.act(Game.ACTION.PLAYER_IDLE);
+            player.act(Game.ACTION.IDLE);
         }
     }
 })(Game || (Game = {}));
