@@ -2,6 +2,7 @@
 var Game;
 (function (Game) {
     class Collider {
+        //necessary?
         static checkCollision(object) {
             for (let element of Game.level.getChildren()) {
                 let rect = element.getRectWorld();

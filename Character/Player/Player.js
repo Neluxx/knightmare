@@ -13,27 +13,25 @@ var Game;
                 this.checkCollision();
             };
             this.addComponent(new ƒ.ComponentTransform());
-            this.show(Game.PLAYER_ACTION.IDLE);
+            this.show(Game.ACTION.PLAYER_IDLE);
             ƒ.Loop.addEventListener("loopFrame" /* LOOP_FRAME */, this.update);
         }
         show(_action) {
             //show only the animation defined for the action
-            if (_action == Game.PLAYER_ACTION.JUMP)
-                return;
             this.setAnimation(Game.SpriteGenerator.animations[_action]);
         }
         act(_action, _direction) {
             //move, jump or attack
             switch (_action) {
-                case Game.PLAYER_ACTION.IDLE:
+                case Game.ACTION.PLAYER_IDLE:
                     this.speed.x = 0;
                     break;
-                case Game.PLAYER_ACTION.WALK:
+                case Game.ACTION.PLAYER_WALK:
                     let direction = (_direction == Game.DIRECTION.RIGHT ? 1 : -1);
                     this.speed.x = Player.speedMax.x; // * direction;
                     this.cmpTransform.local.rotation = ƒ.Vector3.Y(90 - 90 * direction);
                     break;
-                case Game.PLAYER_ACTION.JUMP:
+                case Game.ACTION.PLAYER_JUMP:
                     this.speed.y = 2;
                     break;
             }

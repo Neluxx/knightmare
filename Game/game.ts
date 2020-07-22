@@ -65,21 +65,24 @@ namespace Game {
 
   function handleKeyboard(_event: ƒ.EventKeyboard): void {
     //handle KeyBoard Input
-    if (_event.code == ƒ.KEYBOARD_CODE.SPACE) {
-      player.act(PLAYER_ACTION.JUMP);
+    if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.W, ƒ.KEYBOARD_CODE.ARROW_UP])) {
+      player.act(ACTION.PLAYER_JUMP);
+    }
+    else if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.A, ƒ.KEYBOARD_CODE.ARROW_LEFT])) {
+      player.act(ACTION.PLAYER_WALK, DIRECTION.LEFT);
+    }
+    else if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.D, ƒ.KEYBOARD_CODE.ARROW_RIGHT])) {
+      player.act(ACTION.PLAYER_WALK, DIRECTION.RIGHT);
+    }
+    else if (ƒ.KEYBOARD_CODE.SPACE) {
+      player.act(ACTION.PLAYER_ATTACK);
     }
   }
 
   function handleInput(): void {
     //handle KeyBoard Input
-    if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.A, ƒ.KEYBOARD_CODE.ARROW_LEFT])) {
-      player.act(PLAYER_ACTION.WALK, DIRECTION.LEFT);
-    }
-    else if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.D, ƒ.KEYBOARD_CODE.ARROW_RIGHT])) {
-      player.act(PLAYER_ACTION.WALK, DIRECTION.RIGHT);
-    }
-    else {
-      player.act(PLAYER_ACTION.IDLE);
+    if (!ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.A, ƒ.KEYBOARD_CODE.ARROW_LEFT, ƒ.KEYBOARD_CODE.D, ƒ.KEYBOARD_CODE.ARROW_RIGHT, ƒ.KEYBOARD_CODE.W, ƒ.KEYBOARD_CODE.ARROW_UP, ƒ.KEYBOARD_CODE.SPACE])) {
+      player.act(ACTION.PLAYER_IDLE);
     }
   }
 }

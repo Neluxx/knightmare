@@ -6,6 +6,7 @@ namespace Game {
     public constructor() {
       super("Element");
     }
+    
     public static createLevel(): ƒ.Node {
       //create Level
       let level: ƒ.Node = new ƒ.Node("Level");
@@ -19,7 +20,7 @@ namespace Game {
       //add Element to Level
       element = new Element();
       element.cmpTransform.local.translateX(1.4);
-      element.cmpTransform.local.translateY(0.17);
+      element.cmpTransform.local.translateY(-0.17);
       element.cmpTransform.local.scaleY(0.2);
       element.cmpTransform.local.scaleX(2);
       level.appendChild(element);

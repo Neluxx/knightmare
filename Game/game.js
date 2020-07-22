@@ -51,20 +51,23 @@ var Game;
     }
     function handleKeyboard(_event) {
         //handle KeyBoard Input
-        if (_event.code == Game.ƒ.KEYBOARD_CODE.SPACE) {
-            player.act(Game.PLAYER_ACTION.JUMP);
+        if (Game.ƒ.Keyboard.isPressedOne([Game.ƒ.KEYBOARD_CODE.W, Game.ƒ.KEYBOARD_CODE.ARROW_UP])) {
+            player.act(Game.ACTION.PLAYER_JUMP);
+        }
+        else if (Game.ƒ.Keyboard.isPressedOne([Game.ƒ.KEYBOARD_CODE.A, Game.ƒ.KEYBOARD_CODE.ARROW_LEFT])) {
+            player.act(Game.ACTION.PLAYER_WALK, Game.DIRECTION.LEFT);
+        }
+        else if (Game.ƒ.Keyboard.isPressedOne([Game.ƒ.KEYBOARD_CODE.D, Game.ƒ.KEYBOARD_CODE.ARROW_RIGHT])) {
+            player.act(Game.ACTION.PLAYER_WALK, Game.DIRECTION.RIGHT);
+        }
+        else if (Game.ƒ.KEYBOARD_CODE.SPACE) {
+            player.act(Game.ACTION.PLAYER_ATTACK);
         }
     }
     function handleInput() {
         //handle KeyBoard Input
-        if (Game.ƒ.Keyboard.isPressedOne([Game.ƒ.KEYBOARD_CODE.A, Game.ƒ.KEYBOARD_CODE.ARROW_LEFT])) {
-            player.act(Game.PLAYER_ACTION.WALK, Game.DIRECTION.LEFT);
-        }
-        else if (Game.ƒ.Keyboard.isPressedOne([Game.ƒ.KEYBOARD_CODE.D, Game.ƒ.KEYBOARD_CODE.ARROW_RIGHT])) {
-            player.act(Game.PLAYER_ACTION.WALK, Game.DIRECTION.RIGHT);
-        }
-        else {
-            player.act(Game.PLAYER_ACTION.IDLE);
+        if (!Game.ƒ.Keyboard.isPressedOne([Game.ƒ.KEYBOARD_CODE.A, Game.ƒ.KEYBOARD_CODE.ARROW_LEFT, Game.ƒ.KEYBOARD_CODE.D, Game.ƒ.KEYBOARD_CODE.ARROW_RIGHT, Game.ƒ.KEYBOARD_CODE.W, Game.ƒ.KEYBOARD_CODE.ARROW_UP, Game.ƒ.KEYBOARD_CODE.SPACE])) {
+            player.act(Game.ACTION.PLAYER_IDLE);
         }
     }
 })(Game || (Game = {}));

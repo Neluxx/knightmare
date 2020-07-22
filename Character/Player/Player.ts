@@ -4,34 +4,32 @@ namespace Game {
   import ƒAid = FudgeAid;
 
   export class Player extends Character {
-    private action: PLAYER_ACTION;
+    public action: ACTION;
 
-    constructor() {
+    public constructor() {
       super();
       this.addComponent(new ƒ.ComponentTransform());
-      this.show(PLAYER_ACTION.IDLE);
+      this.show(ACTION.PLAYER_IDLE);
       ƒ.Loop.addEventListener(ƒ.EVENT.LOOP_FRAME, this.update);
     }
 
-    public show(_action: PLAYER_ACTION): void {
+    public show(_action: ACTION): void {
       //show only the animation defined for the action
-      if (_action == PLAYER_ACTION.JUMP)
-        return;
       this.setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.animations[_action]);
     }
 
-    public act(_action: PLAYER_ACTION, _direction?: DIRECTION): void {
+    public act(_action: ACTION, _direction?: DIRECTION): void {
       //move, jump or attack
       switch (_action) {
-        case PLAYER_ACTION.IDLE:
+        case ACTION.PLAYER_IDLE:
           this.speed.x = 0;
           break;
-        case PLAYER_ACTION.WALK:
+        case ACTION.PLAYER_WALK:
           let direction: number = (_direction == DIRECTION.RIGHT ? 1 : -1);
           this.speed.x = Player.speedMax.x; // * direction;
           this.cmpTransform.local.rotation = ƒ.Vector3.Y(90 - 90 * direction);
           break;
-        case PLAYER_ACTION.JUMP:
+        case ACTION.PLAYER_JUMP:
           this.speed.y = 2;
           break;
       }

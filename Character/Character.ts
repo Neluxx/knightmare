@@ -1,6 +1,7 @@
 namespace Game {
 
   import ƒ = FudgeCore;
+  import ƒAid = FudgeAid;
 
   export class Character extends ƒAid.NodeSprite {
     public node: ƒ.Node;
@@ -15,42 +16,31 @@ namespace Game {
     }
   }
 
-  export enum PLAYER_ACTION {
-    IDLE = "Idle",
-    WALK = "Walk",
-    //ATTACK = "Attack",
-    //DEATH = "Death",
-    //ROLL = "Roll",          //necessary?
-    //SHIELD = "Shield",      //necessary?
-    JUMP = "Jump"
-  }
+  export enum ACTION {
+    PLAYER_IDLE = "Player_Idle",
+    PLAYER_WALK = "Player_Walk",
+    PLAYER_ATTACK = "Player_Attack",
+    PLAYER_DEATH = "Player_Death",
+    PLAYER_JUMP = "Player_Jump",
 
-  export enum BAT_ACTION {
-    WALK = "Walk",
-    ATTACK = "Attack",
-    DEATH = "Death"
-  }
+    BAT_WALK = "Bat_Walk",
+    BAT_ATTACK = "Bat_Attack",
+    BAT_DEATH = "Bat_Death",
 
-  export enum WOLF_ACTION {
-    IDLE = "Idle",
-    WALK = "Walk",
-    ATTACK = "Attack",
-    DEATH = "Death"
-  }
+    WOLF_IDLE = "Wolf_Idle",
+    WOLF_WALK = "Wolf_Walk",
+    WOLF_ATTACK = "Wolf_Attack",
+    WOLF_DEATH = "Wolf_Death",
 
-  export enum WITCH_ACTION {
-    IDLE = "Idle",
-    WALK = "Walk",
-    ATTACK = "Attack",
-    DEATH = "Death"
-  }
-
-  export enum GOLEM_ACTION {
-    IDLE = "Idle",
-    //IDLE_EXTRA = "Idle Extra",
-    WALK = "Walk",
-    ATTACK = "Attack",
-    DEATH = "Death"
+    WITCH_IDLE = "Witch_Idle",
+    WITCH_WALK = "Witch_Walk",
+    WITCH_ATTACK = "Witch_Attack",
+    WITCH_DEATH = "Witch_Death",
+    
+    GOLEM_IDLE = "Golem_Idle",
+    GOLEM_WALK = "Golem_Walk",
+    GOLEM_ATTACK = "Golem_Attack",
+    GOLEM_DEATH = "Golem_Death"
   }
 
   export enum DIRECTION {

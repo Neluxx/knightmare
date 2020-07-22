@@ -4,6 +4,7 @@ namespace Game {
 
   export class Collider {
 
+    //necessary?
     public static checkCollision(object: ƒ.Node): boolean {
       for (let element of level.getChildren()) {
         let rect: ƒ.Rectangle = (<Element>element).getRectWorld();

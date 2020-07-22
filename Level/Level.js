@@ -17,7 +17,7 @@ var Game;
             //add Element to Level
             element = new Game.Element();
             element.cmpTransform.local.translateX(1.4);
-            element.cmpTransform.local.translateY(0.17);
+            element.cmpTransform.local.translateY(-0.17);
             element.cmpTransform.local.scaleY(0.2);
             element.cmpTransform.local.scaleX(2);
             level.appendChild(element);
