@@ -1,10 +1,9 @@
 # Prima
 Repository for the module "Prototyping interactive media-applications and games" at Furtwangen University
 
-[Pages-Version](https://jirkadelloro.github.io/Prima/)
+[Pages-Version](https://neluxx.github.io/Prima_FinalTask/)
 
-- [PONG](https://jirkadelloro.github.io/Prima/W19/L06_PongFinal/Main.html)
-- [CRAFTRIS](https://jirkadelloro.github.io/Prima/W19/L13_Craftris)
+[Start the Game](https://neluxx.github.io/Prima_FinalTask/Index)
 
 
 ## Checkliste für Leistungsnachweis
@@ -12,9 +11,9 @@ Repository for the module "Prototyping interactive media-applications and games"
 
 | Nr | Bezeichnung           | Inhalt                                                                                                                                                                                                                                                                         |
 |---:|-----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|    | Titel                 |
-|    | Name                  |
-|    | Matrikelnummer        |
+|    | Titel                 | That Game
+|    | Name                  | Alissa Usta, Fabian Arndt
+|    | Matrikelnummer        | XXXXXX, 257125
 |  1 | Nutzerinteraktion     | Der Nutzer kann mit der Applikation interagieren. Mit welchen Mitteln und welchen Aktionen werden welche Reaktionen ausgelöst?                                                                                                                                                 |
 |  2 | Objektinteraktion     | Mit Hilfe von Kollisionsprüfung interagieren Objekte miteinander. Wann passiert dabei wie was?                                                                                                                                                                                 |
 |  3 | Objektanzahl variabel | Eine variable Anzahl von Objekten wird zur Laufzeit generiert. Welche sind dies und wann und wie geschieht die Erzeugung?                                                                                                                                                      |
