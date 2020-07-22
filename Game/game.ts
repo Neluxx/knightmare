@@ -21,7 +21,7 @@ namespace Game {
 
     //create Game
     game = new ƒ.Node("Game");
-    player = new Player("Player");
+    player = new Player();
     level = Level.createLevel();
     game.appendChild(level);
     game.appendChild(player);
@@ -66,20 +66,20 @@ namespace Game {
   function handleKeyboard(_event: ƒ.EventKeyboard): void {
     //handle KeyBoard Input
     if (_event.code == ƒ.KEYBOARD_CODE.SPACE) {
-      player.act(ACTION.JUMP);
+      player.act(PLAYER_ACTION.JUMP);
     }
   }
 
   function handleInput(): void {
     //handle KeyBoard Input
     if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.A, ƒ.KEYBOARD_CODE.ARROW_LEFT])) {
-      player.act(ACTION.WALK, DIRECTION.LEFT);
+      player.act(PLAYER_ACTION.WALK, DIRECTION.LEFT);
     }
     else if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.D, ƒ.KEYBOARD_CODE.ARROW_RIGHT])) {
-      player.act(ACTION.WALK, DIRECTION.RIGHT);
+      player.act(PLAYER_ACTION.WALK, DIRECTION.RIGHT);
     }
     else {
-      player.act(ACTION.IDLE);
+      player.act(PLAYER_ACTION.IDLE);
     }
   }
 }

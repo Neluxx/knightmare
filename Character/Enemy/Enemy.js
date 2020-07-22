@@ -2,14 +2,22 @@
 var Game;
 (function (Game) {
     var ƒ = FudgeCore;
-    class Enemy extends ƒ.Node {
+    class Enemy extends Game.Character {
         constructor() {
-            super('Enemy');
-            this.addComponent(new ƒ.ComponentTransform);
-            this.addComponent(new ƒ.ComponentMaterial(new ƒ.Material("Blue", ƒ.ShaderUniColor, new ƒ.CoatColored(new ƒ.Color(0, 0, 1, 1)))));
-            this.addComponent(new ƒ.ComponentMesh(new ƒ.MeshCube));
-            this.cmpTransform.local.translate(new ƒ.Vector3((Math.floor(Math.random() * 6) - 3), 0, (Math.floor(Math.random() * 6) - 3)));
-            this.getComponent(ƒ.ComponentMesh).pivot.scale(new ƒ.Vector3(0.5, 0.5, 0.5));
+            super();
+            this.addComponent(new ƒ.ComponentTransform());
+        }
+        checkCollision() {
+            for (let element of Game.level.getChildren()) {
+                let rect = element.getRectWorld();
+                let hit = rect.isInside(this.cmpTransform.local.translation.toVector2());
+                if (hit) {
+                    let translation = this.cmpTransform.local.translation;
+                    translation.y = rect.y;
+                    this.cmpTransform.local.translation = translation;
+                    this.speed.y = 0;
+                }
+            }
         }
     }
     Game.Enemy = Enemy;

@@ -2,11 +2,9 @@
 var Game;
 (function (Game) {
     var ƒ = FudgeCore;
-    var ƒAid = FudgeAid;
-    class Player extends ƒAid.NodeSprite {
-        constructor(_name = "Player") {
-            super(_name);
-            this.speed = ƒ.Vector3.ZERO();
+    class Player extends Game.Character {
+        constructor() {
+            super();
             this.update = (_event) => {
                 let timeFrame = ƒ.Loop.timeFrameGame / 1000;
                 this.speed.y += Player.gravity.y * timeFrame;
@@ -15,27 +13,27 @@ var Game;
                 this.checkCollision();
             };
             this.addComponent(new ƒ.ComponentTransform());
-            this.show(Game.ACTION.IDLE);
+            this.show(Game.PLAYER_ACTION.IDLE);
             ƒ.Loop.addEventListener("loopFrame" /* LOOP_FRAME */, this.update);
         }
         show(_action) {
             //show only the animation defined for the action
-            if (_action == Game.ACTION.JUMP)
+            if (_action == Game.PLAYER_ACTION.JUMP)
                 return;
             this.setAnimation(Game.SpriteGenerator.animations[_action]);
         }
         act(_action, _direction) {
             //move, jump or attack
             switch (_action) {
-                case Game.ACTION.IDLE:
+                case Game.PLAYER_ACTION.IDLE:
                     this.speed.x = 0;
                     break;
-                case Game.ACTION.WALK:
+                case Game.PLAYER_ACTION.WALK:
                     let direction = (_direction == Game.DIRECTION.RIGHT ? 1 : -1);
                     this.speed.x = Player.speedMax.x; // * direction;
                     this.cmpTransform.local.rotation = ƒ.Vector3.Y(90 - 90 * direction);
                     break;
-                case Game.ACTION.JUMP:
+                case Game.PLAYER_ACTION.JUMP:
                     this.speed.y = 2;
                     break;
             }
@@ -57,8 +55,6 @@ var Game;
             }
         }
     }
-    Player.speedMax = new ƒ.Vector2(1.5, 5); // units per second
-    Player.gravity = ƒ.Vector2.Y(-3);
     Game.Player = Player;
 })(Game || (Game = {}));
 //# sourceMappingURL=Player.js.map

@@ -15,7 +15,7 @@ var Game;
         Game.SpriteGenerator.generateSprites(spritesheet);
         //create Game
         Game.game = new Game.ƒ.Node("Game");
-        player = new Game.Player("Player");
+        player = new Game.Player();
         Game.level = Game.Level.createLevel();
         Game.game.appendChild(Game.level);
         Game.game.appendChild(player);
@@ -52,19 +52,19 @@ var Game;
     function handleKeyboard(_event) {
         //handle KeyBoard Input
         if (_event.code == Game.ƒ.KEYBOARD_CODE.SPACE) {
-            player.act(Game.ACTION.JUMP);
+            player.act(Game.PLAYER_ACTION.JUMP);
         }
     }
     function handleInput() {
         //handle KeyBoard Input
         if (Game.ƒ.Keyboard.isPressedOne([Game.ƒ.KEYBOARD_CODE.A, Game.ƒ.KEYBOARD_CODE.ARROW_LEFT])) {
-            player.act(Game.ACTION.WALK, Game.DIRECTION.LEFT);
+            player.act(Game.PLAYER_ACTION.WALK, Game.DIRECTION.LEFT);
         }
         else if (Game.ƒ.Keyboard.isPressedOne([Game.ƒ.KEYBOARD_CODE.D, Game.ƒ.KEYBOARD_CODE.ARROW_RIGHT])) {
-            player.act(Game.ACTION.WALK, Game.DIRECTION.RIGHT);
+            player.act(Game.PLAYER_ACTION.WALK, Game.DIRECTION.RIGHT);
         }
         else {
-            player.act(Game.ACTION.IDLE);
+            player.act(Game.PLAYER_ACTION.IDLE);
         }
     }
 })(Game || (Game = {}));

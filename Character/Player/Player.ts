@@ -3,38 +3,35 @@ namespace Game {
   import ƒ = FudgeCore;
   import ƒAid = FudgeAid;
 
-  export class Player extends ƒAid.NodeSprite {
-    private static speedMax: ƒ.Vector2 = new ƒ.Vector2(1.5, 5); // units per second
-    private static gravity: ƒ.Vector2 = ƒ.Vector2.Y(-3);
-    public speed: ƒ.Vector3 = ƒ.Vector3.ZERO();
-    private action: ACTION;
+  export class Player extends Character {
+    private action: PLAYER_ACTION;
 
-    constructor(_name: string = "Player") {
-      super(_name);
+    constructor() {
+      super();
       this.addComponent(new ƒ.ComponentTransform());
-      this.show(ACTION.IDLE);
+      this.show(PLAYER_ACTION.IDLE);
       ƒ.Loop.addEventListener(ƒ.EVENT.LOOP_FRAME, this.update);
     }
 
-    public show(_action: ACTION): void {
+    public show(_action: PLAYER_ACTION): void {
       //show only the animation defined for the action
-      if (_action == ACTION.JUMP)
+      if (_action == PLAYER_ACTION.JUMP)
         return;
       this.setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.animations[_action]);
     }
 
-    public act(_action: ACTION, _direction?: DIRECTION): void {
+    public act(_action: PLAYER_ACTION, _direction?: DIRECTION): void {
       //move, jump or attack
       switch (_action) {
-        case ACTION.IDLE:
+        case PLAYER_ACTION.IDLE:
           this.speed.x = 0;
           break;
-        case ACTION.WALK:
+        case PLAYER_ACTION.WALK:
           let direction: number = (_direction == DIRECTION.RIGHT ? 1 : -1);
           this.speed.x = Player.speedMax.x; // * direction;
           this.cmpTransform.local.rotation = ƒ.Vector3.Y(90 - 90 * direction);
           break;
-        case ACTION.JUMP:
+        case PLAYER_ACTION.JUMP:
           this.speed.y = 2;
           break;
       }
