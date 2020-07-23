@@ -3,8 +3,9 @@ var Game;
 (function (Game) {
     Game.ƒ = FudgeCore;
     Game.ƒAid = FudgeAid;
+    Game.gameOver = false;
+    Game.isAttacking = false;
     let viewport;
-    let player;
     let bg;
     window.addEventListener("load", init);
     function init() {
@@ -15,12 +16,12 @@ var Game;
         Game.SpriteGenerator.generateSprites(spritesheet);
         //create Game
         Game.game = new Game.ƒ.Node("Game");
-        player = new Game.Player();
+        Game.player = new Game.Player();
         Game.level = Game.Level.createLevel();
         Game.enemies = Game.Level.createEnemies();
         bg = Game.Level.createBackground();
         Game.game.appendChild(Game.level);
-        Game.game.appendChild(player);
+        Game.game.appendChild(Game.player);
         Game.game.appendChild(Game.enemies);
         Game.game.appendChild(bg);
         //create Camera
@@ -45,35 +46,48 @@ var Game;
         Game.ƒ.Loop.start(Game.ƒ.LOOP_MODE.TIME_GAME, 60);
     }
     function update() {
-        //camera movement
-        Game.camera.cmpTransform.local.translation = player.cmpTransform.local.translation;
+        //check if game over
+        if (Game.gameOver) {
+            Game.player.act(Game.ACTION.PLAYER_DEATH);
+        }
         //check if any Key is active
-        if (!Game.ƒ.Keyboard.isPressedOne([Game.ƒ.KEYBOARD_CODE.W, Game.ƒ.KEYBOARD_CODE.ARROW_UP, Game.ƒ.KEYBOARD_CODE.A, Game.ƒ.KEYBOARD_CODE.ARROW_LEFT, Game.ƒ.KEYBOARD_CODE.D, Game.ƒ.KEYBOARD_CODE.ARROW_RIGHT, Game.ƒ.KEYBOARD_CODE.SPACE]))
-            player.act(Game.ACTION.PLAYER_IDLE);
+        if (!Game.ƒ.Keyboard.isPressedOne([Game.ƒ.KEYBOARD_CODE.W, Game.ƒ.KEYBOARD_CODE.ARROW_UP, Game.ƒ.KEYBOARD_CODE.A, Game.ƒ.KEYBOARD_CODE.ARROW_LEFT, Game.ƒ.KEYBOARD_CODE.D, Game.ƒ.KEYBOARD_CODE.ARROW_RIGHT, Game.ƒ.KEYBOARD_CODE.SPACE]) && !Game.gameOver) {
+            Game.player.act(Game.ACTION.PLAYER_IDLE);
+            Game.isAttacking = false;
+        }
+        //camera movement
+        Game.camera.cmpTransform.local.translation = Game.player.cmpTransform.local.translation;
         viewport.draw();
     }
     function handleKeyboard(_event) {
-        switch (_event.code) {
-            case (Game.ƒ.KEYBOARD_CODE.W):
-            case (Game.ƒ.KEYBOARD_CODE.ARROW_UP):
-                player.act(Game.ACTION.PLAYER_JUMP);
-                break;
-            case (Game.ƒ.KEYBOARD_CODE.A):
-            case (Game.ƒ.KEYBOARD_CODE.ARROW_LEFT):
-                player.act(Game.ACTION.PLAYER_WALK, Game.DIRECTION.LEFT);
-                break;
-            case (Game.ƒ.KEYBOARD_CODE.D):
-            case (Game.ƒ.KEYBOARD_CODE.ARROW_RIGHT):
-                player.act(Game.ACTION.PLAYER_WALK, Game.DIRECTION.RIGHT);
-                break;
-            case (Game.ƒ.KEYBOARD_CODE.S):
-            case (Game.ƒ.KEYBOARD_CODE.ARROW_DOWN):
-                //shield
-                //player.act(ACTION.PLAYER_SHIELD);
-                break;
-            case (Game.ƒ.KEYBOARD_CODE.SPACE):
-                player.act(Game.ACTION.PLAYER_ATTACK);
-                break;
+        if (!Game.gameOver) {
+            switch (_event.code) {
+                case (Game.ƒ.KEYBOARD_CODE.W):
+                case (Game.ƒ.KEYBOARD_CODE.ARROW_UP):
+                    Game.player.act(Game.ACTION.PLAYER_JUMP);
+                    Game.isAttacking = false;
+                    break;
+                case (Game.ƒ.KEYBOARD_CODE.A):
+                case (Game.ƒ.KEYBOARD_CODE.ARROW_LEFT):
+                    Game.player.act(Game.ACTION.PLAYER_WALK, Game.DIRECTION.LEFT);
+                    Game.isAttacking = false;
+                    break;
+                case (Game.ƒ.KEYBOARD_CODE.D):
+                case (Game.ƒ.KEYBOARD_CODE.ARROW_RIGHT):
+                    Game.player.act(Game.ACTION.PLAYER_WALK, Game.DIRECTION.RIGHT);
+                    Game.isAttacking = false;
+                    break;
+                case (Game.ƒ.KEYBOARD_CODE.S):
+                case (Game.ƒ.KEYBOARD_CODE.ARROW_DOWN):
+                    //shield
+                    //player.act(ACTION.PLAYER_SHIELD);
+                    //isAttacking = false;
+                    break;
+                case (Game.ƒ.KEYBOARD_CODE.SPACE):
+                    Game.player.act(Game.ACTION.PLAYER_ATTACK);
+                    Game.isAttacking = true;
+                    break;
+            }
         }
     }
 })(Game || (Game = {}));

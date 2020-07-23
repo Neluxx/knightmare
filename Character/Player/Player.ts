@@ -1,13 +1,19 @@
 namespace Game {
 
   import ƒ = FudgeCore;
-  import ƒAid = FudgeAid;
 
   export class Player extends Character {
+    private static readonly pivot: ƒ.Matrix4x4 = ƒ.Matrix4x4.TRANSLATION(ƒ.Vector3.Y(-0.5));
+
     public inAir: boolean;
+    public isBlocking: boolean;
 
     public constructor() {
       super();
+      this.health = 100;
+      this.strength = 50;
+      this.attackspeed = 1000; //in ms
+
       this.addComponent(new ƒ.ComponentTransform());
       this.show(ACTION.PLAYER_IDLE);
       ƒ.Loop.addEventListener(ƒ.EVENT.LOOP_FRAME, this.update);
@@ -17,6 +23,12 @@ namespace Game {
       //move, jump or attack
       switch (_action) {
         case ACTION.PLAYER_IDLE:
+          this.speed.x = 0;
+          break;
+        case ACTION.PLAYER_ATTACK:
+          this.speed.x = 0;
+          break;
+        case ACTION.PLAYER_DEATH:
           this.speed.x = 0;
           break;
         case ACTION.PLAYER_WALK:
@@ -45,11 +57,16 @@ namespace Game {
       this.cmpTransform.local.translate(distance);
 
       this.checkCollision();
+      this.checkMobCollision();
+
+      if (this.health <= 0) {
+        gameOver = true;
+      }
     }
 
     private checkCollision(): void {
       for (let element of level.getChildren()) {
-        let rect: ƒ.Rectangle = (<Element>element).getRectWorld();
+        let rect: ƒ.Rectangle = (<Element>element).getRectElement();
         let hit: boolean = rect.isInside(this.cmpTransform.local.translation.toVector2());
         if (hit) {
           let translation: ƒ.Vector3 = this.cmpTransform.local.translation;
@@ -59,6 +76,43 @@ namespace Game {
           this.inAir = false;
         }
       }
+    }
+
+    private checkMobCollision(): void {
+      for (let enemy of enemies.getChildren()) {
+        let rect: ƒ.Rectangle = (<Enemy>enemy).getRectEnemy();
+        let hit: boolean = rect.isInside(this.cmpTransform.local.translation.toVector2());
+        if (hit) {
+          let attackSpeed = (<any>enemy).getAttackSpeed();
+          let strength = (<any>enemy).getStrength();
+          console.log(attackSpeed);
+          console.log(strength);
+
+          if (this.canTakeDamage && this.health > 0 && !this.isBlocking) {
+            this.health -= strength;
+            this.canTakeDamage = false;
+            setTimeout(() => {
+              this.canTakeDamage = true;
+            }, attackSpeed);
+          }
+        }
+      }
+    }
+
+    public getRectPlayer(): ƒ.Rectangle {
+      let rect: ƒ.Rectangle = ƒ.Rectangle.GET(0, 0, 100, 100);
+      let topleft: ƒ.Vector3 = new ƒ.Vector3(-0.5, 0.5, 0);
+      let bottomright: ƒ.Vector3 = new ƒ.Vector3(0.5, -0.5, 0);
+      
+      let mtxResult: ƒ.Matrix4x4 = ƒ.Matrix4x4.MULTIPLICATION(this.mtxWorld, Player.pivot);
+      topleft.transform(mtxResult, true);
+      bottomright.transform(mtxResult, true);
+
+      let size: ƒ.Vector2 = new ƒ.Vector2(bottomright.x - topleft.x, bottomright.y - topleft.y);
+      rect.position = topleft.toVector2();
+      rect.size = size;
+
+      return rect;
     }
   }
 }

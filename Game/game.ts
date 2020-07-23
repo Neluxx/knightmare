@@ -5,10 +5,12 @@ namespace Game {
 
   export let game: ƒ.Node;
   export let level: ƒ.Node;
+  export let player: Player;
   export let enemies: ƒ.Node;
   export let camera: ƒ.Node;
+  export let gameOver: boolean = false;
+  export let isAttacking: boolean = false;
   let viewport: ƒ.Viewport;
-  let player: Player;
   let bg: ƒ.Node;
   
 
@@ -60,38 +62,52 @@ namespace Game {
   }
 
   function update(): void {
-    //camera movement
-    camera.cmpTransform.local.translation = player.cmpTransform.local.translation;
+    //check if game over
+    if (gameOver) {
+      player.act(ACTION.PLAYER_DEATH);
+    }
 
     //check if any Key is active
-    if (!ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.W, ƒ.KEYBOARD_CODE.ARROW_UP, ƒ.KEYBOARD_CODE.A, ƒ.KEYBOARD_CODE.ARROW_LEFT, ƒ.KEYBOARD_CODE.D, ƒ.KEYBOARD_CODE.ARROW_RIGHT, ƒ.KEYBOARD_CODE.SPACE]))
+    if (!ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.W, ƒ.KEYBOARD_CODE.ARROW_UP, ƒ.KEYBOARD_CODE.A, ƒ.KEYBOARD_CODE.ARROW_LEFT, ƒ.KEYBOARD_CODE.D, ƒ.KEYBOARD_CODE.ARROW_RIGHT, ƒ.KEYBOARD_CODE.SPACE]) && !gameOver) {
       player.act(ACTION.PLAYER_IDLE);
+      isAttacking = false;
+    }
+
+    //camera movement
+    camera.cmpTransform.local.translation = player.cmpTransform.local.translation;
 
     viewport.draw();
   }
 
   function handleKeyboard(_event: ƒ.EventKeyboard): void {
-    switch(_event.code) {
-      case (ƒ.KEYBOARD_CODE.W):
-      case (ƒ.KEYBOARD_CODE.ARROW_UP):
-        player.act(ACTION.PLAYER_JUMP);
-        break;
-      case (ƒ.KEYBOARD_CODE.A):
-      case (ƒ.KEYBOARD_CODE.ARROW_LEFT):
-        player.act(ACTION.PLAYER_WALK, DIRECTION.LEFT);
-        break;
-      case (ƒ.KEYBOARD_CODE.D):
-      case (ƒ.KEYBOARD_CODE.ARROW_RIGHT):
-        player.act(ACTION.PLAYER_WALK, DIRECTION.RIGHT);
-        break;
-      case (ƒ.KEYBOARD_CODE.S):
-      case (ƒ.KEYBOARD_CODE.ARROW_DOWN):
-        //shield
-        //player.act(ACTION.PLAYER_SHIELD);
-        break;
-      case (ƒ.KEYBOARD_CODE.SPACE):
-        player.act(ACTION.PLAYER_ATTACK);
-        break;
+    if (!gameOver) {
+      switch(_event.code) {
+        case (ƒ.KEYBOARD_CODE.W):
+        case (ƒ.KEYBOARD_CODE.ARROW_UP):
+          player.act(ACTION.PLAYER_JUMP);
+          isAttacking = false;
+          break;
+        case (ƒ.KEYBOARD_CODE.A):
+        case (ƒ.KEYBOARD_CODE.ARROW_LEFT):
+          player.act(ACTION.PLAYER_WALK, DIRECTION.LEFT);
+          isAttacking = false;
+          break;
+        case (ƒ.KEYBOARD_CODE.D):
+        case (ƒ.KEYBOARD_CODE.ARROW_RIGHT):
+          player.act(ACTION.PLAYER_WALK, DIRECTION.RIGHT);
+          isAttacking = false;
+          break;
+        case (ƒ.KEYBOARD_CODE.S):
+        case (ƒ.KEYBOARD_CODE.ARROW_DOWN):
+          //shield
+          //player.act(ACTION.PLAYER_SHIELD);
+          //isAttacking = false;
+          break;
+        case (ƒ.KEYBOARD_CODE.SPACE):
+          player.act(ACTION.PLAYER_ATTACK);
+          isAttacking = true;
+          break;
+      }
     }
   }
 }

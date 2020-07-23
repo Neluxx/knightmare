@@ -6,6 +6,7 @@ var Game;
     class Character extends ƒAid.NodeSprite {
         constructor() {
             super("Character");
+            this.canTakeDamage = true;
             this.speed = ƒ.Vector3.ZERO();
         }
         show(_action) {

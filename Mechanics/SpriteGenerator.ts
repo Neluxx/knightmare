@@ -13,7 +13,7 @@ namespace Game {
       
       //Player IDLE
       sprite = new ƒAid.SpriteSheetAnimation(ACTION.PLAYER_IDLE, _spritesheet);
-      rect = new ƒ.Rectangle(0, 30, 26, 30, ƒ.ORIGIN2D.BOTTOMLEFT);
+      rect = new ƒ.Rectangle(0, 29, 26, 30, ƒ.ORIGIN2D.BOTTOMLEFT);
       sprite.generateByGrid(rect, 15, ƒ.Vector2.ZERO(), 64, ƒ.ORIGIN2D.BOTTOMLEFT);
       SpriteGenerator.animations[ACTION.PLAYER_IDLE] = sprite;
 
@@ -25,7 +25,7 @@ namespace Game {
 
       //Player ATTACK
       sprite = new ƒAid.SpriteSheetAnimation(ACTION.PLAYER_ATTACK, _spritesheet);
-      rect = new ƒ.Rectangle(0, 93, 51, 33, ƒ.ORIGIN2D.BOTTOMLEFT);
+      rect = new ƒ.Rectangle(0, 92, 51, 32, ƒ.ORIGIN2D.BOTTOMLEFT);
       sprite.generateByGrid(rect, 20, ƒ.Vector2.ZERO(), 64, ƒ.ORIGIN2D.BOTTOMLEFT);
       SpriteGenerator.animations[ACTION.PLAYER_ATTACK] = sprite;
 

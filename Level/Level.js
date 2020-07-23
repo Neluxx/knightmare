@@ -25,7 +25,7 @@ var Game;
             element = new Game.Element();
             element.cmpTransform.local.translateY(-1.6);
             element.cmpTransform.local.scaleY(0.2);
-            element.cmpTransform.local.scaleX(5);
+            element.cmpTransform.local.scaleX(20);
             level.appendChild(element);
             return level;
         }

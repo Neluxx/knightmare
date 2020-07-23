@@ -15,7 +15,7 @@ namespace Game {
       this.addComponent(cmpMesh);
     }
 
-    public getRectWorld(): ƒ.Rectangle {
+    public getRectElement(): ƒ.Rectangle {
       let rect: ƒ.Rectangle = ƒ.Rectangle.GET(0, 0, 100, 100);
       let topleft: ƒ.Vector3 = new ƒ.Vector3(-0.5, 0.5, 0);
       let bottomright: ƒ.Vector3 = new ƒ.Vector3(0.5, -0.5, 0);

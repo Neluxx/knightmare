@@ -11,7 +11,14 @@ var Game;
                 let distance = ƒ.Vector3.SCALE(this.speed, timeFrame);
                 this.cmpTransform.local.translate(distance);
                 this.checkCollision();
+                this.checkMobCollision();
+                if (this.health <= 0) {
+                    Game.gameOver = true;
+                }
             };
+            this.health = 100;
+            this.strength = 50;
+            this.attackspeed = 1000; //in ms
             this.addComponent(new ƒ.ComponentTransform());
             this.show(Game.ACTION.PLAYER_IDLE);
             ƒ.Loop.addEventListener("loopFrame" /* LOOP_FRAME */, this.update);
@@ -20,6 +27,12 @@ var Game;
             //move, jump or attack
             switch (_action) {
                 case Game.ACTION.PLAYER_IDLE:
+                    this.speed.x = 0;
+                    break;
+                case Game.ACTION.PLAYER_ATTACK:
+                    this.speed.x = 0;
+                    break;
+                case Game.ACTION.PLAYER_DEATH:
                     this.speed.x = 0;
                     break;
                 case Game.ACTION.PLAYER_WALK:
@@ -41,7 +54,7 @@ var Game;
         }
         checkCollision() {
             for (let element of Game.level.getChildren()) {
-                let rect = element.getRectWorld();
+                let rect = element.getRectElement();
                 let hit = rect.isInside(this.cmpTransform.local.translation.toVector2());
                 if (hit) {
                     let translation = this.cmpTransform.local.translation;
@@ -52,7 +65,39 @@ var Game;
                 }
             }
         }
+        checkMobCollision() {
+            for (let enemy of Game.enemies.getChildren()) {
+                let rect = enemy.getRectEnemy();
+                let hit = rect.isInside(this.cmpTransform.local.translation.toVector2());
+                if (hit) {
+                    let attackSpeed = enemy.getAttackSpeed();
+                    let strength = enemy.getStrength();
+                    console.log(attackSpeed);
+                    console.log(strength);
+                    if (this.canTakeDamage && this.health > 0 && !this.isBlocking) {
+                        this.health -= strength;
+                        this.canTakeDamage = false;
+                        setTimeout(() => {
+                            this.canTakeDamage = true;
+                        }, attackSpeed);
+                    }
+                }
+            }
+        }
+        getRectPlayer() {
+            let rect = ƒ.Rectangle.GET(0, 0, 100, 100);
+            let topleft = new ƒ.Vector3(-0.5, 0.5, 0);
+            let bottomright = new ƒ.Vector3(0.5, -0.5, 0);
+            let mtxResult = ƒ.Matrix4x4.MULTIPLICATION(this.mtxWorld, Player.pivot);
+            topleft.transform(mtxResult, true);
+            bottomright.transform(mtxResult, true);
+            let size = new ƒ.Vector2(bottomright.x - topleft.x, bottomright.y - topleft.y);
+            rect.position = topleft.toVector2();
+            rect.size = size;
+            return rect;
+        }
     }
+    Player.pivot = ƒ.Matrix4x4.TRANSLATION(ƒ.Vector3.Y(-0.5));
     Game.Player = Player;
 })(Game || (Game = {}));
 //# sourceMappingURL=Player.js.map

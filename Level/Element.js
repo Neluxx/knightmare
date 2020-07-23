@@ -11,7 +11,7 @@ var Game;
             cmpMesh.pivot = Element.pivot;
             this.addComponent(cmpMesh);
         }
-        getRectWorld() {
+        getRectElement() {
             let rect = ƒ.Rectangle.GET(0, 0, 100, 100);
             let topleft = new ƒ.Vector3(-0.5, 0.5, 0);
             let bottomright = new ƒ.Vector3(0.5, -0.5, 0);
