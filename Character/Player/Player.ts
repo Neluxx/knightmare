@@ -4,18 +4,13 @@ namespace Game {
   import ƒAid = FudgeAid;
 
   export class Player extends Character {
-    public action: ACTION;
+    public inAir: boolean;
 
     public constructor() {
       super();
       this.addComponent(new ƒ.ComponentTransform());
       this.show(ACTION.PLAYER_IDLE);
       ƒ.Loop.addEventListener(ƒ.EVENT.LOOP_FRAME, this.update);
-    }
-
-    public show(_action: ACTION): void {
-      //show only the animation defined for the action
-      this.setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.animations[_action]);
     }
 
     public act(_action: ACTION, _direction?: DIRECTION): void {
@@ -30,7 +25,10 @@ namespace Game {
           this.cmpTransform.local.rotation = ƒ.Vector3.Y(90 - 90 * direction);
           break;
         case ACTION.PLAYER_JUMP:
-          this.speed.y = 2;
+          if (!this.inAir) {
+            this.speed.y = 2;
+            this.inAir = true;
+          }
           break;
       }
       if (_action == this.action)
@@ -58,6 +56,7 @@ namespace Game {
           translation.y = rect.y;
           this.cmpTransform.local.translation = translation;
           this.speed.y = 0;
+          this.inAir = false;
         }
       }
     }

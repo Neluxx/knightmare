@@ -5,9 +5,12 @@ namespace Game {
 
   export let game: ƒ.Node;
   export let level: ƒ.Node;
-  let viewport: ƒ.Viewport
+  export let enemies: ƒ.Node;
+  export let camera: ƒ.Node;
+  let viewport: ƒ.Viewport;
   let player: Player;
-  //let enemies: Enemy[];
+  let bg: ƒ.Node;
+  
 
   window.addEventListener("load", init);
 
@@ -23,28 +26,27 @@ namespace Game {
     game = new ƒ.Node("Game");
     player = new Player();
     level = Level.createLevel();
+    enemies = Level.createEnemies();
+    bg = Level.createBackground();
     game.appendChild(level);
     game.appendChild(player);
-
-    //create Background
-    let bgImg: HTMLImageElement = document.querySelector("#background");
-    let mesh: ƒ.MeshSprite = new ƒ.MeshSprite();
-    let mtr: ƒ.Material = SpriteGenerator.getTextureMaterial("Background", bgImg);
-    let background: ƒAid.Node = new ƒAid.Node("Background", ƒ.Matrix4x4.IDENTITY(), mtr, mesh);
-    background.cmpTransform.local.scaleX(15);
-    background.cmpTransform.local.scaleY(15);
-    game.appendChild(background);
+    game.appendChild(enemies);
+    game.appendChild(bg);
 
     //create Camera
     let cmpCamera: ƒ.ComponentCamera = new ƒ.ComponentCamera();
     cmpCamera.pivot.translateZ(10);
-    //cmpCamera.pivot.lookAt(ƒ.Vector3.ZERO());
-    cmpCamera.pivot.lookAt(player.mtxLocal.translation);
+    cmpCamera.pivot.lookAt(ƒ.Vector3.ZERO());
     cmpCamera.backgroundColor = ƒ.Color.CSS("white");
+
+    camera = new ƒ.Node("Camera");
+    camera.addComponent(new ƒ.ComponentTransform());
+    camera.addComponent(cmpCamera);
+    game.appendChild(camera);
 
     //create Viewport
     viewport = new ƒ.Viewport();
-    viewport.initialize("Viewport", game, cmpCamera, canvas);
+    viewport.initialize("Viewport", game, camera.getComponent(ƒ.ComponentCamera), canvas);
     viewport.draw();
 
     //add EventListener
@@ -57,32 +59,39 @@ namespace Game {
     ƒ.Loop.start(ƒ.LOOP_MODE.TIME_GAME, 60);
   }
 
-  function update(_event: ƒ.Eventƒ): void {
-    handleInput();
+  function update(): void {
+    //camera movement
+    camera.cmpTransform.local.translation = player.cmpTransform.local.translation;
+
+    //check if any Key is active
+    if (!ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.W, ƒ.KEYBOARD_CODE.ARROW_UP, ƒ.KEYBOARD_CODE.A, ƒ.KEYBOARD_CODE.ARROW_LEFT, ƒ.KEYBOARD_CODE.D, ƒ.KEYBOARD_CODE.ARROW_RIGHT, ƒ.KEYBOARD_CODE.SPACE]))
+      player.act(ACTION.PLAYER_IDLE);
 
     viewport.draw();
   }
 
   function handleKeyboard(_event: ƒ.EventKeyboard): void {
-    //handle KeyBoard Input
-    if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.W, ƒ.KEYBOARD_CODE.ARROW_UP])) {
-      player.act(ACTION.PLAYER_JUMP);
-    }
-    else if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.A, ƒ.KEYBOARD_CODE.ARROW_LEFT])) {
-      player.act(ACTION.PLAYER_WALK, DIRECTION.LEFT);
-    }
-    else if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.D, ƒ.KEYBOARD_CODE.ARROW_RIGHT])) {
-      player.act(ACTION.PLAYER_WALK, DIRECTION.RIGHT);
-    }
-    else if (ƒ.KEYBOARD_CODE.SPACE) {
-      player.act(ACTION.PLAYER_ATTACK);
-    }
-  }
-
-  function handleInput(): void {
-    //handle KeyBoard Input
-    if (!ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.A, ƒ.KEYBOARD_CODE.ARROW_LEFT, ƒ.KEYBOARD_CODE.D, ƒ.KEYBOARD_CODE.ARROW_RIGHT, ƒ.KEYBOARD_CODE.W, ƒ.KEYBOARD_CODE.ARROW_UP, ƒ.KEYBOARD_CODE.SPACE])) {
-      player.act(ACTION.PLAYER_IDLE);
+    switch(_event.code) {
+      case (ƒ.KEYBOARD_CODE.W):
+      case (ƒ.KEYBOARD_CODE.ARROW_UP):
+        player.act(ACTION.PLAYER_JUMP);
+        break;
+      case (ƒ.KEYBOARD_CODE.A):
+      case (ƒ.KEYBOARD_CODE.ARROW_LEFT):
+        player.act(ACTION.PLAYER_WALK, DIRECTION.LEFT);
+        break;
+      case (ƒ.KEYBOARD_CODE.D):
+      case (ƒ.KEYBOARD_CODE.ARROW_RIGHT):
+        player.act(ACTION.PLAYER_WALK, DIRECTION.RIGHT);
+        break;
+      case (ƒ.KEYBOARD_CODE.S):
+      case (ƒ.KEYBOARD_CODE.ARROW_DOWN):
+        //shield
+        //player.act(ACTION.PLAYER_SHIELD);
+        break;
+      case (ƒ.KEYBOARD_CODE.SPACE):
+        player.act(ACTION.PLAYER_ATTACK);
+        break;
     }
   }
 }

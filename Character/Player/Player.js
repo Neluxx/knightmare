@@ -16,10 +16,6 @@ var Game;
             this.show(Game.ACTION.PLAYER_IDLE);
             ƒ.Loop.addEventListener("loopFrame" /* LOOP_FRAME */, this.update);
         }
-        show(_action) {
-            //show only the animation defined for the action
-            this.setAnimation(Game.SpriteGenerator.animations[_action]);
-        }
         act(_action, _direction) {
             //move, jump or attack
             switch (_action) {
@@ -32,7 +28,10 @@ var Game;
                     this.cmpTransform.local.rotation = ƒ.Vector3.Y(90 - 90 * direction);
                     break;
                 case Game.ACTION.PLAYER_JUMP:
-                    this.speed.y = 2;
+                    if (!this.inAir) {
+                        this.speed.y = 2;
+                        this.inAir = true;
+                    }
                     break;
             }
             if (_action == this.action)
@@ -49,6 +48,7 @@ var Game;
                     translation.y = rect.y;
                     this.cmpTransform.local.translation = translation;
                     this.speed.y = 0;
+                    this.inAir = false;
                 }
             }
         }

@@ -4,7 +4,8 @@ namespace Game {
   import ƒAid = FudgeAid;
 
   export class Character extends ƒAid.NodeSprite {
-    public node: ƒ.Node;
+    public node: ƒAid.Node;
+    public action: ACTION;
     public health: number;
     public strength: number;
     public speed: ƒ.Vector3 = ƒ.Vector3.ZERO();
@@ -13,6 +14,14 @@ namespace Game {
 
     public constructor() {
       super("Character");
+    }
+
+    public show(_action: ACTION): void {
+      //show only the animation defined for the action
+      if (_action == ACTION.PLAYER_JUMP)
+        return;
+
+      this.setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.animations[_action]);
     }
   }
 

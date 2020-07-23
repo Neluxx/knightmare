@@ -8,6 +8,12 @@ var Game;
             super("Character");
             this.speed = ƒ.Vector3.ZERO();
         }
+        show(_action) {
+            //show only the animation defined for the action
+            if (_action == ACTION.PLAYER_JUMP)
+                return;
+            this.setAnimation(Game.SpriteGenerator.animations[_action]);
+        }
     }
     Character.speedMax = new ƒ.Vector2(1.5, 5); //units per second
     Character.gravity = ƒ.Vector2.Y(-3);

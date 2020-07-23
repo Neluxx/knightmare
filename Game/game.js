@@ -5,7 +5,7 @@ var Game;
     Game.ƒAid = FudgeAid;
     let viewport;
     let player;
-    //let enemies: Enemy[];
+    let bg;
     window.addEventListener("load", init);
     function init() {
         let canvas = document.querySelector("canvas");
@@ -17,25 +17,24 @@ var Game;
         Game.game = new Game.ƒ.Node("Game");
         player = new Game.Player();
         Game.level = Game.Level.createLevel();
+        Game.enemies = Game.Level.createEnemies();
+        bg = Game.Level.createBackground();
         Game.game.appendChild(Game.level);
         Game.game.appendChild(player);
-        //create Background
-        let bgImg = document.querySelector("#background");
-        let mesh = new Game.ƒ.MeshSprite();
-        let mtr = Game.SpriteGenerator.getTextureMaterial("Background", bgImg);
-        let background = new Game.ƒAid.Node("Background", Game.ƒ.Matrix4x4.IDENTITY(), mtr, mesh);
-        background.cmpTransform.local.scaleX(15);
-        background.cmpTransform.local.scaleY(15);
-        Game.game.appendChild(background);
+        Game.game.appendChild(Game.enemies);
+        Game.game.appendChild(bg);
         //create Camera
         let cmpCamera = new Game.ƒ.ComponentCamera();
         cmpCamera.pivot.translateZ(10);
-        //cmpCamera.pivot.lookAt(ƒ.Vector3.ZERO());
-        cmpCamera.pivot.lookAt(player.mtxLocal.translation);
+        cmpCamera.pivot.lookAt(Game.ƒ.Vector3.ZERO());
         cmpCamera.backgroundColor = Game.ƒ.Color.CSS("white");
+        Game.camera = new Game.ƒ.Node("Camera");
+        Game.camera.addComponent(new Game.ƒ.ComponentTransform());
+        Game.camera.addComponent(cmpCamera);
+        Game.game.appendChild(Game.camera);
         //create Viewport
         viewport = new Game.ƒ.Viewport();
-        viewport.initialize("Viewport", Game.game, cmpCamera, canvas);
+        viewport.initialize("Viewport", Game.game, Game.camera.getComponent(Game.ƒ.ComponentCamera), canvas);
         viewport.draw();
         //add EventListener
         viewport.addEventListener("\u0192keydown" /* DOWN */, handleKeyboard);
@@ -45,29 +44,36 @@ var Game;
         Game.ƒ.Loop.addEventListener("loopFrame" /* LOOP_FRAME */, update);
         Game.ƒ.Loop.start(Game.ƒ.LOOP_MODE.TIME_GAME, 60);
     }
-    function update(_event) {
-        handleInput();
+    function update() {
+        //camera movement
+        Game.camera.cmpTransform.local.translation = player.cmpTransform.local.translation;
+        //check if any Key is active
+        if (!Game.ƒ.Keyboard.isPressedOne([Game.ƒ.KEYBOARD_CODE.W, Game.ƒ.KEYBOARD_CODE.ARROW_UP, Game.ƒ.KEYBOARD_CODE.A, Game.ƒ.KEYBOARD_CODE.ARROW_LEFT, Game.ƒ.KEYBOARD_CODE.D, Game.ƒ.KEYBOARD_CODE.ARROW_RIGHT, Game.ƒ.KEYBOARD_CODE.SPACE]))
+            player.act(Game.ACTION.PLAYER_IDLE);
         viewport.draw();
     }
     function handleKeyboard(_event) {
-        //handle KeyBoard Input
-        if (Game.ƒ.Keyboard.isPressedOne([Game.ƒ.KEYBOARD_CODE.W, Game.ƒ.KEYBOARD_CODE.ARROW_UP])) {
-            player.act(Game.ACTION.PLAYER_JUMP);
-        }
-        else if (Game.ƒ.Keyboard.isPressedOne([Game.ƒ.KEYBOARD_CODE.A, Game.ƒ.KEYBOARD_CODE.ARROW_LEFT])) {
-            player.act(Game.ACTION.PLAYER_WALK, Game.DIRECTION.LEFT);
-        }
-        else if (Game.ƒ.Keyboard.isPressedOne([Game.ƒ.KEYBOARD_CODE.D, Game.ƒ.KEYBOARD_CODE.ARROW_RIGHT])) {
-            player.act(Game.ACTION.PLAYER_WALK, Game.DIRECTION.RIGHT);
-        }
-        else if (Game.ƒ.KEYBOARD_CODE.SPACE) {
-            player.act(Game.ACTION.PLAYER_ATTACK);
-        }
-    }
-    function handleInput() {
-        //handle KeyBoard Input
-        if (!Game.ƒ.Keyboard.isPressedOne([Game.ƒ.KEYBOARD_CODE.A, Game.ƒ.KEYBOARD_CODE.ARROW_LEFT, Game.ƒ.KEYBOARD_CODE.D, Game.ƒ.KEYBOARD_CODE.ARROW_RIGHT, Game.ƒ.KEYBOARD_CODE.W, Game.ƒ.KEYBOARD_CODE.ARROW_UP, Game.ƒ.KEYBOARD_CODE.SPACE])) {
-            player.act(Game.ACTION.PLAYER_IDLE);
+        switch (_event.code) {
+            case (Game.ƒ.KEYBOARD_CODE.W):
+            case (Game.ƒ.KEYBOARD_CODE.ARROW_UP):
+                player.act(Game.ACTION.PLAYER_JUMP);
+                break;
+            case (Game.ƒ.KEYBOARD_CODE.A):
+            case (Game.ƒ.KEYBOARD_CODE.ARROW_LEFT):
+                player.act(Game.ACTION.PLAYER_WALK, Game.DIRECTION.LEFT);
+                break;
+            case (Game.ƒ.KEYBOARD_CODE.D):
+            case (Game.ƒ.KEYBOARD_CODE.ARROW_RIGHT):
+                player.act(Game.ACTION.PLAYER_WALK, Game.DIRECTION.RIGHT);
+                break;
+            case (Game.ƒ.KEYBOARD_CODE.S):
+            case (Game.ƒ.KEYBOARD_CODE.ARROW_DOWN):
+                //shield
+                //player.act(ACTION.PLAYER_SHIELD);
+                break;
+            case (Game.ƒ.KEYBOARD_CODE.SPACE):
+                player.act(Game.ACTION.PLAYER_ATTACK);
+                break;
         }
     }
 })(Game || (Game = {}));
