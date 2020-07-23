@@ -13,6 +13,7 @@ namespace Game {
       this.health = 100;
       this.strength = 50;
       this.attackspeed = 1000; //in ms
+      this.speedMax = new ƒ.Vector2(1.5, 5); //units per second
 
       this.addComponent(new ƒ.ComponentTransform());
       this.show(ACTION.PLAYER_IDLE);
@@ -20,7 +21,6 @@ namespace Game {
     }
 
     public act(_action: ACTION, _direction?: DIRECTION): void {
-      //move, jump or attack
       switch (_action) {
         case ACTION.PLAYER_IDLE:
           this.speed.x = 0;
@@ -33,7 +33,7 @@ namespace Game {
           break;
         case ACTION.PLAYER_WALK:
           let direction: number = (_direction == DIRECTION.RIGHT ? 1 : -1);
-          this.speed.x = Player.speedMax.x; // * direction;
+          this.speed.x = this.speedMax.x; // * direction;
           this.cmpTransform.local.rotation = ƒ.Vector3.Y(90 - 90 * direction);
           break;
         case ACTION.PLAYER_JUMP:
@@ -51,6 +51,7 @@ namespace Game {
     }
 
     private update = (_event: ƒ.Eventƒ): void => {
+      console.log(this.health);
       let timeFrame: number = ƒ.Loop.timeFrameGame / 1000;
       this.speed.y += Player.gravity.y * timeFrame;
       let distance: ƒ.Vector3 = ƒ.Vector3.SCALE(this.speed, timeFrame);
@@ -80,15 +81,14 @@ namespace Game {
 
     private checkMobCollision(): void {
       for (let enemy of enemies.getChildren()) {
-        let rect: ƒ.Rectangle = (<Enemy>enemy).getRectEnemy();
+        let rect: ƒ.Rectangle = (<any>enemy).getRectEnemy();
         let hit: boolean = rect.isInside(this.cmpTransform.local.translation.toVector2());
         if (hit) {
           let attackSpeed = (<any>enemy).getAttackSpeed();
           let strength = (<any>enemy).getStrength();
-          console.log(attackSpeed);
-          console.log(strength);
+          let isDead = (<any>enemy).getIsDead();
 
-          if (this.canTakeDamage && this.health > 0 && !this.isBlocking) {
+          if (this.canTakeDamage && this.health > 0 && !this.isBlocking && !isDead) {
             this.health -= strength;
             this.canTakeDamage = false;
             setTimeout(() => {
@@ -105,6 +105,7 @@ namespace Game {
       let bottomright: ƒ.Vector3 = new ƒ.Vector3(0.5, -0.5, 0);
       
       let mtxResult: ƒ.Matrix4x4 = ƒ.Matrix4x4.MULTIPLICATION(this.mtxWorld, Player.pivot);
+      mtxResult = ƒ.Matrix4x4.MULTIPLICATION(mtxResult, ƒ.Matrix4x4.SCALING(new ƒ.Vector3(2, 2, 2)));
       topleft.transform(mtxResult, true);
       bottomright.transform(mtxResult, true);
 

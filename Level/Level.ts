@@ -39,15 +39,15 @@ namespace Game {
       //create enemies
       let enemies: ƒ.Node = new ƒ.Node("Enemies");
       let bat: Bat;
-      let wolf: Wolf;
+      /*let wolf: Wolf;
   
       wolf = new Wolf();
       wolf.cmpTransform.local.translateX(1.5);
       wolf.cmpTransform.local.translateY(0.5);
-      enemies.appendChild(wolf);
+      enemies.appendChild(wolf);*/
   
       bat = new Bat();
-      bat.cmpTransform.local.translateX(-1);
+      bat.cmpTransform.local.translateX(-5);
       bat.cmpTransform.local.translateY(-0.5);
       enemies.appendChild(bat);
   

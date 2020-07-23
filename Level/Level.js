@@ -33,13 +33,14 @@ var Game;
             //create enemies
             let enemies = new ƒ.Node("Enemies");
             let bat;
-            let wolf;
-            wolf = new Game.Wolf();
+            /*let wolf: Wolf;
+        
+            wolf = new Wolf();
             wolf.cmpTransform.local.translateX(1.5);
             wolf.cmpTransform.local.translateY(0.5);
-            enemies.appendChild(wolf);
+            enemies.appendChild(wolf);*/
             bat = new Game.Bat();
-            bat.cmpTransform.local.translateX(-1);
+            bat.cmpTransform.local.translateX(-5);
             bat.cmpTransform.local.translateY(-0.5);
             enemies.appendChild(bat);
             return enemies;

@@ -7,7 +7,9 @@ var Game;
         constructor() {
             super("Character");
             this.canTakeDamage = true;
+            this.isDead = false;
             this.speed = ƒ.Vector3.ZERO();
+            this.speedMax = new ƒ.Vector2(1.5, 5); //units per second
         }
         show(_action) {
             //show only the animation defined for the action
@@ -16,7 +18,6 @@ var Game;
             this.setAnimation(Game.SpriteGenerator.animations[_action]);
         }
     }
-    Character.speedMax = new ƒ.Vector2(1.5, 5); //units per second
     Character.gravity = ƒ.Vector2.Y(-3);
     Game.Character = Character;
     let ACTION;

@@ -6,12 +6,14 @@ namespace Game {
   export class Character extends ƒAid.NodeSprite {
     public node: ƒAid.Node;
     public action: ACTION;
+    protected direct: number;
     public health: number;
     public strength: number;
     public attackspeed: number;
     public canTakeDamage: boolean = true;
+    public isDead: boolean = false;
     public speed: ƒ.Vector3 = ƒ.Vector3.ZERO();
-    public static speedMax: ƒ.Vector2 = new ƒ.Vector2(1.5, 5); //units per second
+    public speedMax: ƒ.Vector2 = new ƒ.Vector2(1.5, 5); //units per second
     public static gravity: ƒ.Vector2 = ƒ.Vector2.Y(-3);
 
     public constructor() {

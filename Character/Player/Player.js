@@ -6,6 +6,7 @@ var Game;
         constructor() {
             super();
             this.update = (_event) => {
+                console.log(this.health);
                 let timeFrame = ƒ.Loop.timeFrameGame / 1000;
                 this.speed.y += Player.gravity.y * timeFrame;
                 let distance = ƒ.Vector3.SCALE(this.speed, timeFrame);
@@ -19,12 +20,12 @@ var Game;
             this.health = 100;
             this.strength = 50;
             this.attackspeed = 1000; //in ms
+            this.speedMax = new ƒ.Vector2(1.5, 5); //units per second
             this.addComponent(new ƒ.ComponentTransform());
             this.show(Game.ACTION.PLAYER_IDLE);
             ƒ.Loop.addEventListener("loopFrame" /* LOOP_FRAME */, this.update);
         }
         act(_action, _direction) {
-            //move, jump or attack
             switch (_action) {
                 case Game.ACTION.PLAYER_IDLE:
                     this.speed.x = 0;
@@ -37,7 +38,7 @@ var Game;
                     break;
                 case Game.ACTION.PLAYER_WALK:
                     let direction = (_direction == Game.DIRECTION.RIGHT ? 1 : -1);
-                    this.speed.x = Player.speedMax.x; // * direction;
+                    this.speed.x = this.speedMax.x; // * direction;
                     this.cmpTransform.local.rotation = ƒ.Vector3.Y(90 - 90 * direction);
                     break;
                 case Game.ACTION.PLAYER_JUMP:
@@ -72,9 +73,8 @@ var Game;
                 if (hit) {
                     let attackSpeed = enemy.getAttackSpeed();
                     let strength = enemy.getStrength();
-                    console.log(attackSpeed);
-                    console.log(strength);
-                    if (this.canTakeDamage && this.health > 0 && !this.isBlocking) {
+                    let isDead = enemy.getIsDead();
+                    if (this.canTakeDamage && this.health > 0 && !this.isBlocking && !isDead) {
                         this.health -= strength;
                         this.canTakeDamage = false;
                         setTimeout(() => {
@@ -89,6 +89,7 @@ var Game;
             let topleft = new ƒ.Vector3(-0.5, 0.5, 0);
             let bottomright = new ƒ.Vector3(0.5, -0.5, 0);
             let mtxResult = ƒ.Matrix4x4.MULTIPLICATION(this.mtxWorld, Player.pivot);
+            mtxResult = ƒ.Matrix4x4.MULTIPLICATION(mtxResult, ƒ.Matrix4x4.SCALING(new ƒ.Vector3(2, 2, 2)));
             topleft.transform(mtxResult, true);
             bottomright.transform(mtxResult, true);
             let size = new ƒ.Vector2(bottomright.x - topleft.x, bottomright.y - topleft.y);
