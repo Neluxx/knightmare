@@ -4,7 +4,7 @@ var Game;
     var ƒ = FudgeCore;
     var ƒAid = FudgeAid;
     class SpriteGenerator extends ƒAid.NodeSprite {
-        static generateSprites(_spritesheet) {
+        static generateAnimations(_spritesheet) {
             SpriteGenerator.animations = {};
             let sprite;
             let rect;
@@ -53,6 +53,21 @@ var Game;
             rect = new ƒ.Rectangle(14, 266, 36, 24, ƒ.ORIGIN2D.BOTTOMLEFT);
             sprite.generateByGrid(rect, 12, new ƒ.Vector2(28, 0), 64, ƒ.ORIGIN2D.BOTTOMLEFT);
             SpriteGenerator.animations[Game.ACTION.WOLF_IDLE] = sprite;
+        }
+        static generateTileset(_spritesheet) {
+            SpriteGenerator.tileset = {};
+            let sprite;
+            let rect;
+            //Player IDLE
+            sprite = new ƒAid.SpriteSheetAnimation("01", _spritesheet);
+            rect = new ƒ.Rectangle(0, 52, 52, 52, ƒ.ORIGIN2D.BOTTOMLEFT);
+            sprite.generateByGrid(rect, 1, ƒ.Vector2.ZERO(), 64, ƒ.ORIGIN2D.BOTTOMLEFT);
+            SpriteGenerator.tileset["01"] = sprite;
+            //Player IDLE
+            sprite = new ƒAid.SpriteSheetAnimation("01", _spritesheet);
+            rect = new ƒ.Rectangle(52, 51, 52, 52, ƒ.ORIGIN2D.BOTTOMLEFT);
+            sprite.generateByGrid(rect, 1, ƒ.Vector2.ZERO(), 64, ƒ.ORIGIN2D.BOTTOMLEFT);
+            SpriteGenerator.tileset["01"] = sprite;
         }
         static getTextureMaterial(name, img) {
             let coatTxt = new ƒ.CoatTextured();

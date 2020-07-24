@@ -54,7 +54,7 @@ var Game;
             this.show(_action);
         }
         playerDetection() {
-            if (Math.abs(Game.player.cmpTransform.local.translation.x - this.cmpTransform.local.translation.x) < 3 && Math.abs(Game.player.cmpTransform.local.translation.x - this.cmpTransform.local.translation.x) > 0.75) {
+            if (Math.abs(Game.player.cmpTransform.local.translation.x - this.cmpTransform.local.translation.x) < 3 && Math.abs(Game.player.cmpTransform.local.translation.x - this.cmpTransform.local.translation.x) > 0.75 && !Game.gameOver) {
                 if (Game.player.cmpTransform.local.translation.x > this.cmpTransform.local.translation.x) {
                     this.act(Game.ACTION.BAT_WALK, Game.DIRECTION.RIGHT);
                 }
@@ -62,7 +62,7 @@ var Game;
                     this.act(Game.ACTION.BAT_WALK, Game.DIRECTION.LEFT);
                 }
             }
-            else if (Math.abs(Game.player.cmpTransform.local.translation.x - this.cmpTransform.local.translation.x) < 3 && Math.abs(Game.player.cmpTransform.local.translation.x - this.cmpTransform.local.translation.x) < 0.75) {
+            else if (Math.abs(Game.player.cmpTransform.local.translation.x - this.cmpTransform.local.translation.x) < 3 && Math.abs(Game.player.cmpTransform.local.translation.x - this.cmpTransform.local.translation.x) < 0.75 && !Game.gameOver) {
                 if (Game.player.cmpTransform.local.translation.x > this.cmpTransform.local.translation.x) {
                     this.act(Game.ACTION.BAT_ATTACK, Game.DIRECTION.RIGHT);
                 }

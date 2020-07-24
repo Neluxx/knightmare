@@ -22,7 +22,11 @@ namespace Game {
     //find spritesheet and generate Sprites
     let img: HTMLImageElement = document.querySelector("#spritesheet");
     let spritesheet: ƒ.CoatTextured = ƒAid.createSpriteSheet("Spritesheet", img);
-    SpriteGenerator.generateSprites(spritesheet);
+    SpriteGenerator.generateAnimations(spritesheet);
+
+    img = document.querySelector("#tileset");
+    spritesheet = ƒAid.createSpriteSheet("Tileset", img);
+    SpriteGenerator.generateTileset(spritesheet);
 
     //create Game
     game = new ƒ.Node("Game");
@@ -75,6 +79,9 @@ namespace Game {
 
     //camera movement
     camera.cmpTransform.local.translation = player.cmpTransform.local.translation;
+    camera.cmpTransform.local.translateY(1.5);
+    bg.cmpTransform.local.translation = player.cmpTransform.local.translation;
+    bg.cmpTransform.local.translateY(0.25);
 
     viewport.draw();
   }

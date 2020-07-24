@@ -45,7 +45,7 @@ namespace Game {
     }
 
     private playerDetection(): void {
-      if (Math.abs(player.cmpTransform.local.translation.x - this.cmpTransform.local.translation.x) < 3 && Math.abs(player.cmpTransform.local.translation.x - this.cmpTransform.local.translation.x) > 0.75) {
+      if (Math.abs(player.cmpTransform.local.translation.x - this.cmpTransform.local.translation.x) < 3 && Math.abs(player.cmpTransform.local.translation.x - this.cmpTransform.local.translation.x) > 0.75 && !gameOver) {
         if (player.cmpTransform.local.translation.x > this.cmpTransform.local.translation.x) {
           this.act(ACTION.BAT_WALK, DIRECTION.RIGHT);
         }
@@ -53,7 +53,7 @@ namespace Game {
           this.act(ACTION.BAT_WALK, DIRECTION.LEFT);
         }
       }
-      else if (Math.abs(player.cmpTransform.local.translation.x - this.cmpTransform.local.translation.x) < 3 && Math.abs(player.cmpTransform.local.translation.x - this.cmpTransform.local.translation.x) < 0.75) {
+      else if (Math.abs(player.cmpTransform.local.translation.x - this.cmpTransform.local.translation.x) < 3 && Math.abs(player.cmpTransform.local.translation.x - this.cmpTransform.local.translation.x) < 0.75 && !gameOver) {
         if (player.cmpTransform.local.translation.x > this.cmpTransform.local.translation.x) {
           this.act(ACTION.BAT_ATTACK, DIRECTION.RIGHT);
         }

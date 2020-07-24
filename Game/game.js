@@ -13,7 +13,10 @@ var Game;
         //find spritesheet and generate Sprites
         let img = document.querySelector("#spritesheet");
         let spritesheet = Game.ƒAid.createSpriteSheet("Spritesheet", img);
-        Game.SpriteGenerator.generateSprites(spritesheet);
+        Game.SpriteGenerator.generateAnimations(spritesheet);
+        img = document.querySelector("#tileset");
+        spritesheet = Game.ƒAid.createSpriteSheet("Tileset", img);
+        Game.SpriteGenerator.generateTileset(spritesheet);
         //create Game
         Game.game = new Game.ƒ.Node("Game");
         Game.player = new Game.Player();
@@ -57,6 +60,9 @@ var Game;
         }
         //camera movement
         Game.camera.cmpTransform.local.translation = Game.player.cmpTransform.local.translation;
+        Game.camera.cmpTransform.local.translateY(1.5);
+        bg.cmpTransform.local.translation = Game.player.cmpTransform.local.translation;
+        bg.cmpTransform.local.translateY(0.25);
         viewport.draw();
     }
     function handleKeyboard(_event) {

@@ -2,7 +2,8 @@
 var Game;
 (function (Game) {
     var ƒ = FudgeCore;
-    class Level extends ƒ.Node {
+    var ƒAid = FudgeAid;
+    class Level extends ƒAid.NodeSprite {
         constructor() {
             super("Element");
         }
@@ -12,20 +13,29 @@ var Game;
             let element;
             //add Element to Level
             element = new Game.Element();
-            element.cmpTransform.local.scaleY(0.2);
+            element.cmpTransform.local.translateY(-1);
+            level.appendChild(element);
+            for (let i = 1; i <= 20; i++) {
+                //add Element to Level
+                element = new Game.Element();
+                element.cmpTransform.local.translateX((-0.5) * i);
+                element.cmpTransform.local.translateY(-1);
+                level.appendChild(element);
+                //add Element to Level
+                element = new Game.Element();
+                element.cmpTransform.local.translateX((0.5) * i);
+                element.cmpTransform.local.translateY(-1);
+                level.appendChild(element);
+            }
+            //add Element to Level
+            element = new Game.Element();
+            element.cmpTransform.local.translateX(2);
+            element.cmpTransform.local.translateY(0.05);
             level.appendChild(element);
             //add Element to Level
             element = new Game.Element();
-            element.cmpTransform.local.translateX(1.4);
-            element.cmpTransform.local.translateY(-0.17);
-            element.cmpTransform.local.scaleY(0.2);
-            element.cmpTransform.local.scaleX(2);
-            level.appendChild(element);
-            //add Element to Level
-            element = new Game.Element();
-            element.cmpTransform.local.translateY(-1.6);
-            element.cmpTransform.local.scaleY(0.2);
-            element.cmpTransform.local.scaleX(20);
+            element.cmpTransform.local.translateX(2.5);
+            element.cmpTransform.local.translateY(0.05);
             level.appendChild(element);
             return level;
         }
@@ -40,8 +50,7 @@ var Game;
             wolf.cmpTransform.local.translateY(0.5);
             enemies.appendChild(wolf);*/
             bat = new Game.Bat();
-            bat.cmpTransform.local.translateX(-5);
-            bat.cmpTransform.local.translateY(-0.5);
+            bat.cmpTransform.local.translateX(-4);
             enemies.appendChild(bat);
             return enemies;
         }
@@ -49,9 +58,9 @@ var Game;
             let bgImg = document.querySelector("#background");
             let mesh = new ƒ.MeshSprite();
             let mtr = Game.SpriteGenerator.getTextureMaterial("Background", bgImg);
-            let background = new Game.ƒAid.Node("Background", ƒ.Matrix4x4.IDENTITY(), mtr, mesh);
-            background.cmpTransform.local.scaleX(15);
-            background.cmpTransform.local.scaleY(15);
+            let background = new ƒAid.Node("Background", ƒ.Matrix4x4.IDENTITY(), mtr, mesh);
+            background.cmpTransform.local.scaleX(12);
+            background.cmpTransform.local.scaleY(6);
             return background;
         }
     }
