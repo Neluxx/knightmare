@@ -10,6 +10,8 @@ var Game;
     window.addEventListener("load", init);
     function init() {
         let canvas = document.querySelector("canvas");
+        Game.data = new Game.ExternalData();
+        Game.data.loadJSON();
         //find spritesheet and generate Sprites
         let img = document.querySelector("#spritesheet");
         let spritesheet = Game.ƒAid.createSpriteSheet("Spritesheet", img);
@@ -51,7 +53,7 @@ var Game;
     function update() {
         //check if game over
         if (Game.gameOver) {
-            Game.player.act(Game.ACTION.PLAYER_DEATH);
+            Game.player.act(Game.ACTION.PLAYER_DIE);
         }
         //check if any Key is active
         if (!Game.ƒ.Keyboard.isPressedOne([Game.ƒ.KEYBOARD_CODE.W, Game.ƒ.KEYBOARD_CODE.ARROW_UP, Game.ƒ.KEYBOARD_CODE.A, Game.ƒ.KEYBOARD_CODE.ARROW_LEFT, Game.ƒ.KEYBOARD_CODE.D, Game.ƒ.KEYBOARD_CODE.ARROW_RIGHT, Game.ƒ.KEYBOARD_CODE.SPACE]) && !Game.gameOver) {

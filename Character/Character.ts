@@ -12,6 +12,7 @@ namespace Game {
     public attackspeed: number;
     public canTakeDamage: boolean = true;
     public isDead: boolean = false;
+    public isDying: boolean = false;
     public speed: ƒ.Vector3 = ƒ.Vector3.ZERO();
     public speedMax: ƒ.Vector2 = new ƒ.Vector2(1.5, 5); //units per second
     public static gravity: ƒ.Vector2 = ƒ.Vector2.Y(-3);
@@ -33,12 +34,14 @@ namespace Game {
     PLAYER_IDLE = "Player_Idle",
     PLAYER_WALK = "Player_Walk",
     PLAYER_ATTACK = "Player_Attack",
-    PLAYER_DEATH = "Player_Death",
+    PLAYER_DIE = "Player_Die",
+    PLAYER_DEAD = "Player_Dead",
     PLAYER_JUMP = "Player_Jump",
 
     BAT_WALK = "Bat_Walk",
     BAT_ATTACK = "Bat_Attack",
-    BAT_DEATH = "Bat_Death",
+    BAT_DIE = "Bat_Die",
+    BAT_DEAD = "Bat_Dead",
 
     WOLF_IDLE = "Wolf_Idle",
     WOLF_WALK = "Wolf_Walk",

@@ -23,13 +23,16 @@ namespace Game {
 
     public act(_action: ACTION, _direction?: DIRECTION): void {
       switch (_action) {
-          case ACTION.BAT_ATTACK:
-            this.direct = (_direction == DIRECTION.RIGHT ? 1 : -1);
-            this.cmpTransform.local.rotation = ƒ.Vector3.Y(90 - 90 * this.direct);
+        case ACTION.BAT_ATTACK:
+          this.direct = (_direction == DIRECTION.RIGHT ? 1 : -1);
+          this.cmpTransform.local.rotation = ƒ.Vector3.Y(90 - 90 * this.direct);
           this.speed.x = 0;
           break;
-        case ACTION.BAT_DEATH:
+        case ACTION.BAT_DIE:
           this.speed.x = 0;
+          setTimeout(() => {
+            this.isDying = true;
+          }, 750);
           break;
         case ACTION.BAT_WALK:
           this.direct = (_direction == DIRECTION.RIGHT ? 1 : -1);
@@ -37,6 +40,7 @@ namespace Game {
           this.cmpTransform.local.rotation = ƒ.Vector3.Y(90 - 90 * this.direct);
           break;
       }
+
       if (_action == this.action)
         return;
 
@@ -72,9 +76,13 @@ namespace Game {
     }
 
     private update = (_event: ƒ.Eventƒ): void => {
+      if (this.isDying) {
+        this.show(ACTION.BAT_DEAD);
+        return;
+      }
+
       if (!this.isDead) {
         this.playerDetection();
-        console.log("Bat: " + this.health);
 
         let timeFrame: number = ƒ.Loop.timeFrameGame / 1000;
         this.speed.y += Player.gravity.y * timeFrame;
@@ -86,7 +94,7 @@ namespace Game {
 
         if (this.health <= 0 && !this.isDead) {
           this.isDead = true;
-          this.act(ACTION.BAT_DEATH);
+          this.act(ACTION.BAT_DIE);
         }
       }
     }

@@ -8,6 +8,7 @@ var Game;
             super("Character");
             this.canTakeDamage = true;
             this.isDead = false;
+            this.isDying = false;
             this.speed = ƒ.Vector3.ZERO();
             this.speedMax = new ƒ.Vector2(1.5, 5); //units per second
         }
@@ -25,11 +26,13 @@ var Game;
         ACTION["PLAYER_IDLE"] = "Player_Idle";
         ACTION["PLAYER_WALK"] = "Player_Walk";
         ACTION["PLAYER_ATTACK"] = "Player_Attack";
-        ACTION["PLAYER_DEATH"] = "Player_Death";
+        ACTION["PLAYER_DIE"] = "Player_Die";
+        ACTION["PLAYER_DEAD"] = "Player_Dead";
         ACTION["PLAYER_JUMP"] = "Player_Jump";
         ACTION["BAT_WALK"] = "Bat_Walk";
         ACTION["BAT_ATTACK"] = "Bat_Attack";
-        ACTION["BAT_DEATH"] = "Bat_Death";
+        ACTION["BAT_DIE"] = "Bat_Die";
+        ACTION["BAT_DEAD"] = "Bat_Dead";
         ACTION["WOLF_IDLE"] = "Wolf_Idle";
         ACTION["WOLF_WALK"] = "Wolf_Walk";
         ACTION["WOLF_ATTACK"] = "Wolf_Attack";

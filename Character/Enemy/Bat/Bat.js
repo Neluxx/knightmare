@@ -6,9 +6,12 @@ var Game;
         constructor() {
             super();
             this.update = (_event) => {
+                if (this.isDying) {
+                    this.show(Game.ACTION.BAT_DEAD);
+                    return;
+                }
                 if (!this.isDead) {
                     this.playerDetection();
-                    console.log("Bat: " + this.health);
                     let timeFrame = ƒ.Loop.timeFrameGame / 1000;
                     this.speed.y += Game.Player.gravity.y * timeFrame;
                     let distance = ƒ.Vector3.SCALE(this.speed, timeFrame);
@@ -17,7 +20,7 @@ var Game;
                     this.checkPlayerCollision();
                     if (this.health <= 0 && !this.isDead) {
                         this.isDead = true;
-                        this.act(Game.ACTION.BAT_DEATH);
+                        this.act(Game.ACTION.BAT_DIE);
                     }
                 }
             };
@@ -39,8 +42,11 @@ var Game;
                     this.cmpTransform.local.rotation = ƒ.Vector3.Y(90 - 90 * this.direct);
                     this.speed.x = 0;
                     break;
-                case Game.ACTION.BAT_DEATH:
+                case Game.ACTION.BAT_DIE:
                     this.speed.x = 0;
+                    setTimeout(() => {
+                        this.isDying = true;
+                    }, 750);
                     break;
                 case Game.ACTION.BAT_WALK:
                     this.direct = (_direction == Game.DIRECTION.RIGHT ? 1 : -1);

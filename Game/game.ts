@@ -3,6 +3,7 @@ namespace Game {
   export import ƒ = FudgeCore;
   export import ƒAid = FudgeAid;
 
+  export let data: ExternalData;
   export let game: ƒ.Node;
   export let level: ƒ.Node;
   export let player: Player;
@@ -18,6 +19,9 @@ namespace Game {
 
   function init(): void {
     let canvas: HTMLCanvasElement = document.querySelector("canvas");
+
+    data = new ExternalData();
+    data.loadJSON();
 
     //find spritesheet and generate Sprites
     let img: HTMLImageElement = document.querySelector("#spritesheet");
@@ -68,7 +72,7 @@ namespace Game {
   function update(): void {
     //check if game over
     if (gameOver) {
-      player.act(ACTION.PLAYER_DEATH);
+      player.act(ACTION.PLAYER_DIE);
     }
 
     //check if any Key is active

@@ -6,7 +6,10 @@ var Game;
         constructor() {
             super();
             this.update = (_event) => {
-                console.log(this.health);
+                if (this.isDying) {
+                    this.show(Game.ACTION.PLAYER_DEAD);
+                    return;
+                }
                 let timeFrame = ƒ.Loop.timeFrameGame / 1000;
                 this.speed.y += Player.gravity.y * timeFrame;
                 let distance = ƒ.Vector3.SCALE(this.speed, timeFrame);
@@ -33,8 +36,11 @@ var Game;
                 case Game.ACTION.PLAYER_ATTACK:
                     this.speed.x = 0;
                     break;
-                case Game.ACTION.PLAYER_DEATH:
+                case Game.ACTION.PLAYER_DIE:
                     this.speed.x = 0;
+                    setTimeout(() => {
+                        this.isDying = true;
+                    }, 1000);
                     break;
                 case Game.ACTION.PLAYER_WALK:
                     let direction = (_direction == Game.DIRECTION.RIGHT ? 1 : -1);

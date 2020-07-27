@@ -28,8 +28,11 @@ namespace Game {
         case ACTION.PLAYER_ATTACK:
           this.speed.x = 0;
           break;
-        case ACTION.PLAYER_DEATH:
+        case ACTION.PLAYER_DIE:
           this.speed.x = 0;
+          setTimeout(() => {
+            this.isDying = true;
+          }, 1000);
           break;
         case ACTION.PLAYER_WALK:
           let direction: number = (_direction == DIRECTION.RIGHT ? 1 : -1);
@@ -51,7 +54,11 @@ namespace Game {
     }
 
     private update = (_event: ƒ.Eventƒ): void => {
-      console.log(this.health);
+      if (this.isDying) {
+        this.show(ACTION.PLAYER_DEAD);
+        return;
+      }
+
       let timeFrame: number = ƒ.Loop.timeFrameGame / 1000;
       this.speed.y += Player.gravity.y * timeFrame;
       let distance: ƒ.Vector3 = ƒ.Vector3.SCALE(this.speed, timeFrame);

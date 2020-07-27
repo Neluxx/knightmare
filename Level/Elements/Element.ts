@@ -2,12 +2,12 @@ namespace Game {
   import ƒ = FudgeCore;
 
   export class Element extends Level {
-    private readonly pivot: ƒ.Matrix4x4 = ƒ.Matrix4x4.TRANSLATION(new ƒ.Vector3(0.5, 0.25, 0));
+    private readonly pivot: ƒ.Matrix4x4 = ƒ.Matrix4x4.TRANSLATION(ƒ.Vector3.Y(0.275));
 
-    public constructor() {
+    public constructor(name: string) {
       super();
       this.addComponent(new ƒ.ComponentTransform());
-      this.setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.tileset["01"]);
+      this.setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.tileset[name]);
     }
 
     public getRectElement(): ƒ.Rectangle {
@@ -16,6 +16,7 @@ namespace Game {
       let bottomright: ƒ.Vector3 = new ƒ.Vector3(0.5, -0.5, 0);
       
       let mtxResult: ƒ.Matrix4x4 = ƒ.Matrix4x4.MULTIPLICATION(this.mtxWorld, this.pivot);
+      mtxResult = ƒ.Matrix4x4.MULTIPLICATION(mtxResult, ƒ.Matrix4x4.SCALING(new ƒ.Vector3(0.5, 1, 1)));
       topleft.transform(mtxResult, true);
       bottomright.transform(mtxResult, true);
 

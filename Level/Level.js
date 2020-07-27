@@ -12,28 +12,28 @@ var Game;
             let level = new ƒ.Node("Level");
             let element;
             //add Element to Level
-            element = new Game.Element();
+            element = new Game.Element("Grass_Top");
             element.cmpTransform.local.translateY(-1);
             level.appendChild(element);
             for (let i = 1; i <= 20; i++) {
                 //add Element to Level
-                element = new Game.Element();
+                element = new Game.Element("Grass_Top");
                 element.cmpTransform.local.translateX((-0.5) * i);
                 element.cmpTransform.local.translateY(-1);
                 level.appendChild(element);
                 //add Element to Level
-                element = new Game.Element();
+                element = new Game.Element("Grass_Top");
                 element.cmpTransform.local.translateX((0.5) * i);
                 element.cmpTransform.local.translateY(-1);
                 level.appendChild(element);
             }
             //add Element to Level
-            element = new Game.Element();
+            element = new Game.Element("Grass_Top");
             element.cmpTransform.local.translateX(2);
             element.cmpTransform.local.translateY(0.05);
             level.appendChild(element);
             //add Element to Level
-            element = new Game.Element();
+            element = new Game.Element("Grass_Top");
             element.cmpTransform.local.translateX(2.5);
             element.cmpTransform.local.translateY(0.05);
             level.appendChild(element);
