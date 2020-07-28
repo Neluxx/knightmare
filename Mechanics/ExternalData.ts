@@ -1,16 +1,33 @@
 namespace Game {
 
-  export class ExternalData {
-    public data: JSON;
-
-    async loadJSON(): Promise<JSON> {
-      //load data
-      //const fs = require('file-system');
-      //var data = fs.readFileSync("../ExternData/data.json");
-      let rawData = await fetch("../ExternData/data.json");
-      this.data = JSON.parse(await rawData.text());
-
-      return this.data;
+  export interface ExternalData {
+    [name: string]:{
+      "health": number,
+      "strength": number,
+      "attackspeed": number,
+      "speedMax": number
     }
+  }
+
+  export async function loadJSON(): Promise<ExternalData> {
+    console.log("Start load");
+    let content: ExternalData = await load("../ExternalData/data.json");
+    console.log("Done load");
+
+    console.log(content);
+    return content;
+  }
+
+  async function load(_filename: string): Promise<ExternalData> {
+    console.log("Start fetch");
+
+    let response: Response = await fetch(_filename);
+
+    let text: string = await response.text();
+    let json: ExternalData = JSON.parse(text);
+    // alternative: json = await response.json();
+
+    console.log("Done fetch");
+    return (json);
   }
 }

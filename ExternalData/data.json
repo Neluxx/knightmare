@@ -1,0 +1,36 @@
+{
+  "player": {
+    "health": 20,
+    "strength": 2,
+    "attackspeed": 1500,
+    "speedMax": 1.5
+  },
+  
+  "bat": {
+    "health": 6,
+    "strength": 1,
+    "attackspeed": 1000,
+    "speedMax": 2.5
+  },
+
+  "wolf": {
+    "health": 8,
+    "strength": 1.5,
+    "attackspeed": 1500,
+    "speedMax": 2
+  },
+
+  "witch": {
+    "health": 10,
+    "strength": 2,
+    "attackspeed": 1500,
+    "speedMax": 1.5
+  },
+
+  "golem": {
+    "health": 20,
+    "strength": 2.5,
+    "attackspeed": 2000,
+    "speedMax": 1
+  }
+}

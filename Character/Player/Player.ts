@@ -10,10 +10,10 @@ namespace Game {
 
     public constructor() {
       super();
-      this.health = 100;
-      this.strength = 50;
-      this.attackspeed = 1000; //in ms
-      this.speedMax = new ƒ.Vector2(1.5, 5); //units per second
+      this.health = data.player.health;
+      this.strength = data.player.strength;
+      this.attackspeed = data.player.attackspeed; //in ms
+      this.speedMax = new ƒ.Vector2(data.player.speedMax, 5); //units per second
 
       this.addComponent(new ƒ.ComponentTransform());
       this.show(ACTION.PLAYER_IDLE);

@@ -20,10 +20,10 @@ var Game;
                     Game.gameOver = true;
                 }
             };
-            this.health = 100;
-            this.strength = 50;
-            this.attackspeed = 1000; //in ms
-            this.speedMax = new ƒ.Vector2(1.5, 5); //units per second
+            this.health = Game.data.player.health;
+            this.strength = Game.data.player.strength;
+            this.attackspeed = Game.data.player.attackspeed; //in ms
+            this.speedMax = new ƒ.Vector2(Game.data.player.speedMax, 5); //units per second
             this.addComponent(new ƒ.ComponentTransform());
             this.show(Game.ACTION.PLAYER_IDLE);
             ƒ.Loop.addEventListener("loopFrame" /* LOOP_FRAME */, this.update);

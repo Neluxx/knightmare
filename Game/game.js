@@ -5,13 +5,11 @@ var Game;
     Game.ƒAid = FudgeAid;
     Game.gameOver = false;
     Game.isAttacking = false;
-    let viewport;
-    let bg;
     window.addEventListener("load", init);
-    function init() {
+    async function init() {
         let canvas = document.querySelector("canvas");
-        Game.data = new Game.ExternalData();
-        Game.data.loadJSON();
+        //load data
+        Game.data = await Game.loadJSON();
         //find spritesheet and generate Sprites
         let img = document.querySelector("#spritesheet");
         let spritesheet = Game.ƒAid.createSpriteSheet("Spritesheet", img);
@@ -24,11 +22,14 @@ var Game;
         Game.player = new Game.Player();
         Game.level = Game.Level.createLevel();
         Game.enemies = Game.Level.createEnemies();
-        bg = Game.Level.createBackground();
+        Game.bg = Game.Level.createBackground();
         Game.game.appendChild(Game.level);
         Game.game.appendChild(Game.player);
         Game.game.appendChild(Game.enemies);
-        Game.game.appendChild(bg);
+        Game.game.appendChild(Game.bg);
+        //create music
+        await loadMusic();
+        playMusic(Game.audioDungeon);
         //create Camera
         let cmpCamera = new Game.ƒ.ComponentCamera();
         cmpCamera.pivot.translateZ(10);
@@ -39,13 +40,13 @@ var Game;
         Game.camera.addComponent(cmpCamera);
         Game.game.appendChild(Game.camera);
         //create Viewport
-        viewport = new Game.ƒ.Viewport();
-        viewport.initialize("Viewport", Game.game, Game.camera.getComponent(Game.ƒ.ComponentCamera), canvas);
-        viewport.draw();
+        Game.viewport = new Game.ƒ.Viewport();
+        Game.viewport.initialize("Viewport", Game.game, Game.camera.getComponent(Game.ƒ.ComponentCamera), canvas);
+        Game.viewport.draw();
         //add EventListener
-        viewport.addEventListener("\u0192keydown" /* DOWN */, handleKeyboard);
-        viewport.activateKeyboardEvent("\u0192keydown" /* DOWN */, true);
-        viewport.setFocus(true);
+        Game.viewport.addEventListener("\u0192keydown" /* DOWN */, handleKeyboard);
+        Game.viewport.activateKeyboardEvent("\u0192keydown" /* DOWN */, true);
+        Game.viewport.setFocus(true);
         //start Loop
         Game.ƒ.Loop.addEventListener("loopFrame" /* LOOP_FRAME */, update);
         Game.ƒ.Loop.start(Game.ƒ.LOOP_MODE.TIME_GAME, 60);
@@ -63,9 +64,9 @@ var Game;
         //camera movement
         Game.camera.cmpTransform.local.translation = Game.player.cmpTransform.local.translation;
         Game.camera.cmpTransform.local.translateY(1.5);
-        bg.cmpTransform.local.translation = Game.player.cmpTransform.local.translation;
-        bg.cmpTransform.local.translateY(0.25);
-        viewport.draw();
+        Game.bg.cmpTransform.local.translation = Game.player.cmpTransform.local.translation;
+        Game.bg.cmpTransform.local.translateY(0.25);
+        Game.viewport.draw();
     }
     function handleKeyboard(_event) {
         if (!Game.gameOver) {
@@ -98,5 +99,22 @@ var Game;
             }
         }
     }
+    async function loadMusic() {
+        //load music
+        Game.audioDungeon = await Game.ƒ.Audio.load("../Assets/Sounds/Music/Dungeon.mp3");
+        Game.audioDeathMountain = await Game.ƒ.Audio.load("../Assets/Sounds/Music/DeathMountain.mp3");
+        Game.audioItem = await Game.ƒ.Audio.load("../Assets/Sounds/Music/Item.mp3");
+    }
+    function playMusic(music) {
+        let cmpAudio = new Game.ƒ.ComponentAudio(music, true, true);
+        Game.player.addComponent(cmpAudio);
+        Game.ƒ.AudioManager.default.listenTo(Game.player);
+    }
+    Game.playMusic = playMusic;
+    function playSound(sound) {
+        let cmpAudio = new Game.ƒ.ComponentAudio(sound, false, true);
+        Game.player.addComponent(cmpAudio);
+    }
+    Game.playSound = playSound;
 })(Game || (Game = {}));
 //# sourceMappingURL=game.js.map

@@ -11,27 +11,31 @@ namespace Game {
   export let camera: ƒ.Node;
   export let gameOver: boolean = false;
   export let isAttacking: boolean = false;
-  let viewport: ƒ.Viewport;
-  let bg: ƒ.Node;
-  
+  export let viewport: ƒ.Viewport;
+  export let bg: ƒ.Node;
+
+  //music and sounds
+  export let audioDungeon: ƒ.Audio;
+  export let audioItem: ƒ.Audio;
+  export let audioDeathMountain: ƒ.Audio;
 
   window.addEventListener("load", init);
 
-  function init(): void {
+  async function init(): Promise<void> {
     let canvas: HTMLCanvasElement = document.querySelector("canvas");
 
-    data = new ExternalData();
-    data.loadJSON();
-
+    //load data
+    data = await loadJSON();
+    
     //find spritesheet and generate Sprites
     let img: HTMLImageElement = document.querySelector("#spritesheet");
     let spritesheet: ƒ.CoatTextured = ƒAid.createSpriteSheet("Spritesheet", img);
     SpriteGenerator.generateAnimations(spritesheet);
-
+    
     img = document.querySelector("#tileset");
     spritesheet = ƒAid.createSpriteSheet("Tileset", img);
     SpriteGenerator.generateTileset(spritesheet);
-
+    
     //create Game
     game = new ƒ.Node("Game");
     player = new Player();
@@ -43,6 +47,10 @@ namespace Game {
     game.appendChild(enemies);
     game.appendChild(bg);
 
+    //create music
+    await loadMusic();
+    playMusic(audioDungeon);
+    
     //create Camera
     let cmpCamera: ƒ.ComponentCamera = new ƒ.ComponentCamera();
     cmpCamera.pivot.translateZ(10);
@@ -120,5 +128,23 @@ namespace Game {
           break;
       }
     }
+  }
+
+  async function loadMusic(): Promise<void> {
+    //load music
+    audioDungeon = await ƒ.Audio.load("../Assets/Sounds/Music/Dungeon.mp3");
+    audioDeathMountain = await ƒ.Audio.load("../Assets/Sounds/Music/DeathMountain.mp3");
+    audioItem = await ƒ.Audio.load("../Assets/Sounds/Music/Item.mp3");
+  }
+
+  export function playMusic(music: ƒ.Audio) {
+    let cmpAudio: ƒ.ComponentAudio = new ƒ.ComponentAudio(music, true, true);
+    player.addComponent(cmpAudio);
+    ƒ.AudioManager.default.listenTo(player);
+  }
+
+  export function playSound(sound: ƒ.Audio) {
+    let cmpAudio: ƒ.ComponentAudio = new ƒ.ComponentAudio(sound, false, true);
+    player.addComponent(cmpAudio);
   }
 }

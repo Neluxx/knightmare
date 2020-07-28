@@ -7,10 +7,10 @@ namespace Game {
 
     constructor() {
       super();
-      this.health = 100;
-      this.strength = 10;
-      this.attackspeed = 1000; //in ms
-      this.speedMax = new ƒ.Vector2(2, 5); //units per second
+      this.health = data.bat.health;
+      this.strength = data.bat.strength;
+      this.attackspeed = data.bat.attackspeed; //in ms
+      this.speedMax = new ƒ.Vector2(data.bat.speedMax, 5); //units per second
 
       setInterval(() => {
         this.moveLeft = !this.moveLeft;
@@ -31,6 +31,7 @@ namespace Game {
         case ACTION.BAT_DIE:
           this.speed.x = 0;
           setTimeout(() => {
+            playSound(audioDeathMountain);
             this.isDying = true;
           }, 750);
           break;

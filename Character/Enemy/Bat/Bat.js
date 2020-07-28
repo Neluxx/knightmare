@@ -24,10 +24,10 @@ var Game;
                     }
                 }
             };
-            this.health = 100;
-            this.strength = 10;
-            this.attackspeed = 1000; //in ms
-            this.speedMax = new ƒ.Vector2(2, 5); //units per second
+            this.health = Game.data.bat.health;
+            this.strength = Game.data.bat.strength;
+            this.attackspeed = Game.data.bat.attackspeed; //in ms
+            this.speedMax = new ƒ.Vector2(Game.data.bat.speedMax, 5); //units per second
             setInterval(() => {
                 this.moveLeft = !this.moveLeft;
             }, 2000);
@@ -45,6 +45,7 @@ var Game;
                 case Game.ACTION.BAT_DIE:
                     this.speed.x = 0;
                     setTimeout(() => {
+                        Game.playSound(Game.audioDeathMountain);
                         this.isDying = true;
                     }, 750);
                     break;

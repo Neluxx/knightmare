@@ -1,16 +1,22 @@
 "use strict";
 var Game;
 (function (Game) {
-    class ExternalData {
-        async loadJSON() {
-            //load data
-            //const fs = require('file-system');
-            //var data = fs.readFileSync("../ExternData/data.json");
-            let rawData = await fetch("../ExternData/data.json");
-            this.data = JSON.parse(await rawData.text());
-            return this.data;
-        }
+    async function loadJSON() {
+        console.log("Start load");
+        let content = await load("../ExternalData/data.json");
+        console.log("Done load");
+        console.log(content);
+        return content;
     }
-    Game.ExternalData = ExternalData;
+    Game.loadJSON = loadJSON;
+    async function load(_filename) {
+        console.log("Start fetch");
+        let response = await fetch(_filename);
+        let text = await response.text();
+        let json = JSON.parse(text);
+        // alternative: json = await response.json();
+        console.log("Done fetch");
+        return (json);
+    }
 })(Game || (Game = {}));
 //# sourceMappingURL=ExternalData.js.map
