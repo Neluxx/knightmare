@@ -1,4 +1,4 @@
-namespace Game {  // test
+namespace Game {
 
   import ƒ = FudgeCore;
 

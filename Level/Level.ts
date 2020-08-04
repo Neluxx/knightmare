@@ -51,10 +51,12 @@ namespace Game {
       //create enemies
       let enemies: ƒ.Node = new ƒ.Node("Enemies");
       let random: number;
+
       let levelSize: number = 10;
       let offset: number = 5;
-      let batAmountMin: number = 1;
-      let batAmountMax: number = 1;
+
+      let batAmountMin: number = 2;
+      let batAmountMax: number = 4;
       let batAmount: number = Math.floor(batAmountMin + (Math.random() * (batAmountMax - batAmountMin)));
       let bat: Bat;
 

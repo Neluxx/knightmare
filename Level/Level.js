@@ -45,8 +45,8 @@ var Game;
             let random;
             let levelSize = 10;
             let offset = 5;
-            let batAmountMin = 1;
-            let batAmountMax = 1;
+            let batAmountMin = 2;
+            let batAmountMax = 4;
             let batAmount = Math.floor(batAmountMin + (Math.random() * (batAmountMax - batAmountMin)));
             let bat;
             for (let i = 0; i < batAmount; i++) {
