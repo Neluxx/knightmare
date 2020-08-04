@@ -1,15 +1,15 @@
 {
   "player": {
     "health": 20,
-    "strength": 2,
-    "attackspeed": 1500,
+    "strength": 1,
+    "attackspeed": 600,
     "speedMax": 1.5
   },
   
   "bat": {
     "health": 6,
     "strength": 1,
-    "attackspeed": 1000,
+    "attackspeed": 850,
     "speedMax": 2.5
   },
 

@@ -31,7 +31,7 @@ namespace Game {
         case ACTION.BAT_DIE:
           this.speed.x = 0;
           setTimeout(() => {
-            playSound(audioDeathMountain);
+            playSound(audioEnemyDie);
             this.isDying = true;
           }, 750);
           break;
@@ -119,6 +119,7 @@ namespace Game {
       if (hit) {
           if (this.canTakeDamage && this.health > 0 && isAttacking) {
             this.health -= player.strength;
+            playSound(audioEnemyHit);
             this.canTakeDamage = false;
             setTimeout(() => {
               this.canTakeDamage = true;

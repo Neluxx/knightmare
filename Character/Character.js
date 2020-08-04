@@ -7,6 +7,7 @@ var Game;
         constructor() {
             super("Character");
             this.canTakeDamage = true;
+            this.soundPlayed = false;
             this.isDead = false;
             this.isDying = false;
             this.speed = ƒ.Vector3.ZERO();
@@ -29,6 +30,7 @@ var Game;
         ACTION["PLAYER_DIE"] = "Player_Die";
         ACTION["PLAYER_DEAD"] = "Player_Dead";
         ACTION["PLAYER_JUMP"] = "Player_Jump";
+        ACTION["PLAYER_SHIELD"] = "Player_Shield";
         ACTION["BAT_WALK"] = "Bat_Walk";
         ACTION["BAT_ATTACK"] = "Bat_Attack";
         ACTION["BAT_DIE"] = "Bat_Die";

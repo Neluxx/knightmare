@@ -5,6 +5,7 @@ var Game;
     class Player extends Game.Character {
         constructor() {
             super();
+            this.isDead = false;
             this.update = (_event) => {
                 if (this.isDying) {
                     this.show(Game.ACTION.PLAYER_DEAD);
@@ -35,9 +36,24 @@ var Game;
                     break;
                 case Game.ACTION.PLAYER_ATTACK:
                     this.speed.x = 0;
+                    if (!this.soundPlayed) {
+                        Game.playSound(Game.audioPlayerAttack);
+                        this.soundPlayed = true;
+                        setTimeout(() => {
+                            this.soundPlayed = false;
+                        }, 1200);
+                    }
+                    break;
+                case Game.ACTION.PLAYER_SHIELD:
+                    this.speed.x = 0;
                     break;
                 case Game.ACTION.PLAYER_DIE:
                     this.speed.x = 0;
+                    if (!this.soundPlayed && !this.isDead) {
+                        Game.playSound(Game.audioPlayerDie);
+                        this.soundPlayed = true;
+                        this.isDead = true;
+                    }
                     setTimeout(() => {
                         this.isDying = true;
                     }, 1000);
@@ -46,16 +62,25 @@ var Game;
                     let direction = (_direction == Game.DIRECTION.RIGHT ? 1 : -1);
                     this.speed.x = this.speedMax.x; // * direction;
                     this.cmpTransform.local.rotation = ƒ.Vector3.Y(90 - 90 * direction);
+                    if (!this.soundPlayed) {
+                        Game.playSound(Game.audioPlayerWalk);
+                        this.soundPlayed = true;
+                        setTimeout(() => {
+                            this.soundPlayed = false;
+                        }, 750);
+                    }
                     break;
                 case Game.ACTION.PLAYER_JUMP:
                     if (!this.inAir) {
                         this.speed.y = 2;
                         this.inAir = true;
+                        Game.playSound(Game.audioPlayerJump);
                     }
                     break;
             }
             if (_action == this.action)
                 return;
+            this.soundPlayed = false;
             this.action = _action;
             this.show(_action);
         }
@@ -80,8 +105,16 @@ var Game;
                     let attackSpeed = enemy.getAttackSpeed();
                     let strength = enemy.getStrength();
                     let isDead = enemy.getIsDead();
-                    if (this.canTakeDamage && this.health > 0 && !this.isBlocking && !isDead) {
+                    if (this.canTakeDamage && this.health > 0 && !Game.isBlocking && !isDead) {
                         this.health -= strength;
+                        Game.playSound(Game.audioPlayerHit);
+                        this.canTakeDamage = false;
+                        setTimeout(() => {
+                            this.canTakeDamage = true;
+                        }, attackSpeed);
+                    }
+                    else if (this.canTakeDamage && this.health > 0 && Game.isBlocking && !isDead) {
+                        Game.playSound(Game.audioPlayerBlock);
                         this.canTakeDamage = false;
                         setTimeout(() => {
                             this.canTakeDamage = true;

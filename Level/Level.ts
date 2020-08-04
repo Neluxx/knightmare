@@ -50,17 +50,21 @@ namespace Game {
     public static createEnemies(): ƒ.Node {
       //create enemies
       let enemies: ƒ.Node = new ƒ.Node("Enemies");
+      let random: number;
+      let levelSize: number = 10;
+      let offset: number = 5;
+      let batAmountMin: number = 1;
+      let batAmountMax: number = 1;
+      let batAmount: number = Math.floor(batAmountMin + (Math.random() * (batAmountMax - batAmountMin)));
       let bat: Bat;
-      /*let wolf: Wolf;
-  
-      wolf = new Wolf();
-      wolf.cmpTransform.local.translateX(1.5);
-      wolf.cmpTransform.local.translateY(0.5);
-      enemies.appendChild(wolf);*/
-  
-      bat = new Bat();
-      bat.cmpTransform.local.translateX(-4);
-      enemies.appendChild(bat);
+
+      for (let i = 0; i < batAmount; i++) {
+        bat = new Bat();
+        random = (Math.floor(Math.random() * Math.floor(levelSize))) - offset;
+        bat.cmpTransform.local.translateX(random);
+        //bat.cmpTransform.local.translateY(0);
+        enemies.appendChild(bat);
+      }
   
       return enemies;
     }

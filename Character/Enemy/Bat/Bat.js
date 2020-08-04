@@ -45,7 +45,7 @@ var Game;
                 case Game.ACTION.BAT_DIE:
                     this.speed.x = 0;
                     setTimeout(() => {
-                        Game.playSound(Game.audioDeathMountain);
+                        Game.playSound(Game.audioEnemyDie);
                         this.isDying = true;
                     }, 750);
                     break;
@@ -104,6 +104,7 @@ var Game;
             if (hit) {
                 if (this.canTakeDamage && this.health > 0 && Game.isAttacking) {
                     this.health -= Game.player.strength;
+                    Game.playSound(Game.audioEnemyHit);
                     this.canTakeDamage = false;
                     setTimeout(() => {
                         this.canTakeDamage = true;

@@ -13,6 +13,11 @@ var Game;
             rect = new ƒ.Rectangle(0, 29, 26, 30, ƒ.ORIGIN2D.BOTTOMLEFT);
             sprite.generateByGrid(rect, 15, ƒ.Vector2.ZERO(), 64, ƒ.ORIGIN2D.BOTTOMLEFT);
             SpriteGenerator.animations[Game.ACTION.PLAYER_IDLE] = sprite;
+            //Player BLOCK
+            sprite = new ƒAid.SpriteSheetAnimation(Game.ACTION.PLAYER_SHIELD, _spritesheet);
+            rect = new ƒ.Rectangle(0, 29, 26, 30, ƒ.ORIGIN2D.BOTTOMLEFT);
+            sprite.generateByGrid(rect, 15, ƒ.Vector2.ZERO(), 64, ƒ.ORIGIN2D.BOTTOMLEFT);
+            SpriteGenerator.animations[Game.ACTION.PLAYER_SHIELD] = sprite;
             //Player WALK
             sprite = new ƒAid.SpriteSheetAnimation(Game.ACTION.PLAYER_WALK, _spritesheet);
             rect = new ƒ.Rectangle(0, 60, 30, 30, ƒ.ORIGIN2D.BOTTOMLEFT);

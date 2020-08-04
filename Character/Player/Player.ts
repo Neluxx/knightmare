@@ -6,7 +6,7 @@ namespace Game {
     private static readonly pivot: ƒ.Matrix4x4 = ƒ.Matrix4x4.TRANSLATION(ƒ.Vector3.Y(-0.5));
 
     public inAir: boolean;
-    public isBlocking: boolean;
+    public isDead: boolean = false;
 
     public constructor() {
       super();
@@ -27,9 +27,24 @@ namespace Game {
           break;
         case ACTION.PLAYER_ATTACK:
           this.speed.x = 0;
+          if (!this.soundPlayed) {
+            playSound(audioPlayerAttack);
+            this.soundPlayed = true;
+            setTimeout(() => {
+              this.soundPlayed = false;
+            }, 1200);
+          }
+          break;
+        case ACTION.PLAYER_SHIELD:
+          this.speed.x = 0;
           break;
         case ACTION.PLAYER_DIE:
           this.speed.x = 0;
+          if (!this.soundPlayed && !this.isDead) {
+            playSound(audioPlayerDie);
+            this.soundPlayed = true;
+            this.isDead = true;
+          }
           setTimeout(() => {
             this.isDying = true;
           }, 1000);
@@ -38,17 +53,26 @@ namespace Game {
           let direction: number = (_direction == DIRECTION.RIGHT ? 1 : -1);
           this.speed.x = this.speedMax.x; // * direction;
           this.cmpTransform.local.rotation = ƒ.Vector3.Y(90 - 90 * direction);
+          if (!this.soundPlayed) {
+            playSound(audioPlayerWalk);
+            this.soundPlayed = true;
+            setTimeout(() => {
+              this.soundPlayed = false;
+            }, 750);
+          }
           break;
         case ACTION.PLAYER_JUMP:
           if (!this.inAir) {
             this.speed.y = 2;
             this.inAir = true;
+            playSound(audioPlayerJump);
           }
           break;
       }
       if (_action == this.action)
         return;
 
+      this.soundPlayed = false;
       this.action = _action;
       this.show(_action);
     }
@@ -95,8 +119,16 @@ namespace Game {
           let strength = (<any>enemy).getStrength();
           let isDead = (<any>enemy).getIsDead();
 
-          if (this.canTakeDamage && this.health > 0 && !this.isBlocking && !isDead) {
+          if (this.canTakeDamage && this.health > 0 && !isBlocking && !isDead) {
             this.health -= strength;
+            playSound(audioPlayerHit);
+            this.canTakeDamage = false;
+            setTimeout(() => {
+              this.canTakeDamage = true;
+            }, attackSpeed);
+          }
+          else if (this.canTakeDamage && this.health > 0 && isBlocking && !isDead) {
+            playSound(audioPlayerBlock);
             this.canTakeDamage = false;
             setTimeout(() => {
               this.canTakeDamage = true;

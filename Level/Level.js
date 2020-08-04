@@ -42,16 +42,20 @@ var Game;
         static createEnemies() {
             //create enemies
             let enemies = new ƒ.Node("Enemies");
+            let random;
+            let levelSize = 10;
+            let offset = 5;
+            let batAmountMin = 1;
+            let batAmountMax = 1;
+            let batAmount = Math.floor(batAmountMin + (Math.random() * (batAmountMax - batAmountMin)));
             let bat;
-            /*let wolf: Wolf;
-        
-            wolf = new Wolf();
-            wolf.cmpTransform.local.translateX(1.5);
-            wolf.cmpTransform.local.translateY(0.5);
-            enemies.appendChild(wolf);*/
-            bat = new Game.Bat();
-            bat.cmpTransform.local.translateX(-4);
-            enemies.appendChild(bat);
+            for (let i = 0; i < batAmount; i++) {
+                bat = new Game.Bat();
+                random = (Math.floor(Math.random() * Math.floor(levelSize))) - offset;
+                bat.cmpTransform.local.translateX(random);
+                //bat.cmpTransform.local.translateY(0);
+                enemies.appendChild(bat);
+            }
             return enemies;
         }
         static createBackground() {

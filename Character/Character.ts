@@ -11,6 +11,7 @@ namespace Game {
     public strength: number;
     public attackspeed: number;
     public canTakeDamage: boolean = true;
+    public soundPlayed: boolean = false;
     public isDead: boolean = false;
     public isDying: boolean = false;
     public speed: ƒ.Vector3 = ƒ.Vector3.ZERO();
@@ -37,6 +38,7 @@ namespace Game {
     PLAYER_DIE = "Player_Die",
     PLAYER_DEAD = "Player_Dead",
     PLAYER_JUMP = "Player_Jump",
+    PLAYER_SHIELD = "Player_Shield",
 
     BAT_WALK = "Bat_Walk",
     BAT_ATTACK = "Bat_Attack",
