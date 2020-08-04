@@ -74,6 +74,8 @@ namespace Game {
 
       this.soundPlayed = false;
       this.action = _action;
+      if (this.action == ACTION.PLAYER_JUMP)
+        return;
       this.show(_action);
     }
 

@@ -82,6 +82,8 @@ var Game;
                 return;
             this.soundPlayed = false;
             this.action = _action;
+            if (this.action == Game.ACTION.PLAYER_JUMP)
+                return;
             this.show(_action);
         }
         checkCollision() {
