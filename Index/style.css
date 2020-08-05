@@ -5,6 +5,8 @@
 
 body {
   margin: 0;
+  background-image: url("../Assets/Sprites/background.png");
+  background-size: cover;
 }
 
 canvas {
@@ -26,7 +28,7 @@ p {
   font-family: '8bit', sans-serif;
   font-size: 5em;
   line-height: 0.1em;
-  color: black;
+  color: white;
 }
 
 #controlBox, #settingBox {
@@ -37,6 +39,6 @@ p {
   position: absolute;
   z-index: 1;
   width: 50px;
-  top: 50px;
-  right: 50px;;
+  top: 95px;
+  right: 30px;;
 }

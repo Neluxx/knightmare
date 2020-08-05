@@ -45,6 +45,7 @@ var Game;
         Game.viewport = new Game.ƒ.Viewport();
         Game.viewport.initialize("Viewport", Game.game, Game.camera.getComponent(Game.ƒ.ComponentCamera), canvas);
         Game.viewport.draw();
+        console.log(Game.volume);
         //add EventListener
         Game.viewport.addEventListener("\u0192keydown" /* DOWN */, handleKeyboard);
         Game.viewport.activateKeyboardEvent("\u0192keydown" /* DOWN */, true);
@@ -122,11 +123,19 @@ var Game;
     }
     function playMusic(music) {
         let cmpAudio = new Game.ƒ.ComponentAudio(music, true, true);
+        let vol = parseFloat(Game.volume);
+        if (Game.volume) {
+            cmpAudio.volume = +vol / 100;
+        }
         Game.player.addComponent(cmpAudio);
     }
     Game.playMusic = playMusic;
     function playSound(sound) {
         let cmpAudio = new Game.ƒ.ComponentAudio(sound, false, true);
+        let vol = parseFloat(Game.volume);
+        if (Game.volume) {
+            cmpAudio.volume = +vol / 100;
+        }
         Game.player.addComponent(cmpAudio);
     }
     Game.playSound = playSound;

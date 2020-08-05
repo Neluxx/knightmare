@@ -81,6 +81,8 @@ namespace Game {
     viewport.initialize("Viewport", game, camera.getComponent(ƒ.ComponentCamera), canvas);
     viewport.draw();
 
+    console.log(volume);
+
     //add EventListener
     viewport.addEventListener(ƒ.EVENT_KEYBOARD.DOWN, handleKeyboard);
     viewport.activateKeyboardEvent(ƒ.EVENT_KEYBOARD.DOWN, true);
@@ -166,11 +168,19 @@ namespace Game {
 
   export function playMusic(music: ƒ.Audio) {
     let cmpAudio: ƒ.ComponentAudio = new ƒ.ComponentAudio(music, true, true);
+    let vol: Number = parseFloat(volume);
+    if (volume) {
+      cmpAudio.volume = +vol/100;
+    }
     player.addComponent(cmpAudio);
   }
 
   export function playSound(sound: ƒ.Audio) {
     let cmpAudio: ƒ.ComponentAudio = new ƒ.ComponentAudio(sound, false, true);
+    let vol: Number = parseFloat(volume);
+    if (volume) {
+      cmpAudio.volume = +vol/100;
+    }
     player.addComponent(cmpAudio);
   }
 }

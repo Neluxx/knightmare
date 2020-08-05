@@ -4,6 +4,7 @@ var Game;
     //import ƒ = FudgeCore;
     window.onload = init;
     let titlescreen;
+    let volumeInput;
     let play = false;
     function init() {
         loadMusic();
@@ -13,6 +14,15 @@ var Game;
         document.getElementById('closeControlBoxButton').addEventListener('click', closeControlBox);
         document.getElementById('openSettingBoxButton').addEventListener('click', openSettingBox);
         document.getElementById('closeSettingBoxButton').addEventListener('click', closeSettingBox);
+        volumeInput = document.querySelector('musicSlider');
+        if (volumeInput) {
+            volumeInput.addEventListener("change", updateVolume);
+            Game.volume = volumeInput.value;
+        }
+        console.log(Game.volume);
+    }
+    function updateVolume() {
+        Game.volume = volumeInput.value;
     }
     function loadMusic() {
         titlescreen = new Audio();

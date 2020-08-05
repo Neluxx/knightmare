@@ -50,7 +50,7 @@ namespace Game {
     public static createEnemies(): ƒ.Node {
       //create enemies
       let enemies: ƒ.Node = new ƒ.Node("Enemies");
-      let random: number;
+      /*let random: number;
 
       let levelSize: number = 10;
       let offset: number = 5;
@@ -105,7 +105,7 @@ namespace Game {
         golem.cmpTransform.local.translateX(random);
         //golem.cmpTransform.local.translateY(0);
         enemies.appendChild(golem);
-      }
+      }*/
   
       return enemies;
     }

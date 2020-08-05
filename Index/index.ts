@@ -4,6 +4,7 @@ namespace Game {
   window.onload = init;
 
   let titlescreen: HTMLAudioElement;
+  let volumeInput: HTMLInputElement;
   let play: boolean = false;
 
   function init(): void {
@@ -16,6 +17,19 @@ namespace Game {
     document.getElementById('closeControlBoxButton').addEventListener('click', closeControlBox);
     document.getElementById('openSettingBoxButton').addEventListener('click', openSettingBox);
     document.getElementById('closeSettingBoxButton').addEventListener('click', closeSettingBox);
+
+    volumeInput = document.querySelector('musicSlider');
+
+    if (volumeInput) {
+      volumeInput.addEventListener("change", updateVolume);
+      volume = volumeInput.value;
+    }
+
+    console.log(volume);
+  }
+
+  function updateVolume(): void {
+    volume = volumeInput.value;
   }
 
   function loadMusic(): void {
