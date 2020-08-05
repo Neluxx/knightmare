@@ -48,17 +48,20 @@ namespace Game {
     WOLF_IDLE = "Wolf_Idle",
     WOLF_WALK = "Wolf_Walk",
     WOLF_ATTACK = "Wolf_Attack",
-    WOLF_DEATH = "Wolf_Death",
+    WOLF_DIE = "Wolf_Die",
+    WOLF_DEAD = "Wolf_Death",
 
     WITCH_IDLE = "Witch_Idle",
     WITCH_WALK = "Witch_Walk",
     WITCH_ATTACK = "Witch_Attack",
-    WITCH_DEATH = "Witch_Death",
+    WITCH_DIE = "Witch_Die",
+    WITCH_DEAD = "Witch_Death",
     
     GOLEM_IDLE = "Golem_Idle",
     GOLEM_WALK = "Golem_Walk",
     GOLEM_ATTACK = "Golem_Attack",
-    GOLEM_DEATH = "Golem_Death"
+    GOLEM_DIE = "Golem_Die",
+    GOLEM_DEAD = "Golem_Death"
   }
 
   export enum DIRECTION {

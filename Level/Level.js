@@ -45,16 +45,49 @@ var Game;
             let random;
             let levelSize = 10;
             let offset = 5;
-            let batAmountMin = 2;
-            let batAmountMax = 4;
-            let batAmount = Math.floor(batAmountMin + (Math.random() * (batAmountMax - batAmountMin)));
             let bat;
+            let batAmountMin = 2;
+            let batAmountMax = 3;
+            let batAmount = Math.floor(batAmountMin + (Math.random() * (batAmountMax - batAmountMin)));
+            let golem;
+            let golemAmountMin = 0;
+            let golemAmountMax = 1;
+            let golemAmount = Math.floor(golemAmountMin + (Math.random() * (golemAmountMax - golemAmountMin)));
+            let witch;
+            let witchAmountMin = 1;
+            let witchAmountMax = 1;
+            let witchAmount = Math.floor(witchAmountMin + (Math.random() * (witchAmountMax - witchAmountMin)));
+            let wolf;
+            let wolfAmountMin = 1;
+            let wolfAmountMax = 2;
+            let wolfAmount = Math.floor(wolfAmountMin + (Math.random() * (wolfAmountMax - wolfAmountMin)));
             for (let i = 0; i < batAmount; i++) {
                 bat = new Game.Bat();
                 random = (Math.floor(Math.random() * Math.floor(levelSize))) - offset;
                 bat.cmpTransform.local.translateX(random);
                 //bat.cmpTransform.local.translateY(0);
                 enemies.appendChild(bat);
+            }
+            for (let i = 0; i < wolfAmount; i++) {
+                wolf = new Game.Wolf();
+                random = (Math.floor(Math.random() * Math.floor(levelSize))) - offset;
+                wolf.cmpTransform.local.translateX(random);
+                //wolf.cmpTransform.local.translateY(0);
+                enemies.appendChild(wolf);
+            }
+            for (let i = 0; i < witchAmount; i++) {
+                witch = new Game.Witch();
+                random = (Math.floor(Math.random() * Math.floor(levelSize))) - offset;
+                witch.cmpTransform.local.translateX(random);
+                //witch.cmpTransform.local.translateY(0);
+                enemies.appendChild(witch);
+            }
+            for (let i = 0; i < golemAmount; i++) {
+                golem = new Game.Golem();
+                random = (Math.floor(Math.random() * Math.floor(levelSize))) - offset;
+                golem.cmpTransform.local.translateX(random);
+                //golem.cmpTransform.local.translateY(0);
+                enemies.appendChild(golem);
             }
             return enemies;
         }

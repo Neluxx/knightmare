@@ -130,7 +130,7 @@ var Game;
             let topleft = new ƒ.Vector3(-0.5, 0.5, 0);
             let bottomright = new ƒ.Vector3(0.5, -0.5, 0);
             let mtxResult = ƒ.Matrix4x4.MULTIPLICATION(this.mtxWorld, Player.pivot);
-            mtxResult = ƒ.Matrix4x4.MULTIPLICATION(mtxResult, ƒ.Matrix4x4.SCALING(new ƒ.Vector3(2, 2, 2)));
+            mtxResult = ƒ.Matrix4x4.MULTIPLICATION(mtxResult, ƒ.Matrix4x4.SCALING(new ƒ.Vector3(2.5, 2.5, 2.5)));
             topleft.transform(mtxResult, true);
             bottomright.transform(mtxResult, true);
             let size = new ƒ.Vector2(bottomright.x - topleft.x, bottomright.y - topleft.y);

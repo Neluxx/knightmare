@@ -55,10 +55,25 @@ namespace Game {
       let levelSize: number = 10;
       let offset: number = 5;
 
-      let batAmountMin: number = 2;
-      let batAmountMax: number = 4;
-      let batAmount: number = Math.floor(batAmountMin + (Math.random() * (batAmountMax - batAmountMin)));
       let bat: Bat;
+      let batAmountMin: number = 2;
+      let batAmountMax: number = 3;
+      let batAmount: number = Math.floor(batAmountMin + (Math.random() * (batAmountMax - batAmountMin)));
+
+      let golem: Golem;
+      let golemAmountMin: number = 0;
+      let golemAmountMax: number = 1;
+      let golemAmount: number = Math.floor(golemAmountMin + (Math.random() * (golemAmountMax - golemAmountMin)));
+
+      let witch: Witch;
+      let witchAmountMin: number = 1;
+      let witchAmountMax: number = 1;
+      let witchAmount: number = Math.floor(witchAmountMin + (Math.random() * (witchAmountMax - witchAmountMin)));
+
+      let wolf: Wolf;
+      let wolfAmountMin: number = 1;
+      let wolfAmountMax: number = 2;
+      let wolfAmount: number = Math.floor(wolfAmountMin + (Math.random() * (wolfAmountMax - wolfAmountMin)));
 
       for (let i = 0; i < batAmount; i++) {
         bat = new Bat();
@@ -66,6 +81,30 @@ namespace Game {
         bat.cmpTransform.local.translateX(random);
         //bat.cmpTransform.local.translateY(0);
         enemies.appendChild(bat);
+      }
+
+      for (let i = 0; i < wolfAmount; i++) {
+        wolf = new Wolf();
+        random = (Math.floor(Math.random() * Math.floor(levelSize))) - offset;
+        wolf.cmpTransform.local.translateX(random);
+        //wolf.cmpTransform.local.translateY(0);
+        enemies.appendChild(wolf);
+      }
+
+      for (let i = 0; i < witchAmount; i++) {
+        witch = new Witch();
+        random = (Math.floor(Math.random() * Math.floor(levelSize))) - offset;
+        witch.cmpTransform.local.translateX(random);
+        //witch.cmpTransform.local.translateY(0);
+        enemies.appendChild(witch);
+      }
+
+      for (let i = 0; i < golemAmount; i++) {
+        golem = new Golem();
+        random = (Math.floor(Math.random() * Math.floor(levelSize))) - offset;
+        golem.cmpTransform.local.translateX(random);
+        //golem.cmpTransform.local.translateY(0);
+        enemies.appendChild(golem);
       }
   
       return enemies;

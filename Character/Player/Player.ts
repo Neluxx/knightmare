@@ -146,7 +146,7 @@ namespace Game {
       let bottomright: ƒ.Vector3 = new ƒ.Vector3(0.5, -0.5, 0);
       
       let mtxResult: ƒ.Matrix4x4 = ƒ.Matrix4x4.MULTIPLICATION(this.mtxWorld, Player.pivot);
-      mtxResult = ƒ.Matrix4x4.MULTIPLICATION(mtxResult, ƒ.Matrix4x4.SCALING(new ƒ.Vector3(2, 2, 2)));
+      mtxResult = ƒ.Matrix4x4.MULTIPLICATION(mtxResult, ƒ.Matrix4x4.SCALING(new ƒ.Vector3(2.5, 2.5, 2.5)));
       topleft.transform(mtxResult, true);
       bottomright.transform(mtxResult, true);
 
