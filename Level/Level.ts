@@ -58,22 +58,22 @@ namespace Game {
       let bat: Bat;
       let batAmountMin: number = 2;
       let batAmountMax: number = 3;
-      let batAmount: number = Math.floor(batAmountMin + (Math.random() * (batAmountMax - batAmountMin)));
+      let batAmount: number = Math.round(batAmountMin + (Math.random() * (batAmountMax - batAmountMin)));
 
       let golem: Golem;
       let golemAmountMin: number = 0;
       let golemAmountMax: number = 1;
-      let golemAmount: number = Math.floor(golemAmountMin + (Math.random() * (golemAmountMax - golemAmountMin)));
+      let golemAmount: number = Math.round(golemAmountMin + (Math.random() * (golemAmountMax - golemAmountMin)));
 
       let witch: Witch;
       let witchAmountMin: number = 1;
       let witchAmountMax: number = 1;
-      let witchAmount: number = Math.floor(witchAmountMin + (Math.random() * (witchAmountMax - witchAmountMin)));
+      let witchAmount: number = Math.round(witchAmountMin + (Math.random() * (witchAmountMax - witchAmountMin)));
 
       let wolf: Wolf;
       let wolfAmountMin: number = 1;
       let wolfAmountMax: number = 2;
-      let wolfAmount: number = Math.floor(wolfAmountMin + (Math.random() * (wolfAmountMax - wolfAmountMin)));
+      let wolfAmount: number = Math.round(wolfAmountMin + (Math.random() * (wolfAmountMax - wolfAmountMin)));
 
       for (let i = 0; i < batAmount; i++) {
         bat = new Bat();
