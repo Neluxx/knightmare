@@ -11,20 +11,20 @@ Repository for the module "Prototyping interactive media-applications and games"
 
 | Nr | Bezeichnung           | Inhalt                                                                                                                                                                                                                                                                         |
 |---:|-----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|    | Titel                 | That Game
+|    | Titel                 | Knightmare
 |    | Name                  | Alissa Usta, Fabian Arndt
-|    | Matrikelnummer        | XXXXXX, 257125
+|    | Matrikelnummer        | 258242, 257125
 |  1 | Nutzerinteraktion     | Der Spieler kann sich mit den Pfeiltasten sowie A und D nach Links und Rechts bewegen. Mit der Pfeiltaste nach oben oder W wir gesprungen. Mit der Pfeiltaste nach unten oder S kann man Blocken und somit eingehenden Schaden verhindern. Mit der Leertaste greift man die Gegner an. |
 |  2 | Objektinteraktion     | Es gibt zwei Arten von Kollisionen. Die Objektkollision die dafür sorgt das man auf Plattformen stehen kann und nicht herunterfällt sowie die Gegner-/ Spielerkollision welche für das Kampfsystem und dem Verteilen von Schaden benutzt wird. |
 |  3 | Objektanzahl variabel | Zu Beginn des Spieles werden zufällig viele Gegner der verschiedenen Typen an immer unterschiedlichen Orten gespawnt damit das Spielerlebnis spannend bleibt. |
-|  4 | Szenenhierarchie      | ### Die Szenenhierarchie ist sinnvoll aufgebaut. Wer ist wessen Parent, wie sind Elemente in anderen gruppiert und warum? |
+|  4 | Szenenhierarchie      | Die Szenenhierarchie besteht aus einer Root-Node. Kinder dieser Node sind z.B. das Level, der Spieler oder die Gegner. Das Level und die Gegener bestehen wiederum aus mehreren Kindern welche die einzelnen Elemente des Levels oder die einzelnen Gegner sind. |
 |  5 | Sound                 | Es gibt verschiedene Musikstücke die z.B. während dem Spiel, bei einem Game Over oder wenn das Spiel geschafft wurde abgespielt werden. Außerdem gibt es für fast alle Interaktionen Soundeffekte. Diese sind Laufen, Springen, Blocken, Angreifen, Schaden nehmen sowie Sterben. |
-|  6 | GUI                   | ### Ein grafisches Interface gibt dem Nutzer die Möglichkeit, Einstellungen beim Programmstart oder während des Programmlaufs vorzunehmen. Was kann er dort tun? |
+|  6 | GUI                   | Im Hauptmenü hat der Nutzer die Möglichkeit die Lautstärke der Musik und der Soundeffekte anzupassen. |
 |  7 | Externe Daten         | In einer JSON-Datei kann man alle Werte des Spielers und der verschiedenen Gegnertypem verändern. Diese Werte sind Leben, Stärke, Angriffsgeschwindigkeit und Bewegungsgeschwindigkeit. |
 |  8 | Verhaltensklassen     | Fast alle Mechaniken wurden ausgelagert für die Übersichtlichkeit des Codes. |
 |  9 | Subklassen            | Es gibt eine Character Klasse welche sich in Player und Enemy unterteilt. Enemy unterteilt sich noch einmal in die verschiedenen Gegnertypen. Umso tiefer man geht umso spezifischer sind die Klassen auf den bestimmten Typ angepasst. Element ist ein Kind der Level Klasse. Das Level besteht aus mehreren Elementen. |
 | 10 | Maße & Positionen     | Der Ursprung der Welt hat die Koordinaten (0, 0) von denen man sich hauptsächlich nach rechts in den positiven Bereich bewegt. Die Maße liegen hauptsächlich im einstelligen Bereich und sind aufeinander abgestimmt um zu große Zahlen zu vermeiden. |
-| 11 | Event-System          | Das Event-System wurde nicht verwendet. |
+| 11 | Event-System          | Alle Interaktionen der Tastatur werden über einen EventListener in einem InputHandler abgefangen und verarbeitet. Außerdem gibt es Loop Events welche wiederkehrende Aktionen ermöglichen. |
 
 ## Abgabeformat
 * Fasse die Konzeption als ein wohlformatiertes Designdokument in PDF zusammen!
