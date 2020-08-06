@@ -11,31 +11,196 @@ var Game;
             //create Level
             let level = new ƒ.Node("Level");
             let element;
-            //add Element to Level
-            element = new Game.Element("Grass_Top");
-            element.cmpTransform.local.translateY(-1);
-            level.appendChild(element);
-            for (let i = 1; i <= 20; i++) {
+            //  FLOOR positive X
+            for (let i = 1; i <= 50; i++) {
+                //add Element to Level
+                element = new Game.Element("Grass_Top");
+                element.cmpTransform.local.translateX((0.5) * i);
+                element.cmpTransform.local.translateY(-1.0);
+                level.appendChild(element);
+                //add Element to Level
+                element = new Game.Element("Dirt_All");
+                element.cmpTransform.local.translateX((0.5) * i);
+                element.cmpTransform.local.translateY(-1.5);
+                level.appendChild(element);
+                //add Element to Level
+                element = new Game.Element("Dirt_All");
+                element.cmpTransform.local.translateX((0.5) * i);
+                element.cmpTransform.local.translateY(-2.0);
+                level.appendChild(element);
+                //add Element to Level
+                element = new Game.Element("Dirt_All");
+                element.cmpTransform.local.translateX((0.5) * i);
+                element.cmpTransform.local.translateY(-3.5);
+                level.appendChild(element);
+            }
+            // Floor Grass negative X
+            for (let i = 1; i <= 10; i++) {
                 //add Element to Level
                 element = new Game.Element("Grass_Top");
                 element.cmpTransform.local.translateX((-0.5) * i);
                 element.cmpTransform.local.translateY(-1);
                 level.appendChild(element);
+            }
+            // Zero Point
+            //add Element to Level
+            element = new Game.Element("Grass_Top");
+            element.cmpTransform.local.translateX(0);
+            element.cmpTransform.local.translateY(-1);
+            level.appendChild(element);
+            //add Element to LeveL
+            element = new Game.Element("Dirt_All");
+            element.cmpTransform.local.translateX(0);
+            element.cmpTransform.local.translateY(-1.5);
+            level.appendChild(element);
+            //add Element to Level
+            element = new Game.Element("Dirt_All");
+            element.cmpTransform.local.translateX(0);
+            element.cmpTransform.local.translateY(-2.0);
+            level.appendChild(element);
+            //add Element to Level
+            element = new Game.Element("Dirt_All");
+            element.cmpTransform.local.translateX(0);
+            element.cmpTransform.local.translateY(-3.5);
+            level.appendChild(element);
+            //WALL Dirt negative x
+            for (let i = 1; i <= 15; i++) {
+                //add Element to LeveL
+                element = new Game.Element("Dirt_All");
+                element.cmpTransform.local.translateX((-0.5) * i);
+                element.cmpTransform.local.translateY(-1.5);
+                level.appendChild(element);
                 //add Element to Level
-                element = new Game.Element("Grass_Top");
-                element.cmpTransform.local.translateX((0.5) * i);
-                element.cmpTransform.local.translateY(-1);
+                element = new Game.Element("Dirt_All");
+                element.cmpTransform.local.translateX((-0.5) * i);
+                element.cmpTransform.local.translateY(-2.0);
+                level.appendChild(element);
+                //add Element to Level
+                element = new Game.Element("Dirt_All");
+                element.cmpTransform.local.translateX((-0.5) * i);
+                element.cmpTransform.local.translateY(-3.5);
+                level.appendChild(element);
+            }
+            for (let i = 1; i <= 15; i++) {
+                //add Element to Level
+                element = new Game.Element("Dirt_All");
+                element.cmpTransform.local.translateX(-5.5 - (i * 0.5));
+                element.cmpTransform.local.translateY(-0.0);
+                level.appendChild(element);
+                //add Element to Level
+                element = new Game.Element("Dirt_All");
+                element.cmpTransform.local.translateX(-5.5 - (i * 0.5));
+                element.cmpTransform.local.translateY(-0.5);
+                level.appendChild(element);
+                //add Element to Level
+                element = new Game.Element("Dirt_All");
+                element.cmpTransform.local.translateX(-5.5 - (i * 0.5));
+                element.cmpTransform.local.translateY(-1.0);
+                level.appendChild(element);
+                //add Element to Level
+                element = new Game.Element("Dirt_All");
+                element.cmpTransform.local.translateX(-5.5 - (i * 0.5));
+                element.cmpTransform.local.translateY(0.5);
+                level.appendChild(element);
+                //add Element to Level
+                element = new Game.Element("Dirt_All");
+                element.cmpTransform.local.translateX(-5.5 - (i * 0.5));
+                element.cmpTransform.local.translateY(1.0);
+                level.appendChild(element);
+                //add Element to Level
+                element = new Game.Element("Dirt_All");
+                element.cmpTransform.local.translateX(-5.5 - (i * 0.5));
+                element.cmpTransform.local.translateY(1.5);
+                level.appendChild(element);
+                //add Element to Level
+                element = new Game.Element("Dirt_All");
+                element.cmpTransform.local.translateX(-5.5 - (i * 0.5));
+                element.cmpTransform.local.translateY(2.0);
+                level.appendChild(element);
+                //add Element to Level
+                element = new Game.Element("Dirt_All");
+                element.cmpTransform.local.translateX(-5.5 - (i * 0.5));
+                element.cmpTransform.local.translateY(2.5);
+                level.appendChild(element);
+                //add Element to Level
+                element = new Game.Element("Dirt_All");
+                element.cmpTransform.local.translateX(-5.5 - (i * 0.5));
+                element.cmpTransform.local.translateY(3.0);
+                level.appendChild(element);
+                //add Element to Level
+                element = new Game.Element("Dirt_All");
+                element.cmpTransform.local.translateX(-5.5 - (i * 0.5));
+                element.cmpTransform.local.translateY(3.5);
+                level.appendChild(element);
+                //add Element to Level
+                element = new Game.Element("Dirt_All");
+                element.cmpTransform.local.translateX(-5.5 - (i * 0.5));
+                element.cmpTransform.local.translateY(4.0);
+                level.appendChild(element);
+                //add Element to Level
+                element = new Game.Element("Dirt_All");
+                element.cmpTransform.local.translateX(-5.5 - (i * 0.5));
+                element.cmpTransform.local.translateY(4.5);
+                level.appendChild(element);
+                //add Element to Level
+                element = new Game.Element("Dirt_All");
+                element.cmpTransform.local.translateX(-5.5 - (i * 0.5));
+                element.cmpTransform.local.translateY(5.0);
+                level.appendChild(element);
+            }
+            for (let i = 1; i <= 10; i++) {
+                //add Element to Level
+                element = new Game.Element("Grass_Right");
+                element.cmpTransform.local.translateX(-5.5);
+                element.cmpTransform.local.translateY((0.5) * i);
+                level.appendChild(element);
+                //add Element to Level
+                element = new Game.Element("Dirt_All");
+                element.cmpTransform.local.translateX(-5.5 - (i * 0.5));
+                element.cmpTransform.local.translateY(-0.5);
                 level.appendChild(element);
             }
             //add Element to Level
-            element = new Game.Element("Grass_Top");
-            element.cmpTransform.local.translateX(2);
-            element.cmpTransform.local.translateY(0.05);
+            element = new Game.Element("Grass_Right");
+            element.cmpTransform.local.translateX(-5.5);
+            element.cmpTransform.local.translateY((0));
             level.appendChild(element);
             //add Element to Level
-            element = new Game.Element("Grass_Top");
-            element.cmpTransform.local.translateX(2.5);
-            element.cmpTransform.local.translateY(0.05);
+            element = new Game.Element("Grass_Right");
+            element.cmpTransform.local.translateX(-5.5);
+            element.cmpTransform.local.translateY((-0.5));
+            level.appendChild(element);
+            //add Element to Level
+            element = new Game.Element("Corner_Top_Right");
+            element.cmpTransform.local.translateX(-5.5);
+            element.cmpTransform.local.translateY((-1));
+            level.appendChild(element);
+            //Platforms
+            //NULLPUNKTPLATTFORM
+            //add Element to Level
+            element = new Game.Element("Grass_All");
+            element.cmpTransform.local.translateX(0);
+            element.cmpTransform.local.translateY(0.0);
+            level.appendChild(element);
+            //add Element to Level
+            element = new Game.Element("Grass_All");
+            element.cmpTransform.local.translateX(-4);
+            element.cmpTransform.local.translateY(1.5);
+            level.appendChild(element);
+            //add Element to Level
+            element = new Game.Element("Grass_Top_Down_Left");
+            element.cmpTransform.local.translateX(-2.5);
+            element.cmpTransform.local.translateY(0.5);
+            level.appendChild(element);
+            //add Element to Level
+            element = new Game.Element("Grass_Top_Down");
+            element.cmpTransform.local.translateX(-2);
+            element.cmpTransform.local.translateY(0.5);
+            level.appendChild(element);
+            //add Element to Level
+            element = new Game.Element("Grass_Top_Down_Right");
+            element.cmpTransform.local.translateX(-1.5);
+            element.cmpTransform.local.translateY(0.5);
             level.appendChild(element);
             return level;
         }
