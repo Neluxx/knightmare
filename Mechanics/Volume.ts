@@ -1,3 +1,3 @@
 namespace Game {
-  export let volume: string;
+  export let volume: number = 1;
 }

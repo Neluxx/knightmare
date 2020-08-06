@@ -4,6 +4,7 @@
 }
 
 body {
+  position: absolute;
   margin: 0;
   background-image: url("../Assets/Sprites/background.png");
   background-size: cover;

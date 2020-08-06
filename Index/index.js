@@ -14,15 +14,12 @@ var Game;
         document.getElementById('closeControlBoxButton').addEventListener('click', closeControlBox);
         document.getElementById('openSettingBoxButton').addEventListener('click', openSettingBox);
         document.getElementById('closeSettingBoxButton').addEventListener('click', closeSettingBox);
-        volumeInput = document.querySelector('musicSlider');
-        if (volumeInput) {
-            volumeInput.addEventListener("change", updateVolume);
-            Game.volume = volumeInput.value;
-        }
-        console.log(Game.volume);
+        volumeInput = document.getElementById('volumeInput');
+        volumeInput.addEventListener('change', updateVolume);
     }
     function updateVolume() {
-        Game.volume = volumeInput.value;
+        Game.volume = Number(volumeInput.value);
+        console.log(Game.volume);
     }
     function loadMusic() {
         titlescreen = new Audio();

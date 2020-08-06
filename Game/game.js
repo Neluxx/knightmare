@@ -123,18 +123,16 @@ var Game;
     }
     function playMusic(music) {
         let cmpAudio = new Game.ƒ.ComponentAudio(music, true, true);
-        let vol = parseFloat(Game.volume);
         if (Game.volume) {
-            cmpAudio.volume = +vol / 100;
+            cmpAudio.volume = Game.volume;
         }
         Game.player.addComponent(cmpAudio);
     }
     Game.playMusic = playMusic;
     function playSound(sound) {
         let cmpAudio = new Game.ƒ.ComponentAudio(sound, false, true);
-        let vol = parseFloat(Game.volume);
         if (Game.volume) {
-            cmpAudio.volume = +vol / 100;
+            cmpAudio.volume = Game.volume;
         }
         Game.player.addComponent(cmpAudio);
     }

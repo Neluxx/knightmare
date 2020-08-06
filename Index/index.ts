@@ -18,18 +18,13 @@ namespace Game {
     document.getElementById('openSettingBoxButton').addEventListener('click', openSettingBox);
     document.getElementById('closeSettingBoxButton').addEventListener('click', closeSettingBox);
 
-    volumeInput = document.querySelector('musicSlider');
-
-    if (volumeInput) {
-      volumeInput.addEventListener("change", updateVolume);
-      volume = volumeInput.value;
-    }
-
-    console.log(volume);
+    volumeInput = document.getElementById('volumeInput') as HTMLInputElement;
+    volumeInput.addEventListener('change', updateVolume);
   }
 
   function updateVolume(): void {
-    volume = volumeInput.value;
+    volume = Number(volumeInput.value);
+    console.log(volume);
   }
 
   function loadMusic(): void {
