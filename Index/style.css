@@ -52,6 +52,11 @@ p {
   visibility: hidden;
 }
 
+#menu {
+  position: absolute;
+  text-align: center;
+}
+
 #muteButton {
   position: absolute;
   z-index: 1;
