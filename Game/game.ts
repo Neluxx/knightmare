@@ -18,6 +18,7 @@ namespace Game {
   export let hearts: Heart[] = new Array();
 
   //music
+  export let audioComponent: ƒ.ComponentAudio;
   export let audioTheme: ƒ.Audio;
   export let audioGameOver: ƒ.Audio;
   export let audioEnding: ƒ.Audio;
@@ -37,6 +38,9 @@ namespace Game {
 
   async function init(): Promise<void> {
     let canvas: HTMLCanvasElement = document.querySelector("canvas");
+
+    document.getElementById("playButton").addEventListener("click", startGame);
+    document.getElementById("gameover").style.visibility = "hidden";
 
     //load data
     data = await loadJSON();
@@ -80,7 +84,8 @@ namespace Game {
     //create music
     await loadMusic();
     ƒ.AudioManager.default.listenTo(player);
-    playMusic(audioTheme);
+    audioComponent = new ƒ.ComponentAudio(audioTheme, true, true);
+    player.addComponent(audioComponent);
     
     //create Camera
     let cmpCamera: ƒ.ComponentCamera = new ƒ.ComponentCamera();
@@ -114,6 +119,7 @@ namespace Game {
     //check if game over
     if (gameOver) {
       player.act(ACTION.PLAYER_DIE);
+      document.getElementById("gameover").style.visibility = "visible";
     }
 
     //check if any Key is active
@@ -136,7 +142,6 @@ namespace Game {
 
   function updateHealtBar(): void {
     for (let i: number = 0; i < 10; i++) {
-      console.log("debug");
       hearts[i].cmpTransform.local.translation = player.cmpTransform.local.translation;
       hearts[i].cmpTransform.local.translateX(-22.5 + 1.5 * i);
       hearts[i].cmpTransform.local.translateY(15);
@@ -144,45 +149,64 @@ namespace Game {
 
     switch (player.health) {
       case (0):
-        hearts[0].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Half"]);
-      case (1):
         hearts[0].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Empty"]);
+        break;
+      case (1):
+        hearts[0].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Half"]);
+        break;
       case (2):
-        hearts[1].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Half"]);
-      case (3):
         hearts[1].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Empty"]);
+        break;
+      case (3):
+        hearts[1].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Half"]);
+        break;
       case (4):
-        hearts[2].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Half"]);
-      case (5):
         hearts[2].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Empty"]);
+        break;
+      case (5):
+        hearts[2].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Half"]);
+        break;
       case (6):
-        hearts[3].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Half"]);
-      case (7):
         hearts[3].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Empty"]);
+        break;
+      case (7):
+        hearts[3].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Half"]);
+        break;
       case (8):
-        hearts[4].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Half"]);
-      case (9):
         hearts[4].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Empty"]);
+        break;
+      case (9):
+        hearts[4].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Half"]);
+        break;
       case (10):
-        hearts[5].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Half"]);
-      case (11):
         hearts[5].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Empty"]);
+        break;
+      case (11):
+        hearts[5].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Half"]);
+        break;
       case (12):
-        hearts[6].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Half"]);
-      case (13):
         hearts[6].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Empty"]);
+        break;
+      case (13):
+        hearts[6].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Half"]);
+        break;
       case (14):
-        hearts[7].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Half"]);
-      case (15):
         hearts[7].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Empty"]);
+        break;
+      case (15):
+        hearts[7].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Half"]);
+        break;
       case (16):
-        hearts[8].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Half"]);
-      case (17):
         hearts[8].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Empty"]);
+        break;
+      case (17):
+        hearts[8].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Half"]);
+        break;
       case (18):
-        hearts[9].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Half"]);
-      case (19):
         hearts[9].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Empty"]);
+        break;
+      case (19):
+        hearts[9].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Half"]);
       case (20):
         break;
     }
@@ -240,6 +264,7 @@ namespace Game {
   }
 
   export function playMusic(music: ƒ.Audio): void {
+    audioComponent.play(false);
     let cmpAudio: ƒ.ComponentAudio = new ƒ.ComponentAudio(music, true, true);
     if (sessionStorage.getItem("volume")) {
       cmpAudio.volume = Number(sessionStorage.getItem("volume")) / 100;
@@ -253,5 +278,9 @@ namespace Game {
       cmpAudio.volume = Number(sessionStorage.getItem("volume")) / 100;
     }
     player.addComponent(cmpAudio);
+  }
+
+  function startGame(): void {
+    window.open("game.html", "_self", "fullscreen=yes", true);
   }
 }

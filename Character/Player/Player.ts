@@ -93,8 +93,11 @@ namespace Game {
       this.checkCollision();
       this.checkMobCollision();
 
-      if (this.health <= 0) {
-        gameOver = true;
+      if (!gameOver) {
+        if (this.health <= 0) {
+          gameOver = true;
+          playMusic(audioGameOver);
+        }
       }
     }
 

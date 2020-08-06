@@ -10,6 +10,8 @@ var Game;
     window.addEventListener("load", init);
     async function init() {
         let canvas = document.querySelector("canvas");
+        document.getElementById("playButton").addEventListener("click", startGame);
+        document.getElementById("gameover").style.visibility = "hidden";
         //load data
         Game.data = await Game.loadJSON();
         //find spritesheet and generate Sprites
@@ -43,7 +45,8 @@ var Game;
         //create music
         await loadMusic();
         Game.ƒ.AudioManager.default.listenTo(Game.player);
-        playMusic(Game.audioTheme);
+        Game.audioComponent = new Game.ƒ.ComponentAudio(Game.audioTheme, true, true);
+        Game.player.addComponent(Game.audioComponent);
         //create Camera
         let cmpCamera = new Game.ƒ.ComponentCamera();
         cmpCamera.pivot.translateZ(10);
@@ -70,6 +73,7 @@ var Game;
         //check if game over
         if (Game.gameOver) {
             Game.player.act(Game.ACTION.PLAYER_DIE);
+            document.getElementById("gameover").style.visibility = "visible";
         }
         //check if any Key is active
         if (!Game.ƒ.Keyboard.isPressedOne([Game.ƒ.KEYBOARD_CODE.W, Game.ƒ.KEYBOARD_CODE.ARROW_UP, Game.ƒ.KEYBOARD_CODE.A, Game.ƒ.KEYBOARD_CODE.ARROW_LEFT, Game.ƒ.KEYBOARD_CODE.D, Game.ƒ.KEYBOARD_CODE.ARROW_RIGHT, Game.ƒ.KEYBOARD_CODE.ARROW_DOWN, Game.ƒ.KEYBOARD_CODE.S, Game.ƒ.KEYBOARD_CODE.SPACE]) && !Game.gameOver) {
@@ -87,52 +91,70 @@ var Game;
     }
     function updateHealtBar() {
         for (let i = 0; i < 10; i++) {
-            console.log("debug");
             Game.hearts[i].cmpTransform.local.translation = Game.player.cmpTransform.local.translation;
             Game.hearts[i].cmpTransform.local.translateX(-22.5 + 1.5 * i);
             Game.hearts[i].cmpTransform.local.translateY(15);
         }
         switch (Game.player.health) {
             case (0):
-                Game.hearts[0].setAnimation(Game.SpriteGenerator.hearts["Heart_Half"]);
-            case (1):
                 Game.hearts[0].setAnimation(Game.SpriteGenerator.hearts["Heart_Empty"]);
+                break;
+            case (1):
+                Game.hearts[0].setAnimation(Game.SpriteGenerator.hearts["Heart_Half"]);
+                break;
             case (2):
-                Game.hearts[1].setAnimation(Game.SpriteGenerator.hearts["Heart_Half"]);
-            case (3):
                 Game.hearts[1].setAnimation(Game.SpriteGenerator.hearts["Heart_Empty"]);
+                break;
+            case (3):
+                Game.hearts[1].setAnimation(Game.SpriteGenerator.hearts["Heart_Half"]);
+                break;
             case (4):
-                Game.hearts[2].setAnimation(Game.SpriteGenerator.hearts["Heart_Half"]);
-            case (5):
                 Game.hearts[2].setAnimation(Game.SpriteGenerator.hearts["Heart_Empty"]);
+                break;
+            case (5):
+                Game.hearts[2].setAnimation(Game.SpriteGenerator.hearts["Heart_Half"]);
+                break;
             case (6):
-                Game.hearts[3].setAnimation(Game.SpriteGenerator.hearts["Heart_Half"]);
-            case (7):
                 Game.hearts[3].setAnimation(Game.SpriteGenerator.hearts["Heart_Empty"]);
+                break;
+            case (7):
+                Game.hearts[3].setAnimation(Game.SpriteGenerator.hearts["Heart_Half"]);
+                break;
             case (8):
-                Game.hearts[4].setAnimation(Game.SpriteGenerator.hearts["Heart_Half"]);
-            case (9):
                 Game.hearts[4].setAnimation(Game.SpriteGenerator.hearts["Heart_Empty"]);
+                break;
+            case (9):
+                Game.hearts[4].setAnimation(Game.SpriteGenerator.hearts["Heart_Half"]);
+                break;
             case (10):
-                Game.hearts[5].setAnimation(Game.SpriteGenerator.hearts["Heart_Half"]);
-            case (11):
                 Game.hearts[5].setAnimation(Game.SpriteGenerator.hearts["Heart_Empty"]);
+                break;
+            case (11):
+                Game.hearts[5].setAnimation(Game.SpriteGenerator.hearts["Heart_Half"]);
+                break;
             case (12):
-                Game.hearts[6].setAnimation(Game.SpriteGenerator.hearts["Heart_Half"]);
-            case (13):
                 Game.hearts[6].setAnimation(Game.SpriteGenerator.hearts["Heart_Empty"]);
+                break;
+            case (13):
+                Game.hearts[6].setAnimation(Game.SpriteGenerator.hearts["Heart_Half"]);
+                break;
             case (14):
-                Game.hearts[7].setAnimation(Game.SpriteGenerator.hearts["Heart_Half"]);
-            case (15):
                 Game.hearts[7].setAnimation(Game.SpriteGenerator.hearts["Heart_Empty"]);
+                break;
+            case (15):
+                Game.hearts[7].setAnimation(Game.SpriteGenerator.hearts["Heart_Half"]);
+                break;
             case (16):
-                Game.hearts[8].setAnimation(Game.SpriteGenerator.hearts["Heart_Half"]);
-            case (17):
                 Game.hearts[8].setAnimation(Game.SpriteGenerator.hearts["Heart_Empty"]);
+                break;
+            case (17):
+                Game.hearts[8].setAnimation(Game.SpriteGenerator.hearts["Heart_Half"]);
+                break;
             case (18):
-                Game.hearts[9].setAnimation(Game.SpriteGenerator.hearts["Heart_Half"]);
-            case (19):
                 Game.hearts[9].setAnimation(Game.SpriteGenerator.hearts["Heart_Empty"]);
+                break;
+            case (19):
+                Game.hearts[9].setAnimation(Game.SpriteGenerator.hearts["Heart_Half"]);
             case (20):
                 break;
         }
@@ -187,6 +209,7 @@ var Game;
         Game.audioEnemyDie = await Game.ƒ.Audio.load("../Assets/Sounds/SoundEffects/enemy_die.mp3");
     }
     function playMusic(music) {
+        Game.audioComponent.play(false);
         let cmpAudio = new Game.ƒ.ComponentAudio(music, true, true);
         if (sessionStorage.getItem("volume")) {
             cmpAudio.volume = Number(sessionStorage.getItem("volume")) / 100;
@@ -202,5 +225,8 @@ var Game;
         Game.player.addComponent(cmpAudio);
     }
     Game.playSound = playSound;
+    function startGame() {
+        window.open("game.html", "_self", "fullscreen=yes", true);
+    }
 })(Game || (Game = {}));
 //# sourceMappingURL=game.js.map

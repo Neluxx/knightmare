@@ -1,7 +1,7 @@
 {
   "player": {
     "health": 20,
-    "strength": 1,
+    "strength": 2,
     "attackspeed": 600,
     "speedMax": 1.5
   },
@@ -15,21 +15,21 @@
 
   "wolf": {
     "health": 8,
-    "strength": 2,
+    "strength": 1,
     "attackspeed": 750,
     "speedMax": 2
   },
 
   "witch": {
     "health": 10,
-    "strength": 3,
+    "strength": 2,
     "attackspeed": 1500,
     "speedMax": 1.5
   },
 
   "golem": {
     "health": 20,
-    "strength": 4,
+    "strength": 2,
     "attackspeed": 1250,
     "speedMax": 1
   }
