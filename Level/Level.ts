@@ -232,7 +232,7 @@ namespace Game {
     public static createEnemies(): ƒ.Node {
       //create enemies
       let enemies: ƒ.Node = new ƒ.Node("Enemies");
-      /*let random: number;
+      let random: number;
 
       let levelSize: number = 10;
       let offset: number = 5;
@@ -257,7 +257,7 @@ namespace Game {
       let wolfAmountMax: number = 2;
       let wolfAmount: number = Math.round(wolfAmountMin + (Math.random() * (wolfAmountMax - wolfAmountMin)));
 
-      for (let i = 0; i < batAmount; i++) {
+      /*for (let i = 0; i < batAmount; i++) {
         bat = new Bat();
         random = (Math.floor(Math.random() * Math.floor(levelSize))) - offset;
         bat.cmpTransform.local.translateX(random);
@@ -289,6 +289,10 @@ namespace Game {
         enemies.appendChild(golem);
       }*/
 
+      golem = new Golem();
+      golem.cmpTransform.local.translateX(5);
+      enemies.appendChild(golem);
+  
       return enemies;
     }
 

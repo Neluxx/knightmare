@@ -207,32 +207,26 @@ var Game;
         static createEnemies() {
             //create enemies
             let enemies = new ƒ.Node("Enemies");
-            /*let random: number;
-      
-            let levelSize: number = 10;
-            let offset: number = 5;
-      
-            let bat: Bat;
-            let batAmountMin: number = 2;
-            let batAmountMax: number = 3;
-            let batAmount: number = Math.round(batAmountMin + (Math.random() * (batAmountMax - batAmountMin)));
-      
-            let golem: Golem;
-            let golemAmountMin: number = 0;
-            let golemAmountMax: number = 1;
-            let golemAmount: number = Math.round(golemAmountMin + (Math.random() * (golemAmountMax - golemAmountMin)));
-      
-            let witch: Witch;
-            let witchAmountMin: number = 1;
-            let witchAmountMax: number = 1;
-            let witchAmount: number = Math.round(witchAmountMin + (Math.random() * (witchAmountMax - witchAmountMin)));
-      
-            let wolf: Wolf;
-            let wolfAmountMin: number = 1;
-            let wolfAmountMax: number = 2;
-            let wolfAmount: number = Math.round(wolfAmountMin + (Math.random() * (wolfAmountMax - wolfAmountMin)));
-      
-            for (let i = 0; i < batAmount; i++) {
+            let random;
+            let levelSize = 10;
+            let offset = 5;
+            let bat;
+            let batAmountMin = 2;
+            let batAmountMax = 3;
+            let batAmount = Math.round(batAmountMin + (Math.random() * (batAmountMax - batAmountMin)));
+            let golem;
+            let golemAmountMin = 0;
+            let golemAmountMax = 1;
+            let golemAmount = Math.round(golemAmountMin + (Math.random() * (golemAmountMax - golemAmountMin)));
+            let witch;
+            let witchAmountMin = 1;
+            let witchAmountMax = 1;
+            let witchAmount = Math.round(witchAmountMin + (Math.random() * (witchAmountMax - witchAmountMin)));
+            let wolf;
+            let wolfAmountMin = 1;
+            let wolfAmountMax = 2;
+            let wolfAmount = Math.round(wolfAmountMin + (Math.random() * (wolfAmountMax - wolfAmountMin)));
+            /*for (let i = 0; i < batAmount; i++) {
               bat = new Bat();
               random = (Math.floor(Math.random() * Math.floor(levelSize))) - offset;
               bat.cmpTransform.local.translateX(random);
@@ -263,6 +257,9 @@ var Game;
               //golem.cmpTransform.local.translateY(0);
               enemies.appendChild(golem);
             }*/
+            golem = new Game.Golem();
+            golem.cmpTransform.local.translateX(5);
+            enemies.appendChild(golem);
             return enemies;
         }
         static createBackground() {

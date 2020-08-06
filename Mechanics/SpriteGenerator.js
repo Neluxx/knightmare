@@ -199,6 +199,26 @@ var Game;
             sprite.generateByGrid(rect, 1, ƒ.Vector2.ZERO(), 64, ƒ.ORIGIN2D.BOTTOMCENTER);
             SpriteGenerator.tileset["Grass_All"] = sprite;
         }
+        static generateHearts(_spritesheet) {
+            SpriteGenerator.hearts = {};
+            let sprite;
+            let rect;
+            //Heart FULL
+            sprite = new ƒAid.SpriteSheetAnimation("Heart_Full", _spritesheet);
+            rect = new ƒ.Rectangle(0, 78, 96, 78, ƒ.ORIGIN2D.BOTTOMLEFT);
+            sprite.generateByGrid(rect, 1, ƒ.Vector2.ZERO(), 64, ƒ.ORIGIN2D.BOTTOMLEFT);
+            SpriteGenerator.hearts["Heart_Full"] = sprite;
+            //Heart HALF
+            sprite = new ƒAid.SpriteSheetAnimation("Heart_Half", _spritesheet);
+            rect = new ƒ.Rectangle(96, 78, 96, 78, ƒ.ORIGIN2D.BOTTOMLEFT);
+            sprite.generateByGrid(rect, 1, ƒ.Vector2.ZERO(), 64, ƒ.ORIGIN2D.BOTTOMLEFT);
+            SpriteGenerator.hearts["Heart_Half"] = sprite;
+            //Heart EMPTY
+            sprite = new ƒAid.SpriteSheetAnimation("Heart_Empty", _spritesheet);
+            rect = new ƒ.Rectangle(192, 78, 96, 78, ƒ.ORIGIN2D.BOTTOMLEFT);
+            sprite.generateByGrid(rect, 1, ƒ.Vector2.ZERO(), 64, ƒ.ORIGIN2D.BOTTOMLEFT);
+            SpriteGenerator.hearts["Heart_Empty"] = sprite;
+        }
         static getTextureMaterial(name, img) {
             let coatTxt = new ƒ.CoatTextured();
             coatTxt.texture = new ƒ.TextureImage();

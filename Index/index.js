@@ -8,21 +8,18 @@ var Game;
     let play = false;
     function init() {
         loadMusic();
-        document.getElementById('playButton').addEventListener('click', startGame);
-        document.getElementById('muteButton').addEventListener('click', playTitlescreen);
-        document.getElementById('openControlBoxButton').addEventListener('click', openControlBox);
-        document.getElementById('closeControlBoxButton').addEventListener('click', closeControlBox);
-        document.getElementById('openSettingBoxButton').addEventListener('click', openSettingBox);
-        document.getElementById('closeSettingBoxButton').addEventListener('click', closeSettingBox);
-        volumeInput = document.querySelector('musicSlider');
-        if (volumeInput) {
-            volumeInput.addEventListener("change", updateVolume);
-            Game.volume = volumeInput.value;
-        }
-        console.log(Game.volume);
+        document.getElementById("playButton").addEventListener("click", startGame);
+        document.getElementById("muteButton").addEventListener("click", playTitlescreen);
+        document.getElementById("openControlBoxButton").addEventListener("click", openControlBox);
+        document.getElementById("closeControlBoxButton").addEventListener("click", closeControlBox);
+        document.getElementById("openSettingBoxButton").addEventListener("click", openSettingBox);
+        document.getElementById("closeSettingBoxButton").addEventListener("click", closeSettingBox);
+        volumeInput = document.getElementById("volumeInput");
+        volumeInput.addEventListener("change", updateVolume);
     }
     function updateVolume() {
-        Game.volume = volumeInput.value;
+        sessionStorage.setItem("volume", volumeInput.value);
+        console.log(volumeInput.value);
     }
     function loadMusic() {
         titlescreen = new Audio();
@@ -30,10 +27,10 @@ var Game;
         titlescreen.load();
     }
     function startGame() {
-        window.open('../Game/game.html', '_self', "fullscreen=yes", true);
+        window.open("../Game/game.html", "_self", "fullscreen=yes", true);
     }
     function playTitlescreen() {
-        let mute = document.getElementById('muteButton');
+        let mute = document.getElementById("muteButton");
         if (!play) {
             mute.src = "../Assets/UI/muteOff.png";
             titlescreen.loop = true;
@@ -48,20 +45,20 @@ var Game;
         }
     }
     function openControlBox() {
-        document.getElementById('controlBox').style.visibility = 'visible';
-        document.getElementById('menu').style.visibility = 'hidden';
+        document.getElementById("controlBox").style.visibility = "visible";
+        document.getElementById("menu").style.visibility = "hidden";
     }
     function closeControlBox() {
-        document.getElementById('controlBox').style.visibility = 'hidden';
-        document.getElementById('menu').style.visibility = 'visible';
+        document.getElementById("controlBox").style.visibility = "hidden";
+        document.getElementById("menu").style.visibility = "visible";
     }
     function openSettingBox() {
-        document.getElementById('settingBox').style.visibility = 'visible';
-        document.getElementById('menu').style.visibility = 'hidden';
+        document.getElementById("settingBox").style.visibility = "visible";
+        document.getElementById("menu").style.visibility = "hidden";
     }
     function closeSettingBox() {
-        document.getElementById('settingBox').style.visibility = 'hidden';
-        document.getElementById('menu').style.visibility = 'visible';
+        document.getElementById("settingBox").style.visibility = "hidden";
+        document.getElementById("menu").style.visibility = "visible";
     }
 })(Game || (Game = {}));
 //# sourceMappingURL=index.js.map

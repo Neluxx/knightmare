@@ -11,25 +11,20 @@ namespace Game {
 
     loadMusic();
     
-    document.getElementById('playButton').addEventListener('click', startGame);
-    document.getElementById('muteButton').addEventListener('click', playTitlescreen);
-    document.getElementById('openControlBoxButton').addEventListener('click', openControlBox);
-    document.getElementById('closeControlBoxButton').addEventListener('click', closeControlBox);
-    document.getElementById('openSettingBoxButton').addEventListener('click', openSettingBox);
-    document.getElementById('closeSettingBoxButton').addEventListener('click', closeSettingBox);
+    document.getElementById("playButton").addEventListener("click", startGame);
+    document.getElementById("muteButton").addEventListener("click", playTitlescreen);
+    document.getElementById("openControlBoxButton").addEventListener("click", openControlBox);
+    document.getElementById("closeControlBoxButton").addEventListener("click", closeControlBox);
+    document.getElementById("openSettingBoxButton").addEventListener("click", openSettingBox);
+    document.getElementById("closeSettingBoxButton").addEventListener("click", closeSettingBox);
 
-    volumeInput = document.querySelector('musicSlider');
-
-    if (volumeInput) {
-      volumeInput.addEventListener("change", updateVolume);
-      volume = volumeInput.value;
-    }
-
-    console.log(volume);
+    volumeInput = document.getElementById("volumeInput") as HTMLInputElement;
+    volumeInput.addEventListener("change", updateVolume);
   }
 
   function updateVolume(): void {
-    volume = volumeInput.value;
+    sessionStorage.setItem("volume", volumeInput.value);
+    console.log(volumeInput.value);
   }
 
   function loadMusic(): void {
@@ -39,20 +34,20 @@ namespace Game {
   }
 
   function startGame(): void {
-    window.open('../Game/game.html', '_self', "fullscreen=yes", true);
+    window.open("../Game/game.html", "_self", "fullscreen=yes", true);
   }
 
   function playTitlescreen(): void {
-    let mute = document.getElementById('muteButton') as HTMLImageElement;
+    let mute: HTMLImageElement = document.getElementById("muteButton") as HTMLImageElement;
 
     if (!play) {
-      mute.src = "../Assets/UI/muteOff.png"
+      mute.src = "../Assets/UI/muteOff.png";
       titlescreen.loop = true;
       titlescreen.play();
       play = true;
     }
     else if (play) {
-      mute.src = "../Assets/UI/muteOn.png"
+      mute.src = "../Assets/UI/muteOn.png";
       titlescreen.loop = true;
       titlescreen.pause();
       play = false;
@@ -60,22 +55,22 @@ namespace Game {
   }
 
   function openControlBox(): void {
-    document.getElementById('controlBox').style.visibility = 'visible';
-    document.getElementById('menu').style.visibility = 'hidden';
+    document.getElementById("controlBox").style.visibility = "visible";
+    document.getElementById("menu").style.visibility = "hidden";
   }
 
   function closeControlBox(): void {
-    document.getElementById('controlBox').style.visibility = 'hidden';
-    document.getElementById('menu').style.visibility = 'visible';
+    document.getElementById("controlBox").style.visibility = "hidden";
+    document.getElementById("menu").style.visibility = "visible";
   }
 
   function openSettingBox(): void {
-    document.getElementById('settingBox').style.visibility = 'visible';
-    document.getElementById('menu').style.visibility = 'hidden';
+    document.getElementById("settingBox").style.visibility = "visible";
+    document.getElementById("menu").style.visibility = "hidden";
   }
 
   function closeSettingBox(): void {
-    document.getElementById('settingBox').style.visibility = 'hidden';
-    document.getElementById('menu').style.visibility = 'visible';
+    document.getElementById("settingBox").style.visibility = "hidden";
+    document.getElementById("menu").style.visibility = "visible";
   }
 }

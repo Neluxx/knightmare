@@ -6,9 +6,12 @@ var Game;
     Game.gameOver = false;
     Game.isAttacking = false;
     Game.isBlocking = false;
+    Game.hearts = new Array();
     window.addEventListener("load", init);
     async function init() {
         let canvas = document.querySelector("canvas");
+        document.getElementById("playButton").addEventListener("click", startGame);
+        document.getElementById("gameover").style.visibility = "hidden";
         //load data
         Game.data = await Game.loadJSON();
         //find spritesheet and generate Sprites
@@ -18,12 +21,23 @@ var Game;
         img = document.querySelector("#tileset");
         spritesheet = Game.ƒAid.createSpriteSheet("Tileset", img);
         Game.SpriteGenerator.generateTileset(spritesheet);
+        img = document.querySelector("#hearts");
+        spritesheet = Game.ƒAid.createSpriteSheet("Heartsheet", img);
+        Game.SpriteGenerator.generateHearts(spritesheet);
         //create Game
         Game.game = new Game.ƒ.Node("Game");
         Game.player = new Game.Player();
         Game.level = Game.Level.createLevel();
         Game.enemies = Game.Level.createEnemies();
         Game.bg = Game.Level.createBackground();
+        //create Healthbar
+        for (let i = 0; i < 10; i++) {
+            Game.heart = new Game.Heart();
+            Game.heart.cmpTransform.local.scaleX(0.25);
+            Game.heart.cmpTransform.local.scaleY(0.25);
+            Game.hearts.push(Game.heart);
+            Game.game.appendChild(Game.heart);
+        }
         Game.game.appendChild(Game.level);
         Game.game.appendChild(Game.player);
         Game.game.appendChild(Game.enemies);
@@ -31,7 +45,11 @@ var Game;
         //create music
         await loadMusic();
         Game.ƒ.AudioManager.default.listenTo(Game.player);
-        playMusic(Game.audioTheme);
+        Game.audioComponent = new Game.ƒ.ComponentAudio(Game.audioTheme, true, true);
+        if (sessionStorage.getItem("volume")) {
+            Game.audioComponent.volume = Number(sessionStorage.getItem("volume")) / 100;
+        }
+        Game.player.addComponent(Game.audioComponent);
         //create Camera
         let cmpCamera = new Game.ƒ.ComponentCamera();
         cmpCamera.pivot.translateZ(10);
@@ -45,7 +63,7 @@ var Game;
         Game.viewport = new Game.ƒ.Viewport();
         Game.viewport.initialize("Viewport", Game.game, Game.camera.getComponent(Game.ƒ.ComponentCamera), canvas);
         Game.viewport.draw();
-        console.log(Game.volume);
+        console.log(sessionStorage.getItem("volume"));
         //add EventListener
         Game.viewport.addEventListener("\u0192keydown" /* DOWN */, handleKeyboard);
         Game.viewport.activateKeyboardEvent("\u0192keydown" /* DOWN */, true);
@@ -58,6 +76,7 @@ var Game;
         //check if game over
         if (Game.gameOver) {
             Game.player.act(Game.ACTION.PLAYER_DIE);
+            document.getElementById("gameover").style.visibility = "visible";
         }
         //check if any Key is active
         if (!Game.ƒ.Keyboard.isPressedOne([Game.ƒ.KEYBOARD_CODE.W, Game.ƒ.KEYBOARD_CODE.ARROW_UP, Game.ƒ.KEYBOARD_CODE.A, Game.ƒ.KEYBOARD_CODE.ARROW_LEFT, Game.ƒ.KEYBOARD_CODE.D, Game.ƒ.KEYBOARD_CODE.ARROW_RIGHT, Game.ƒ.KEYBOARD_CODE.ARROW_DOWN, Game.ƒ.KEYBOARD_CODE.S, Game.ƒ.KEYBOARD_CODE.SPACE]) && !Game.gameOver) {
@@ -65,12 +84,83 @@ var Game;
             Game.isAttacking = false;
             Game.isBlocking = false;
         }
+        updateHealtBar();
         //camera movement
         Game.camera.cmpTransform.local.translation = Game.player.cmpTransform.local.translation;
         Game.camera.cmpTransform.local.translateY(1.5);
         Game.bg.cmpTransform.local.translation = Game.player.cmpTransform.local.translation;
         Game.bg.cmpTransform.local.translateY(0.25);
         Game.viewport.draw();
+    }
+    function updateHealtBar() {
+        for (let i = 0; i < 10; i++) {
+            Game.hearts[i].cmpTransform.local.translation = Game.player.cmpTransform.local.translation;
+            Game.hearts[i].cmpTransform.local.translateX(-22.5 + 1.5 * i);
+            Game.hearts[i].cmpTransform.local.translateY(15);
+        }
+        switch (Game.player.health) {
+            case (0):
+                Game.hearts[0].setAnimation(Game.SpriteGenerator.hearts["Heart_Empty"]);
+                break;
+            case (1):
+                Game.hearts[0].setAnimation(Game.SpriteGenerator.hearts["Heart_Half"]);
+                break;
+            case (2):
+                Game.hearts[1].setAnimation(Game.SpriteGenerator.hearts["Heart_Empty"]);
+                break;
+            case (3):
+                Game.hearts[1].setAnimation(Game.SpriteGenerator.hearts["Heart_Half"]);
+                break;
+            case (4):
+                Game.hearts[2].setAnimation(Game.SpriteGenerator.hearts["Heart_Empty"]);
+                break;
+            case (5):
+                Game.hearts[2].setAnimation(Game.SpriteGenerator.hearts["Heart_Half"]);
+                break;
+            case (6):
+                Game.hearts[3].setAnimation(Game.SpriteGenerator.hearts["Heart_Empty"]);
+                break;
+            case (7):
+                Game.hearts[3].setAnimation(Game.SpriteGenerator.hearts["Heart_Half"]);
+                break;
+            case (8):
+                Game.hearts[4].setAnimation(Game.SpriteGenerator.hearts["Heart_Empty"]);
+                break;
+            case (9):
+                Game.hearts[4].setAnimation(Game.SpriteGenerator.hearts["Heart_Half"]);
+                break;
+            case (10):
+                Game.hearts[5].setAnimation(Game.SpriteGenerator.hearts["Heart_Empty"]);
+                break;
+            case (11):
+                Game.hearts[5].setAnimation(Game.SpriteGenerator.hearts["Heart_Half"]);
+                break;
+            case (12):
+                Game.hearts[6].setAnimation(Game.SpriteGenerator.hearts["Heart_Empty"]);
+                break;
+            case (13):
+                Game.hearts[6].setAnimation(Game.SpriteGenerator.hearts["Heart_Half"]);
+                break;
+            case (14):
+                Game.hearts[7].setAnimation(Game.SpriteGenerator.hearts["Heart_Empty"]);
+                break;
+            case (15):
+                Game.hearts[7].setAnimation(Game.SpriteGenerator.hearts["Heart_Half"]);
+                break;
+            case (16):
+                Game.hearts[8].setAnimation(Game.SpriteGenerator.hearts["Heart_Empty"]);
+                break;
+            case (17):
+                Game.hearts[8].setAnimation(Game.SpriteGenerator.hearts["Heart_Half"]);
+                break;
+            case (18):
+                Game.hearts[9].setAnimation(Game.SpriteGenerator.hearts["Heart_Empty"]);
+                break;
+            case (19):
+                Game.hearts[9].setAnimation(Game.SpriteGenerator.hearts["Heart_Half"]);
+            case (20):
+                break;
+        }
     }
     function handleKeyboard(_event) {
         if (!Game.gameOver) {
@@ -122,22 +212,24 @@ var Game;
         Game.audioEnemyDie = await Game.ƒ.Audio.load("../Assets/Sounds/SoundEffects/enemy_die.mp3");
     }
     function playMusic(music) {
+        Game.audioComponent.play(false);
         let cmpAudio = new Game.ƒ.ComponentAudio(music, true, true);
-        let vol = parseFloat(Game.volume);
-        if (Game.volume) {
-            cmpAudio.volume = +vol / 100;
+        if (sessionStorage.getItem("volume")) {
+            cmpAudio.volume = Number(sessionStorage.getItem("volume")) / 100;
         }
         Game.player.addComponent(cmpAudio);
     }
     Game.playMusic = playMusic;
     function playSound(sound) {
         let cmpAudio = new Game.ƒ.ComponentAudio(sound, false, true);
-        let vol = parseFloat(Game.volume);
-        if (Game.volume) {
-            cmpAudio.volume = +vol / 100;
+        if (sessionStorage.getItem("volume")) {
+            cmpAudio.volume = Number(sessionStorage.getItem("volume")) / 100;
         }
         Game.player.addComponent(cmpAudio);
     }
     Game.playSound = playSound;
+    function startGame() {
+        window.open("game.html", "_self", "fullscreen=yes", true);
+    }
 })(Game || (Game = {}));
 //# sourceMappingURL=game.js.map

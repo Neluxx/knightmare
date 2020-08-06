@@ -1,12 +1,12 @@
 namespace Game {
 
   export interface ExternalData {
-    [name: string]:{
+    [name: string]: {
       "health": number,
       "strength": number,
       "attackspeed": number,
       "speedMax": number
-    }
+    };
   }
 
   export async function loadJSON(): Promise<ExternalData> {

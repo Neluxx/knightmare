@@ -6,6 +6,7 @@ namespace Game {
   export class SpriteGenerator extends ƒAid.NodeSprite {
     public static animations: ƒAid.SpriteSheetAnimations;
     public static tileset: ƒAid.SpriteSheetAnimations;
+    public static hearts: ƒAid.SpriteSheetAnimations;
 
     public static generateAnimations(_spritesheet: ƒ.CoatTextured): void {
       SpriteGenerator.animations = {};
@@ -239,6 +240,30 @@ namespace Game {
       rect = new ƒ.Rectangle(460, 52, 40, 52, ƒ.ORIGIN2D.BOTTOMCENTER);
       sprite.generateByGrid(rect, 1, ƒ.Vector2.ZERO(), 64, ƒ.ORIGIN2D.BOTTOMCENTER);
       SpriteGenerator.tileset["Grass_All"] = sprite;
+    }
+
+    public static generateHearts(_spritesheet: ƒ.CoatTextured): void {
+      SpriteGenerator.hearts = {};
+      let sprite: ƒAid.SpriteSheetAnimation;
+      let rect: ƒ.Rectangle;
+
+      //Heart FULL
+      sprite = new ƒAid.SpriteSheetAnimation("Heart_Full", _spritesheet);
+      rect = new ƒ.Rectangle(0, 78, 96, 78, ƒ.ORIGIN2D.BOTTOMLEFT);
+      sprite.generateByGrid(rect, 1, ƒ.Vector2.ZERO(), 64, ƒ.ORIGIN2D.BOTTOMLEFT);
+      SpriteGenerator.hearts["Heart_Full"] = sprite;
+
+      //Heart HALF
+      sprite = new ƒAid.SpriteSheetAnimation("Heart_Half", _spritesheet);
+      rect = new ƒ.Rectangle(96, 78, 96, 78, ƒ.ORIGIN2D.BOTTOMLEFT);
+      sprite.generateByGrid(rect, 1, ƒ.Vector2.ZERO(), 64, ƒ.ORIGIN2D.BOTTOMLEFT);
+      SpriteGenerator.hearts["Heart_Half"] = sprite;
+
+      //Heart EMPTY
+      sprite = new ƒAid.SpriteSheetAnimation("Heart_Empty", _spritesheet);
+      rect = new ƒ.Rectangle(192, 78, 96, 78, ƒ.ORIGIN2D.BOTTOMLEFT);
+      sprite.generateByGrid(rect, 1, ƒ.Vector2.ZERO(), 64, ƒ.ORIGIN2D.BOTTOMLEFT);
+      SpriteGenerator.hearts["Heart_Empty"] = sprite;
     }
 
     public static getTextureMaterial(name: string, img: HTMLImageElement): ƒ.Material {

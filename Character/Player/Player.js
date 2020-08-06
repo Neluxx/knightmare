@@ -17,8 +17,11 @@ var Game;
                 this.cmpTransform.local.translate(distance);
                 this.checkCollision();
                 this.checkMobCollision();
-                if (this.health <= 0) {
-                    Game.gameOver = true;
+                if (!Game.gameOver) {
+                    if (this.health <= 0) {
+                        Game.gameOver = true;
+                        Game.playMusic(Game.audioGameOver);
+                    }
                 }
             };
             this.health = Game.data.player.health;
