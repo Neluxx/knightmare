@@ -46,6 +46,9 @@ var Game;
         await loadMusic();
         Game.ƒ.AudioManager.default.listenTo(Game.player);
         Game.audioComponent = new Game.ƒ.ComponentAudio(Game.audioTheme, true, true);
+        if (sessionStorage.getItem("volume")) {
+            Game.audioComponent.volume = Number(sessionStorage.getItem("volume")) / 100;
+        }
         Game.player.addComponent(Game.audioComponent);
         //create Camera
         let cmpCamera = new Game.ƒ.ComponentCamera();

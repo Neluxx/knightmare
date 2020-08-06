@@ -85,6 +85,9 @@ namespace Game {
     await loadMusic();
     ƒ.AudioManager.default.listenTo(player);
     audioComponent = new ƒ.ComponentAudio(audioTheme, true, true);
+    if (sessionStorage.getItem("volume")) {
+      audioComponent.volume = Number(sessionStorage.getItem("volume")) / 100;
+    }
     player.addComponent(audioComponent);
     
     //create Camera
