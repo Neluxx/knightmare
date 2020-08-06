@@ -1,4 +1,3 @@
-
 namespace Game {
   export import ƒ = FudgeCore;
   export import ƒAid = FudgeAid;
@@ -15,6 +14,8 @@ namespace Game {
   export let isBlocking: boolean = false;
   export let viewport: ƒ.Viewport;
   export let bg: ƒ.Node;
+  export let heart: Heart;
+  export let hearts: Heart[] = new Array();
 
   //music
   export let audioTheme: ƒ.Audio;
@@ -48,6 +49,11 @@ namespace Game {
     img = document.querySelector("#tileset");
     spritesheet = ƒAid.createSpriteSheet("Tileset", img);
     SpriteGenerator.generateTileset(spritesheet);
+
+    img = document.querySelector("#hearts");
+    spritesheet = ƒAid.createSpriteSheet("Heartsheet", img);
+    SpriteGenerator.generateHearts(spritesheet);
+    
     
     //create Game
     game = new ƒ.Node("Game");
@@ -55,10 +61,21 @@ namespace Game {
     level = Level.createLevel();
     enemies = Level.createEnemies();
     bg = Level.createBackground();
+    
+    //create Healthbar
+    for (let i: number = 0; i < 10; i++) {
+      heart = new Heart();
+      heart.cmpTransform.local.scaleX(0.25);
+      heart.cmpTransform.local.scaleY(0.25);
+      hearts.push(heart);
+      game.appendChild(heart);
+    }
+
     game.appendChild(level);
     game.appendChild(player);
     game.appendChild(enemies);
     game.appendChild(bg);
+
 
     //create music
     await loadMusic();
@@ -81,7 +98,7 @@ namespace Game {
     viewport.initialize("Viewport", game, camera.getComponent(ƒ.ComponentCamera), canvas);
     viewport.draw();
 
-    console.log(volume);
+    console.log(sessionStorage.getItem("volume"));
 
     //add EventListener
     viewport.addEventListener(ƒ.EVENT_KEYBOARD.DOWN, handleKeyboard);
@@ -106,6 +123,8 @@ namespace Game {
       isBlocking = false;
     }
 
+    updateHealtBar();
+
     //camera movement
     camera.cmpTransform.local.translation = player.cmpTransform.local.translation;
     camera.cmpTransform.local.translateY(1.5);
@@ -115,9 +134,63 @@ namespace Game {
     viewport.draw();
   }
 
+  function updateHealtBar(): void {
+    for (let i: number = 0; i < 10; i++) {
+      console.log("debug");
+      hearts[i].cmpTransform.local.translation = player.cmpTransform.local.translation;
+      hearts[i].cmpTransform.local.translateX(-22.5 + 1.5 * i);
+      hearts[i].cmpTransform.local.translateY(15);
+    }
+
+    switch (player.health) {
+      case (0):
+        hearts[0].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Half"]);
+      case (1):
+        hearts[0].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Empty"]);
+      case (2):
+        hearts[1].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Half"]);
+      case (3):
+        hearts[1].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Empty"]);
+      case (4):
+        hearts[2].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Half"]);
+      case (5):
+        hearts[2].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Empty"]);
+      case (6):
+        hearts[3].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Half"]);
+      case (7):
+        hearts[3].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Empty"]);
+      case (8):
+        hearts[4].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Half"]);
+      case (9):
+        hearts[4].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Empty"]);
+      case (10):
+        hearts[5].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Half"]);
+      case (11):
+        hearts[5].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Empty"]);
+      case (12):
+        hearts[6].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Half"]);
+      case (13):
+        hearts[6].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Empty"]);
+      case (14):
+        hearts[7].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Half"]);
+      case (15):
+        hearts[7].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Empty"]);
+      case (16):
+        hearts[8].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Half"]);
+      case (17):
+        hearts[8].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Empty"]);
+      case (18):
+        hearts[9].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Half"]);
+      case (19):
+        hearts[9].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Empty"]);
+      case (20):
+        break;
+    }
+  }
+
   function handleKeyboard(_event: ƒ.EventKeyboard): void {
     if (!gameOver) {
-      switch(_event.code) {
+      switch (_event.code) {
         case (ƒ.KEYBOARD_CODE.W):
         case (ƒ.KEYBOARD_CODE.ARROW_UP):
           player.act(ACTION.PLAYER_JUMP);
@@ -166,18 +239,18 @@ namespace Game {
     audioEnemyDie = await ƒ.Audio.load("../Assets/Sounds/SoundEffects/enemy_die.mp3");
   }
 
-  export function playMusic(music: ƒ.Audio) {
+  export function playMusic(music: ƒ.Audio): void {
     let cmpAudio: ƒ.ComponentAudio = new ƒ.ComponentAudio(music, true, true);
-    if (volume) {
-      cmpAudio.volume = volume;
+    if (sessionStorage.getItem("volume")) {
+      cmpAudio.volume = Number(sessionStorage.getItem("volume")) / 100;
     }
     player.addComponent(cmpAudio);
   }
 
-  export function playSound(sound: ƒ.Audio) {
+  export function playSound(sound: ƒ.Audio): void {
     let cmpAudio: ƒ.ComponentAudio = new ƒ.ComponentAudio(sound, false, true);
-    if (volume) {
-      cmpAudio.volume = volume;
+    if (sessionStorage.getItem("volume")) {
+      cmpAudio.volume = Number(sessionStorage.getItem("volume")) / 100;
     }
     player.addComponent(cmpAudio);
   }

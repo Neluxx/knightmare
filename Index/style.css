@@ -4,7 +4,6 @@
 }
 
 body {
-  position: absolute;
   margin: 0;
   background-image: url("../Assets/Sprites/background.png");
   background-size: cover;
@@ -33,6 +32,8 @@ p {
 }
 
 #controlBox, #settingBox {
+  position: absolute;
+  text-align: center;
   visibility: hidden;
 }
 

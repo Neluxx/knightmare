@@ -8,28 +8,28 @@
   
   "bat": {
     "health": 6,
-    "strength": 0.5,
+    "strength": 1,
     "attackspeed": 850,
     "speedMax": 2.5
   },
 
   "wolf": {
     "health": 8,
-    "strength": 1,
+    "strength": 2,
     "attackspeed": 750,
     "speedMax": 2
   },
 
   "witch": {
     "health": 10,
-    "strength": 1.5,
+    "strength": 3,
     "attackspeed": 1500,
     "speedMax": 1.5
   },
 
   "golem": {
     "health": 20,
-    "strength": 2,
+    "strength": 4,
     "attackspeed": 1250,
     "speedMax": 1
   }
