@@ -1,13 +1,13 @@
 # Prima
 Repository for the module "Prototyping interactive media-applications and games" at Furtwangen University
 
-[Pages-Version](https://neluxx.github.io/Prima_FinalTask/)
+[Pages-Version](https://neluxx.github.io/Knightmare/)
 
 [Quellcode](https://github.com/Neluxx/Knightmare)
 
 [Designdokument](https://github.com/Neluxx/Knightmare/Designdokument/Knightmare.pdf)
 
-[Start the Game](https://neluxx.github.io/Prima_FinalTask/Index)
+[Start the Game](https://neluxx.github.io/Knightmare/Index)
 
 
 ## Checkliste für Leistungsnachweis
