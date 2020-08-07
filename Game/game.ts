@@ -156,54 +156,63 @@ namespace Game {
         break;
       case (1):
         hearts[0].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Half"]);
+        hearts[1].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Empty"]);
         break;
       case (2):
         hearts[1].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Empty"]);
         break;
       case (3):
         hearts[1].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Half"]);
+        hearts[2].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Empty"]);
         break;
       case (4):
         hearts[2].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Empty"]);
         break;
       case (5):
         hearts[2].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Half"]);
+        hearts[3].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Empty"]);
         break;
       case (6):
         hearts[3].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Empty"]);
         break;
       case (7):
         hearts[3].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Half"]);
+        hearts[4].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Empty"]);
         break;
       case (8):
         hearts[4].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Empty"]);
         break;
       case (9):
         hearts[4].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Half"]);
+        hearts[5].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Empty"]);
         break;
       case (10):
         hearts[5].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Empty"]);
         break;
       case (11):
         hearts[5].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Half"]);
+        hearts[6].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Empty"]);
         break;
       case (12):
         hearts[6].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Empty"]);
         break;
       case (13):
         hearts[6].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Half"]);
+        hearts[7].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Empty"]);
         break;
       case (14):
         hearts[7].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Empty"]);
         break;
       case (15):
         hearts[7].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Half"]);
+        hearts[8].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Empty"]);
         break;
       case (16):
         hearts[8].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Empty"]);
         break;
       case (17):
         hearts[8].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Half"]);
+        hearts[9].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Empty"]);
         break;
       case (18):
         hearts[9].setAnimation(<ƒAid.SpriteSheetAnimation>SpriteGenerator.hearts["Heart_Empty"]);

@@ -32,13 +32,6 @@ namespace Game {
         element.cmpTransform.local.translateX((0.5) * i);
         element.cmpTransform.local.translateY(-2.0);
         level.appendChild(element);
-        //add Element to Level
-        element = new Element("Dirt_All");
-        element.cmpTransform.local.translateX((0.5) * i);
-        element.cmpTransform.local.translateY(-3.5);
-        level.appendChild(element);
-
-
       }
 
       // Floor Grass negative X
@@ -67,11 +60,6 @@ namespace Game {
       element.cmpTransform.local.translateX(0);
       element.cmpTransform.local.translateY(-2.0);
       level.appendChild(element);
-      //add Element to Level
-      element = new Element("Dirt_All");
-      element.cmpTransform.local.translateX(0);
-      element.cmpTransform.local.translateY(-3.5);
-      level.appendChild(element);
 
 
       //WALL Dirt negative x
@@ -87,13 +75,8 @@ namespace Game {
         element.cmpTransform.local.translateX((-0.5) * i);
         element.cmpTransform.local.translateY(-2.0);
         level.appendChild(element);
-        //add Element to Level
-        element = new Element("Dirt_All");
-        element.cmpTransform.local.translateX((-0.5) * i);
-        element.cmpTransform.local.translateY(-3.5);
-        level.appendChild(element);
       }
-      for (let i = 1; i <= 20; i++) {
+      for (let i = 1; i <= 9; i++) {
         //add Element to Level
         element = new Element("Dirt_All");
         element.cmpTransform.local.translateX(-5.5 - (i * 0.5));
@@ -161,7 +144,7 @@ namespace Game {
         level.appendChild(element);
       }
 
-      for (let i = 1; i <= 10; i++) {
+      for (let i = 1; i <= 9; i++) {
         //add Element to Level
         element = new Element("Grass_Right");
         element.cmpTransform.local.translateX(-5.5);
@@ -174,6 +157,11 @@ namespace Game {
         level.appendChild(element);
       }
 
+      //add Element to Level
+      element = new Element("Grass_Right");
+      element.cmpTransform.local.translateX(-5.5);
+      element.cmpTransform.local.translateY((0.5) * 10);
+      level.appendChild(element);
       //add Element to Level
       element = new Element("Grass_Right");
       element.cmpTransform.local.translateX(-5.5);
@@ -195,7 +183,7 @@ namespace Game {
 
       //RIGHT END
 
-      for (let i = 1; i <= 20; i++) {
+      for (let i = 1; i <= 10; i++) {
         // DIRT FLOOR
         //add Element to LeveL
         element = new Element("Dirt_All");
@@ -208,10 +196,6 @@ namespace Game {
         element.cmpTransform.local.translateY(-2.0);
         level.appendChild(element);
         //add Element to Level
-        element = new Element("Dirt_All");
-        element.cmpTransform.local.translateX(35 + (i * 0.5));
-        element.cmpTransform.local.translateY(-3.5);
-        level.appendChild(element);
 
         //WALL  RIGHT
         //add Element to Level
@@ -285,6 +269,18 @@ namespace Game {
         element.cmpTransform.local.translateY(5);
         level.appendChild(element);
       }
+
+      // DIRT FLOOR
+        //add Element to LeveL
+      element = new Element("Dirt_All");
+      element.cmpTransform.local.translateX(35 + (11 * 0.5));
+      element.cmpTransform.local.translateY(-1.5);
+      level.appendChild(element);
+      //add Element to Level
+      element = new Element("Dirt_All");
+      element.cmpTransform.local.translateX(35 + (11 * 0.5));
+      element.cmpTransform.local.translateY(-2.0);
+      level.appendChild(element);
 
       //add Element to Level
       element = new Element("Grass_Left");
@@ -941,12 +937,11 @@ namespace Game {
       let enemies: ƒ.Node = new ƒ.Node("Enemies");
       let random: number;
 
-      let levelSize: number = 10;
-      let offset: number = 5;
+      let levelSize: number = 34;
 
       let bat: Bat;
-      let batAmountMin: number = 2;
-      let batAmountMax: number = 3;
+      let batAmountMin: number = 1;
+      let batAmountMax: number = 2;
       let batAmount: number = Math.round(batAmountMin + (Math.random() * (batAmountMax - batAmountMin)));
 
       let golem: Golem;
@@ -964,9 +959,9 @@ namespace Game {
       let wolfAmountMax: number = 2;
       let wolfAmount: number = Math.round(wolfAmountMin + (Math.random() * (wolfAmountMax - wolfAmountMin)));
 
-      /*for (let i = 0; i < batAmount; i++) {
+      for (let i = 0; i < batAmount; i++) {
         bat = new Bat();
-        random = (Math.floor(Math.random() * Math.floor(levelSize))) - offset;
+        random = Math.round(Math.random() * levelSize);
         bat.cmpTransform.local.translateX(random);
         //bat.cmpTransform.local.translateY(0);
         enemies.appendChild(bat);
@@ -974,7 +969,7 @@ namespace Game {
 
       for (let i = 0; i < wolfAmount; i++) {
         wolf = new Wolf();
-        random = (Math.floor(Math.random() * Math.floor(levelSize))) - offset;
+        random = Math.round(Math.random() * levelSize);
         wolf.cmpTransform.local.translateX(random);
         //wolf.cmpTransform.local.translateY(0);
         enemies.appendChild(wolf);
@@ -982,7 +977,7 @@ namespace Game {
 
       for (let i = 0; i < witchAmount; i++) {
         witch = new Witch();
-        random = (Math.floor(Math.random() * Math.floor(levelSize))) - offset;
+        random = Math.round(Math.random() * levelSize);
         witch.cmpTransform.local.translateX(random);
         //witch.cmpTransform.local.translateY(0);
         enemies.appendChild(witch);
@@ -990,16 +985,11 @@ namespace Game {
 
       for (let i = 0; i < golemAmount; i++) {
         golem = new Golem();
-        random = (Math.floor(Math.random() * Math.floor(levelSize))) - offset;
+        random = Math.round(Math.random() * levelSize);
         golem.cmpTransform.local.translateX(random);
         //golem.cmpTransform.local.translateY(0);
         enemies.appendChild(golem);
       }
-
-      golem = new Golem();
-      golem.cmpTransform.local.translateX(5);
-      enemies.appendChild(golem); */
-
 
       return enemies;
     }

@@ -104,54 +104,63 @@ var Game;
                 break;
             case (1):
                 Game.hearts[0].setAnimation(Game.SpriteGenerator.hearts["Heart_Half"]);
+                Game.hearts[1].setAnimation(Game.SpriteGenerator.hearts["Heart_Empty"]);
                 break;
             case (2):
                 Game.hearts[1].setAnimation(Game.SpriteGenerator.hearts["Heart_Empty"]);
                 break;
             case (3):
                 Game.hearts[1].setAnimation(Game.SpriteGenerator.hearts["Heart_Half"]);
+                Game.hearts[2].setAnimation(Game.SpriteGenerator.hearts["Heart_Empty"]);
                 break;
             case (4):
                 Game.hearts[2].setAnimation(Game.SpriteGenerator.hearts["Heart_Empty"]);
                 break;
             case (5):
                 Game.hearts[2].setAnimation(Game.SpriteGenerator.hearts["Heart_Half"]);
+                Game.hearts[3].setAnimation(Game.SpriteGenerator.hearts["Heart_Empty"]);
                 break;
             case (6):
                 Game.hearts[3].setAnimation(Game.SpriteGenerator.hearts["Heart_Empty"]);
                 break;
             case (7):
                 Game.hearts[3].setAnimation(Game.SpriteGenerator.hearts["Heart_Half"]);
+                Game.hearts[4].setAnimation(Game.SpriteGenerator.hearts["Heart_Empty"]);
                 break;
             case (8):
                 Game.hearts[4].setAnimation(Game.SpriteGenerator.hearts["Heart_Empty"]);
                 break;
             case (9):
                 Game.hearts[4].setAnimation(Game.SpriteGenerator.hearts["Heart_Half"]);
+                Game.hearts[5].setAnimation(Game.SpriteGenerator.hearts["Heart_Empty"]);
                 break;
             case (10):
                 Game.hearts[5].setAnimation(Game.SpriteGenerator.hearts["Heart_Empty"]);
                 break;
             case (11):
                 Game.hearts[5].setAnimation(Game.SpriteGenerator.hearts["Heart_Half"]);
+                Game.hearts[6].setAnimation(Game.SpriteGenerator.hearts["Heart_Empty"]);
                 break;
             case (12):
                 Game.hearts[6].setAnimation(Game.SpriteGenerator.hearts["Heart_Empty"]);
                 break;
             case (13):
                 Game.hearts[6].setAnimation(Game.SpriteGenerator.hearts["Heart_Half"]);
+                Game.hearts[7].setAnimation(Game.SpriteGenerator.hearts["Heart_Empty"]);
                 break;
             case (14):
                 Game.hearts[7].setAnimation(Game.SpriteGenerator.hearts["Heart_Empty"]);
                 break;
             case (15):
                 Game.hearts[7].setAnimation(Game.SpriteGenerator.hearts["Heart_Half"]);
+                Game.hearts[8].setAnimation(Game.SpriteGenerator.hearts["Heart_Empty"]);
                 break;
             case (16):
                 Game.hearts[8].setAnimation(Game.SpriteGenerator.hearts["Heart_Empty"]);
                 break;
             case (17):
                 Game.hearts[8].setAnimation(Game.SpriteGenerator.hearts["Heart_Half"]);
+                Game.hearts[9].setAnimation(Game.SpriteGenerator.hearts["Heart_Empty"]);
                 break;
             case (18):
                 Game.hearts[9].setAnimation(Game.SpriteGenerator.hearts["Heart_Empty"]);

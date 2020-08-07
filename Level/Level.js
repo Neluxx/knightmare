@@ -28,11 +28,6 @@ var Game;
                 element.cmpTransform.local.translateX((0.5) * i);
                 element.cmpTransform.local.translateY(-2.0);
                 level.appendChild(element);
-                //add Element to Level
-                element = new Game.Element("Dirt_All");
-                element.cmpTransform.local.translateX((0.5) * i);
-                element.cmpTransform.local.translateY(-3.5);
-                level.appendChild(element);
             }
             // Floor Grass negative X
             for (let i = 1; i <= 10; i++) {
@@ -58,11 +53,6 @@ var Game;
             element.cmpTransform.local.translateX(0);
             element.cmpTransform.local.translateY(-2.0);
             level.appendChild(element);
-            //add Element to Level
-            element = new Game.Element("Dirt_All");
-            element.cmpTransform.local.translateX(0);
-            element.cmpTransform.local.translateY(-3.5);
-            level.appendChild(element);
             //WALL Dirt negative x
             for (let i = 1; i <= 20; i++) {
                 //add Element to LeveL
@@ -75,13 +65,8 @@ var Game;
                 element.cmpTransform.local.translateX((-0.5) * i);
                 element.cmpTransform.local.translateY(-2.0);
                 level.appendChild(element);
-                //add Element to Level
-                element = new Game.Element("Dirt_All");
-                element.cmpTransform.local.translateX((-0.5) * i);
-                element.cmpTransform.local.translateY(-3.5);
-                level.appendChild(element);
             }
-            for (let i = 1; i <= 20; i++) {
+            for (let i = 1; i <= 9; i++) {
                 //add Element to Level
                 element = new Game.Element("Dirt_All");
                 element.cmpTransform.local.translateX(-5.5 - (i * 0.5));
@@ -148,7 +133,7 @@ var Game;
                 element.cmpTransform.local.translateY(5.0);
                 level.appendChild(element);
             }
-            for (let i = 1; i <= 10; i++) {
+            for (let i = 1; i <= 9; i++) {
                 //add Element to Level
                 element = new Game.Element("Grass_Right");
                 element.cmpTransform.local.translateX(-5.5);
@@ -160,6 +145,11 @@ var Game;
                 element.cmpTransform.local.translateY(-0.5);
                 level.appendChild(element);
             }
+            //add Element to Level
+            element = new Game.Element("Grass_Right");
+            element.cmpTransform.local.translateX(-5.5);
+            element.cmpTransform.local.translateY((0.5) * 10);
+            level.appendChild(element);
             //add Element to Level
             element = new Game.Element("Grass_Right");
             element.cmpTransform.local.translateX(-5.5);
@@ -176,7 +166,7 @@ var Game;
             element.cmpTransform.local.translateY((-1));
             level.appendChild(element);
             //RIGHT END
-            for (let i = 1; i <= 20; i++) {
+            for (let i = 1; i <= 10; i++) {
                 // DIRT FLOOR
                 //add Element to LeveL
                 element = new Game.Element("Dirt_All");
@@ -189,10 +179,6 @@ var Game;
                 element.cmpTransform.local.translateY(-2.0);
                 level.appendChild(element);
                 //add Element to Level
-                element = new Game.Element("Dirt_All");
-                element.cmpTransform.local.translateX(35 + (i * 0.5));
-                element.cmpTransform.local.translateY(-3.5);
-                level.appendChild(element);
                 //WALL  RIGHT
                 //add Element to Level
                 element = new Game.Element("Grass_Left");
@@ -265,6 +251,17 @@ var Game;
                 element.cmpTransform.local.translateY(5);
                 level.appendChild(element);
             }
+            // DIRT FLOOR
+            //add Element to LeveL
+            element = new Game.Element("Dirt_All");
+            element.cmpTransform.local.translateX(35 + (11 * 0.5));
+            element.cmpTransform.local.translateY(-1.5);
+            level.appendChild(element);
+            //add Element to Level
+            element = new Game.Element("Dirt_All");
+            element.cmpTransform.local.translateX(35 + (11 * 0.5));
+            element.cmpTransform.local.translateY(-2.0);
+            level.appendChild(element);
             //add Element to Level
             element = new Game.Element("Grass_Left");
             element.cmpTransform.local.translateX(35.5);
@@ -876,11 +873,10 @@ var Game;
             //create enemies
             let enemies = new ƒ.Node("Enemies");
             let random;
-            let levelSize = 10;
-            let offset = 5;
+            let levelSize = 34;
             let bat;
-            let batAmountMin = 2;
-            let batAmountMax = 3;
+            let batAmountMin = 1;
+            let batAmountMax = 2;
             let batAmount = Math.round(batAmountMin + (Math.random() * (batAmountMax - batAmountMin)));
             let golem;
             let golemAmountMin = 0;
@@ -894,41 +890,34 @@ var Game;
             let wolfAmountMin = 1;
             let wolfAmountMax = 2;
             let wolfAmount = Math.round(wolfAmountMin + (Math.random() * (wolfAmountMax - wolfAmountMin)));
-            /*for (let i = 0; i < batAmount; i++) {
-              bat = new Bat();
-              random = (Math.floor(Math.random() * Math.floor(levelSize))) - offset;
-              bat.cmpTransform.local.translateX(random);
-              //bat.cmpTransform.local.translateY(0);
-              enemies.appendChild(bat);
+            for (let i = 0; i < batAmount; i++) {
+                bat = new Game.Bat();
+                random = Math.round(Math.random() * levelSize);
+                bat.cmpTransform.local.translateX(random);
+                //bat.cmpTransform.local.translateY(0);
+                enemies.appendChild(bat);
             }
-      
             for (let i = 0; i < wolfAmount; i++) {
-              wolf = new Wolf();
-              random = (Math.floor(Math.random() * Math.floor(levelSize))) - offset;
-              wolf.cmpTransform.local.translateX(random);
-              //wolf.cmpTransform.local.translateY(0);
-              enemies.appendChild(wolf);
+                wolf = new Game.Wolf();
+                random = Math.round(Math.random() * levelSize);
+                wolf.cmpTransform.local.translateX(random);
+                //wolf.cmpTransform.local.translateY(0);
+                enemies.appendChild(wolf);
             }
-      
             for (let i = 0; i < witchAmount; i++) {
-              witch = new Witch();
-              random = (Math.floor(Math.random() * Math.floor(levelSize))) - offset;
-              witch.cmpTransform.local.translateX(random);
-              //witch.cmpTransform.local.translateY(0);
-              enemies.appendChild(witch);
+                witch = new Game.Witch();
+                random = Math.round(Math.random() * levelSize);
+                witch.cmpTransform.local.translateX(random);
+                //witch.cmpTransform.local.translateY(0);
+                enemies.appendChild(witch);
             }
-      
             for (let i = 0; i < golemAmount; i++) {
-              golem = new Golem();
-              random = (Math.floor(Math.random() * Math.floor(levelSize))) - offset;
-              golem.cmpTransform.local.translateX(random);
-              //golem.cmpTransform.local.translateY(0);
-              enemies.appendChild(golem);
+                golem = new Game.Golem();
+                random = Math.round(Math.random() * levelSize);
+                golem.cmpTransform.local.translateX(random);
+                //golem.cmpTransform.local.translateY(0);
+                enemies.appendChild(golem);
             }
-      
-            golem = new Golem();
-            golem.cmpTransform.local.translateX(5);
-            enemies.appendChild(golem); */
             return enemies;
         }
         static createBackground() {
