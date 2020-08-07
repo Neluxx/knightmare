@@ -5,9 +5,9 @@ Repository for the module "Prototyping interactive media-applications and games"
 
 [Quellcode](https://github.com/Neluxx/Knightmare)
 
-[Designdokument](https://github.com/Neluxx/Knightmare/Designdocument/Design-Dokument.pdf)
+[Designdokument](https://neluxx.github.io/Knightmare/Designdocument/Design-Dokument.pdf)
 
-[Archiv](https://github.com/Neluxx/Knightmare/Knightmare.zip)
+[Archiv](https://neluxx.github.io/Knightmare/Knightmare.zip)
 
 [Start the Game](https://neluxx.github.io/Knightmare/Index)
 
