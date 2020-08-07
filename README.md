@@ -18,7 +18,7 @@ Repository for the module "Prototyping interactive media-applications and games"
 |    | Titel                 | Knightmare
 |    | Name                  | Alissa Usta, Fabian Arndt
 |    | Matrikelnummer        | 258242, 257125
-|  1 | Nutzerinteraktion     | Der Spieler kann sich mit den Pfeiltasten sowie A und D nach Links und Rechts bewegen. Mit der Pfeiltaste nach oben oder W wir gesprungen. Mit der Pfeiltaste nach unten oder S kann man Blocken und somit eingehenden Schaden verhindern. Mit der Leertaste greift man die Gegner an. |
+|  1 | Nutzerinteraktion     | Der Spieler kann sich mit `Arrow Left` und `Arrow Right` sowie `A` und `D` nach Links und Rechts bewegen. Mit `Arrow Up` oder `W` wird gesprungen. Mit `Arrow Down` oder `S` kann man Blocken und somit eingehenden Schaden verhindern. Mit `Space` greift man die Gegner an. |
 |  2 | Objektinteraktion     | Es gibt zwei Arten von Kollisionen. Die Objektkollision die dafür sorgt das man auf Plattformen stehen kann und nicht herunterfällt sowie die Gegner-/ Spielerkollision welche für das Kampfsystem und dem Verteilen von Schaden benutzt wird. |
 |  3 | Objektanzahl variabel | Zu Beginn des Spieles werden zufällig viele Gegner der verschiedenen Typen an immer unterschiedlichen Orten gespawnt damit das Spielerlebnis spannend bleibt. |
 |  4 | Szenenhierarchie      | Die Szenenhierarchie besteht aus einer Root-Node. Kinder dieser Node sind z.B. das Level, der Spieler oder die Gegner. Das Level und die Gegener bestehen wiederum aus mehreren Kindern welche die einzelnen Elemente des Levels oder die einzelnen Gegner sind. |
