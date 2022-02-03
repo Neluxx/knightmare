@@ -22,16 +22,16 @@ namespace Game {
         element.cmpTransform.local.translateX((0.5) * i);
         element.cmpTransform.local.translateY(-1.0);
         level.appendChild(element);
-        //add Element to Level
-        element = new Element("Dirt_All");
-        element.cmpTransform.local.translateX((0.5) * i);
-        element.cmpTransform.local.translateY(-1.5);
-        level.appendChild(element);
-        //add Element to Level
-        element = new Element("Dirt_All");
-        element.cmpTransform.local.translateX((0.5) * i);
-        element.cmpTransform.local.translateY(-2.0);
-        level.appendChild(element);
+        // //add Element to Level
+        // element = new Element("Dirt_All");
+        // element.cmpTransform.local.translateX((0.5) * i);
+        // element.cmpTransform.local.translateY(-1.5);
+        // level.appendChild(element);
+        // //add Element to Level
+        // element = new Element("Dirt_All");
+        // element.cmpTransform.local.translateX((0.5) * i);
+        // element.cmpTransform.local.translateY(-2.0);
+        // level.appendChild(element);
       }
 
       // Floor Grass negative X
@@ -50,20 +50,20 @@ namespace Game {
       element.cmpTransform.local.translateX(0);
       element.cmpTransform.local.translateY(-1);
       level.appendChild(element);
-      //add Element to LeveL
-      element = new Element("Dirt_All");
-      element.cmpTransform.local.translateX(0);
-      element.cmpTransform.local.translateY(-1.5);
-      level.appendChild(element);
-      //add Element to Level
-      element = new Element("Dirt_All");
-      element.cmpTransform.local.translateX(0);
-      element.cmpTransform.local.translateY(-2.0);
-      level.appendChild(element);
+      // //add Element to LeveL
+      // element = new Element("Dirt_All");
+      // element.cmpTransform.local.translateX(0);
+      // element.cmpTransform.local.translateY(-1.5);
+      // level.appendChild(element);
+      // //add Element to Level
+      // element = new Element("Dirt_All");
+      // element.cmpTransform.local.translateX(0);
+      // element.cmpTransform.local.translateY(-2.0);
+      // level.appendChild(element);
 
 
       //WALL Dirt negative x
-      for (let i = 1; i <= 20; i++) {
+      for (let i = 1; i <= 10; i++) {
 
         //add Element to LeveL
         element = new Element("Dirt_All");
@@ -76,7 +76,7 @@ namespace Game {
         element.cmpTransform.local.translateY(-2.0);
         level.appendChild(element);
       }
-      for (let i = 1; i <= 9; i++) {
+      for (let i = 1; i <= 5; i++) {
         //add Element to Level
         element = new Element("Dirt_All");
         element.cmpTransform.local.translateX(-5.5 - (i * 0.5));
@@ -144,7 +144,7 @@ namespace Game {
         level.appendChild(element);
       }
 
-      for (let i = 1; i <= 9; i++) {
+      for (let i = 1; i <= 5; i++) {
         //add Element to Level
         element = new Element("Grass_Right");
         element.cmpTransform.local.translateX(-5.5);
