@@ -1,6 +1,6 @@
 {
   "player": {
-    "health": 20,
+    "health": 2000,
     "strength": 2,
     "attackspeed": 600,
     "speedMax": 1.5
