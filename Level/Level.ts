@@ -17,17 +17,17 @@ namespace Game {
 
       // Floor Zero Point
       element = new Element("Grass_Top");
-      element.cmpTransform.local.translateX(0);
-      element.cmpTransform.local.translateY(-1);
+      element.cmpTransform.local.translateX(0.0);
+      element.cmpTransform.local.translateY(-1.0);
       level.appendChild(element);
 
       element = new Element("Dirt_All");
-      element.cmpTransform.local.translateX(0);
+      element.cmpTransform.local.translateX(0.0);
       element.cmpTransform.local.translateY(-1.5);
       level.appendChild(element);
 
       element = new Element("Dirt_All");
-      element.cmpTransform.local.translateX(0);
+      element.cmpTransform.local.translateX(0.0);
       element.cmpTransform.local.translateY(-2.0);
       level.appendChild(element);
 
@@ -35,7 +35,7 @@ namespace Game {
       for (let i = 1; i <= 10; i++) {
         element = new Element("Grass_Top");
         element.cmpTransform.local.translateX((-0.5) * i);
-        element.cmpTransform.local.translateY(-1);
+        element.cmpTransform.local.translateY(-1.0);
         level.appendChild(element);
 
         element = new Element("Dirt_All");
@@ -88,34 +88,24 @@ namespace Game {
 
       element = new Element("Corner_Top_Right");
       element.cmpTransform.local.translateX(-5.5);
-      element.cmpTransform.local.translateY(-1);
+      element.cmpTransform.local.translateY(-1.0);
       level.appendChild(element);
 
       // Wall Left Dirt
       for (let i = 1; i <= 3; i++) {
         element = new Element("Dirt_All");
         element.cmpTransform.local.translateX(-5.5 - (i * 0.5));
-        element.cmpTransform.local.translateY(-2.0);
+        element.cmpTransform.local.translateY(2.0);
         level.appendChild(element);
         
         element = new Element("Dirt_All");
         element.cmpTransform.local.translateX(-5.5 - (i * 0.5));
-        element.cmpTransform.local.translateY(-1.5);
+        element.cmpTransform.local.translateY(1.5);
         level.appendChild(element);
 
         element = new Element("Dirt_All");
         element.cmpTransform.local.translateX(-5.5 - (i * 0.5));
-        element.cmpTransform.local.translateY(-1.0);
-        level.appendChild(element);
-        
-        element = new Element("Dirt_All");
-        element.cmpTransform.local.translateX(-5.5 - (i * 0.5));
-        element.cmpTransform.local.translateY(-0.5);
-        level.appendChild(element);
-        
-        element = new Element("Dirt_All");
-        element.cmpTransform.local.translateX(-5.5 - (i * 0.5));
-        element.cmpTransform.local.translateY(0);
+        element.cmpTransform.local.translateY(1.0);
         level.appendChild(element);
         
         element = new Element("Dirt_All");
@@ -125,17 +115,27 @@ namespace Game {
         
         element = new Element("Dirt_All");
         element.cmpTransform.local.translateX(-5.5 - (i * 0.5));
-        element.cmpTransform.local.translateY(1.0);
+        element.cmpTransform.local.translateY(0.0);
         level.appendChild(element);
         
         element = new Element("Dirt_All");
         element.cmpTransform.local.translateX(-5.5 - (i * 0.5));
-        element.cmpTransform.local.translateY(1.5);
+        element.cmpTransform.local.translateY(-0.5);
         level.appendChild(element);
         
         element = new Element("Dirt_All");
         element.cmpTransform.local.translateX(-5.5 - (i * 0.5));
-        element.cmpTransform.local.translateY(2.0);
+        element.cmpTransform.local.translateY(-1.0);
+        level.appendChild(element);
+        
+        element = new Element("Dirt_All");
+        element.cmpTransform.local.translateX(-5.5 - (i * 0.5));
+        element.cmpTransform.local.translateY(-1.5);
+        level.appendChild(element);
+        
+        element = new Element("Dirt_All");
+        element.cmpTransform.local.translateX(-5.5 - (i * 0.5));
+        element.cmpTransform.local.translateY(-2.0);
         level.appendChild(element);
       }
 
@@ -160,45 +160,24 @@ namespace Game {
 
       element = new Element("Corner_Top_Left");
       element.cmpTransform.local.translateX(35.5);
-      element.cmpTransform.local.translateY(-1);
+      element.cmpTransform.local.translateY(-1.0);
       level.appendChild(element);
-
-      // // DIRT FLOOR
-      // element = new Element("Dirt_All");
-      // element.cmpTransform.local.translateX(35 + (11 * 0.5));
-      // element.cmpTransform.local.translateY(-1.5);
-      // level.appendChild(element);
-      
-      // element = new Element("Dirt_All");
-      // element.cmpTransform.local.translateX(35 + (11 * 0.5));
-      // element.cmpTransform.local.translateY(-2.0);
-      // level.appendChild(element);
 
       // Wall Right Dirt
       for (let i = 1; i <= 3; i++) {
         element = new Element("Dirt_All");
         element.cmpTransform.local.translateX(35.5 + (i * 0.5));
-        element.cmpTransform.local.translateY(-2.0);
+        element.cmpTransform.local.translateY(2.0);
         level.appendChild(element);
 
         element = new Element("Dirt_All");
         element.cmpTransform.local.translateX(35.5 + (i * 0.5));
-        element.cmpTransform.local.translateY(-1.5);
+        element.cmpTransform.local.translateY(1.5);
         level.appendChild(element);
         
         element = new Element("Dirt_All");
         element.cmpTransform.local.translateX(35.5 + (i * 0.5));
-        element.cmpTransform.local.translateY(-1);
-        level.appendChild(element);
-        
-        element = new Element("Dirt_All");
-        element.cmpTransform.local.translateX(35.5 + (i * 0.5));
-        element.cmpTransform.local.translateY(-0.5);
-        level.appendChild(element);
-        
-        element = new Element("Dirt_All");
-        element.cmpTransform.local.translateX(35.5 + (i * 0.5));
-        element.cmpTransform.local.translateY(0);
+        element.cmpTransform.local.translateY(1.0);
         level.appendChild(element);
         
         element = new Element("Dirt_All");
@@ -208,17 +187,27 @@ namespace Game {
         
         element = new Element("Dirt_All");
         element.cmpTransform.local.translateX(35.5 + (i * 0.5));
-        element.cmpTransform.local.translateY(1);
+        element.cmpTransform.local.translateY(0.0);
         level.appendChild(element);
         
         element = new Element("Dirt_All");
         element.cmpTransform.local.translateX(35.5 + (i * 0.5));
-        element.cmpTransform.local.translateY(1.5);
+        element.cmpTransform.local.translateY(-0.5);
         level.appendChild(element);
         
         element = new Element("Dirt_All");
         element.cmpTransform.local.translateX(35.5 + (i * 0.5));
-        element.cmpTransform.local.translateY(2);
+        element.cmpTransform.local.translateY(-1.0);
+        level.appendChild(element);
+        
+        element = new Element("Dirt_All");
+        element.cmpTransform.local.translateX(35.5 + (i * 0.5));
+        element.cmpTransform.local.translateY(-1.5);
+        level.appendChild(element);
+        
+        element = new Element("Dirt_All");
+        element.cmpTransform.local.translateX(35.5 + (i * 0.5));
+        element.cmpTransform.local.translateY(-2.0);
         level.appendChild(element);
       }
 
@@ -227,29 +216,29 @@ namespace Game {
 
       // Block 1
       element = new Element("Grass_All");
-      element.cmpTransform.local.translateX(-1);
-      element.cmpTransform.local.translateY(1);
+      element.cmpTransform.local.translateX(-1.0);
+      element.cmpTransform.local.translateY(1.0);
       level.appendChild(element);
 
       // Block 2
       element = new Element("Grass_Top_Down_Left");
       element.cmpTransform.local.translateX(-3.0);
-      element.cmpTransform.local.translateY(2);
+      element.cmpTransform.local.translateY(2.0);
       level.appendChild(element);
       
       element = new Element("Grass_Top_Down");
       element.cmpTransform.local.translateX(-2.5);
-      element.cmpTransform.local.translateY(2);
+      element.cmpTransform.local.translateY(2.0);
       level.appendChild(element);
       
       element = new Element("Grass_Top_Down_Right");
       element.cmpTransform.local.translateX(-2.0);
-      element.cmpTransform.local.translateY(2);
+      element.cmpTransform.local.translateY(2.0);
       level.appendChild(element);
 
       // Block 3
       element = new Element("Grass_Top_Left");
-      element.cmpTransform.local.translateX(-4);
+      element.cmpTransform.local.translateX(-4.0);
       element.cmpTransform.local.translateY(-0.5);
       level.appendChild(element);
       
@@ -265,32 +254,32 @@ namespace Game {
       
       element = new Element("Grass_Left");
       element.cmpTransform.local.translateX(-3.5);
-      element.cmpTransform.local.translateY(0);
+      element.cmpTransform.local.translateY(0.0);
       level.appendChild(element);
       
       element = new Element("Grass_Top_Right");
-      element.cmpTransform.local.translateX(-3);
+      element.cmpTransform.local.translateX(-3.0);
       element.cmpTransform.local.translateY(0.5);
       level.appendChild(element);
       
       element = new Element("Dirt_All");
-      element.cmpTransform.local.translateX(-3);
+      element.cmpTransform.local.translateX(-3.0);
       element.cmpTransform.local.translateY(-0.5);
       level.appendChild(element);
       
       element = new Element("Corner_Top_Right");
-      element.cmpTransform.local.translateX(-3);
-      element.cmpTransform.local.translateY(0);
+      element.cmpTransform.local.translateX(-3.0);
+      element.cmpTransform.local.translateY(0.0);
       level.appendChild(element);
       
       element = new Element("Grass_Top");
       element.cmpTransform.local.translateX(-2.5);
-      element.cmpTransform.local.translateY(0);
+      element.cmpTransform.local.translateY(0.0);
       level.appendChild(element);
       
       element = new Element("Grass_Top_Right");
-      element.cmpTransform.local.translateX(-2);
-      element.cmpTransform.local.translateY(0);
+      element.cmpTransform.local.translateX(-2.0);
+      element.cmpTransform.local.translateY(0.0);
       level.appendChild(element);
       
       element = new Element("Grass_Top_Right");
@@ -299,7 +288,7 @@ namespace Game {
       level.appendChild(element);
       
       element = new Element("Corner_Top_Right");
-      element.cmpTransform.local.translateX(-2);
+      element.cmpTransform.local.translateX(-2.0);
       element.cmpTransform.local.translateY(-0.5);
       level.appendChild(element);
       
@@ -321,21 +310,21 @@ namespace Game {
       
       element = new Element("Grass_Top_Left");
       element.cmpTransform.local.translateX(2.5);
-      element.cmpTransform.local.translateY(0);
+      element.cmpTransform.local.translateY(0.0);
       level.appendChild(element);
       
       element = new Element("Grass_Top");
-      element.cmpTransform.local.translateX(2);
+      element.cmpTransform.local.translateX(2.0);
       element.cmpTransform.local.translateY(-0.5);
       level.appendChild(element);
       
       element = new Element("Grass_Top");
-      element.cmpTransform.local.translateX(3);
-      element.cmpTransform.local.translateY(0);
+      element.cmpTransform.local.translateX(3.0);
+      element.cmpTransform.local.translateY(0.0);
       level.appendChild(element);
       
       element = new Element("Dirt_All");
-      element.cmpTransform.local.translateX(3);
+      element.cmpTransform.local.translateX(3.0);
       element.cmpTransform.local.translateY(-0.5);
       level.appendChild(element);
       
@@ -346,17 +335,17 @@ namespace Game {
       
       element = new Element("Grass_Top_Right");
       element.cmpTransform.local.translateX(3.5);
-      element.cmpTransform.local.translateY(0);
+      element.cmpTransform.local.translateY(0.0);
       level.appendChild(element);
       
       element = new Element("Grass_Top_Right");
-      element.cmpTransform.local.translateX(4);
+      element.cmpTransform.local.translateX(4.0);
       element.cmpTransform.local.translateY(-0.5);
       level.appendChild(element);
 
       // Block 5
       element = new Element("Grass_Top_Down_Left");
-      element.cmpTransform.local.translateX(5);
+      element.cmpTransform.local.translateX(5.0);
       element.cmpTransform.local.translateY(0.5);
       level.appendChild(element);
       
@@ -368,17 +357,17 @@ namespace Game {
       // Block 6
       element = new Element("Grass_Top_Down_Left");
       element.cmpTransform.local.translateX(6.5);
-      element.cmpTransform.local.translateY(1);
+      element.cmpTransform.local.translateY(1.0);
       level.appendChild(element);
       
       element = new Element("Grass_Top_Down_Right");
-      element.cmpTransform.local.translateX(7);
-      element.cmpTransform.local.translateY(1);
+      element.cmpTransform.local.translateX(7.0);
+      element.cmpTransform.local.translateY(1.0);
       level.appendChild(element);
 
       // Block 7
       element = new Element("Grass_Top_Down_Left");
-      element.cmpTransform.local.translateX(8);
+      element.cmpTransform.local.translateX(8.0);
       element.cmpTransform.local.translateY(1.5);
       level.appendChild(element);
       
@@ -389,23 +378,23 @@ namespace Game {
 
       // Block 8
       element = new Element("Grass_Left");
-      element.cmpTransform.local.translateX(10);
+      element.cmpTransform.local.translateX(10.0);
       element.cmpTransform.local.translateY(-0.5);
       level.appendChild(element);
       
       element = new Element("Grass_Left");
-      element.cmpTransform.local.translateX(10);
-      element.cmpTransform.local.translateY(0);
+      element.cmpTransform.local.translateX(10.0);
+      element.cmpTransform.local.translateY(0.0);
       level.appendChild(element);
       
       element = new Element("Grass_Left");
-      element.cmpTransform.local.translateX(10);
+      element.cmpTransform.local.translateX(10.0);
       element.cmpTransform.local.translateY(0.5);
       level.appendChild(element);
       
       element = new Element("Grass_Top_Left");
-      element.cmpTransform.local.translateX(10);
-      element.cmpTransform.local.translateY(1);
+      element.cmpTransform.local.translateX(10.0);
+      element.cmpTransform.local.translateY(1.0);
       level.appendChild(element);
       
       element = new Element("Grass_Right");
@@ -415,7 +404,7 @@ namespace Game {
       
       element = new Element("Grass_Right");
       element.cmpTransform.local.translateX(10.5);
-      element.cmpTransform.local.translateY(0);
+      element.cmpTransform.local.translateY(0.0);
       level.appendChild(element);
       
       element = new Element("Grass_Right");
@@ -425,36 +414,36 @@ namespace Game {
       
       element = new Element("Grass_Top");
       element.cmpTransform.local.translateX(10.5);
-      element.cmpTransform.local.translateY(1);
+      element.cmpTransform.local.translateY(1.0);
       level.appendChild(element);
       
       element = new Element("Grass_Top_Down");
-      element.cmpTransform.local.translateX(11);
-      element.cmpTransform.local.translateY(1);
+      element.cmpTransform.local.translateX(11.0);
+      element.cmpTransform.local.translateY(1.0);
       level.appendChild(element);
       
       element = new Element("Grass_Top_Down");
       element.cmpTransform.local.translateX(11.5);
-      element.cmpTransform.local.translateY(1);
+      element.cmpTransform.local.translateY(1.0);
       level.appendChild(element);
       
       element = new Element("Grass_Top_Down");
-      element.cmpTransform.local.translateX(12);
-      element.cmpTransform.local.translateY(1);
+      element.cmpTransform.local.translateX(12.0);
+      element.cmpTransform.local.translateY(1.0);
       level.appendChild(element);
       
       element = new Element("Grass_Top_Down");
-      element.cmpTransform.local.translateX(12);
-      element.cmpTransform.local.translateY(1);
+      element.cmpTransform.local.translateX(12.0);
+      element.cmpTransform.local.translateY(1.0);
       level.appendChild(element);
       
       element = new Element("Grass_Top_Down_Right");
       element.cmpTransform.local.translateX(12.5);
-      element.cmpTransform.local.translateY(1);
+      element.cmpTransform.local.translateY(1.0);
       level.appendChild(element);
       
       element = new Element("Grass_All");
-      element.cmpTransform.local.translateX(14);
+      element.cmpTransform.local.translateX(14.0);
       element.cmpTransform.local.translateY(0.35);
       level.appendChild(element);
 
@@ -470,7 +459,7 @@ namespace Game {
       level.appendChild(element);
       
       element = new Element("Grass_Top");
-      element.cmpTransform.local.translateX(16);
+      element.cmpTransform.local.translateX(16.0);
       element.cmpTransform.local.translateY(-0.5);
       level.appendChild(element);
       
@@ -480,28 +469,28 @@ namespace Game {
       level.appendChild(element);
       
       element = new Element("Corner_Top_Left");
-      element.cmpTransform.local.translateX(17);
+      element.cmpTransform.local.translateX(17.0);
       element.cmpTransform.local.translateY(-0.5);
       level.appendChild(element);
       
       element = new Element("Grass_Left");
-      element.cmpTransform.local.translateX(17);
-      element.cmpTransform.local.translateY(0);
+      element.cmpTransform.local.translateX(17.0);
+      element.cmpTransform.local.translateY(0.0);
       level.appendChild(element);
       
       element = new Element("Grass_Top_Left");
-      element.cmpTransform.local.translateX(17);
+      element.cmpTransform.local.translateX(17.0);
       element.cmpTransform.local.translateY(0.5);
       level.appendChild(element);
       
       element = new Element("Grass_Top_Left");
       element.cmpTransform.local.translateX(17.5);
-      element.cmpTransform.local.translateY(1);
+      element.cmpTransform.local.translateY(1.0);
       level.appendChild(element);
       
       element = new Element("Corner_Top_Left");
-      element.cmpTransform.local.translateX(18);
-      element.cmpTransform.local.translateY(1);
+      element.cmpTransform.local.translateX(18.0);
+      element.cmpTransform.local.translateY(1.0);
       level.appendChild(element);
       
       element = new Element("Corner_Top_Left");
@@ -510,7 +499,7 @@ namespace Game {
       level.appendChild(element);
       
       element = new Element("Grass_Top_Left");
-      element.cmpTransform.local.translateX(18);
+      element.cmpTransform.local.translateX(18.0);
       element.cmpTransform.local.translateY(1.5);
       level.appendChild(element);
       
@@ -525,13 +514,13 @@ namespace Game {
       level.appendChild(element);
       
       element = new Element("Dirt_All");
-      element.cmpTransform.local.translateX(18);
+      element.cmpTransform.local.translateX(18.0);
       element.cmpTransform.local.translateY(0.5);
       level.appendChild(element);
       
       element = new Element("Dirt_All");
       element.cmpTransform.local.translateX(17.5);
-      element.cmpTransform.local.translateY(0);
+      element.cmpTransform.local.translateY(0.0);
       level.appendChild(element);
       
       element = new Element("Dirt_All");
@@ -540,12 +529,12 @@ namespace Game {
       level.appendChild(element);
       
       element = new Element("Dirt_All");
-      element.cmpTransform.local.translateX(18);
-      element.cmpTransform.local.translateY(0);
+      element.cmpTransform.local.translateX(18.0);
+      element.cmpTransform.local.translateY(0.0);
       level.appendChild(element);
       
       element = new Element("Dirt_All");
-      element.cmpTransform.local.translateX(18);
+      element.cmpTransform.local.translateX(18.0);
       element.cmpTransform.local.translateY(-0.50);
       level.appendChild(element);
       
@@ -556,7 +545,7 @@ namespace Game {
       
       element = new Element("Dirt_All");
       element.cmpTransform.local.translateX(18.5);
-      element.cmpTransform.local.translateY(0);
+      element.cmpTransform.local.translateY(0.0);
       level.appendChild(element);
       
       element = new Element("Dirt_All");
@@ -566,31 +555,31 @@ namespace Game {
       
       element = new Element("Dirt_All");
       element.cmpTransform.local.translateX(18.5);
-      element.cmpTransform.local.translateY(1);
+      element.cmpTransform.local.translateY(1.0);
       level.appendChild(element);
       
       element = new Element("Grass_Top");
-      element.cmpTransform.local.translateX(19);
+      element.cmpTransform.local.translateX(19.0);
       element.cmpTransform.local.translateY(1.5);
       level.appendChild(element);
       
       element = new Element("Dirt_All");
-      element.cmpTransform.local.translateX(19);
-      element.cmpTransform.local.translateY(1);
+      element.cmpTransform.local.translateX(19.0);
+      element.cmpTransform.local.translateY(1.0);
       level.appendChild(element);
       
       element = new Element("Dirt_All");
-      element.cmpTransform.local.translateX(19);
+      element.cmpTransform.local.translateX(19.0);
       element.cmpTransform.local.translateY(0.5);
       level.appendChild(element);
       
       element = new Element("Dirt_All");
-      element.cmpTransform.local.translateX(19);
-      element.cmpTransform.local.translateY(0);
+      element.cmpTransform.local.translateX(19.0);
+      element.cmpTransform.local.translateY(0.0);
       level.appendChild(element);
       
       element = new Element("Dirt_All");
-      element.cmpTransform.local.translateX(19);
+      element.cmpTransform.local.translateX(19.0);
       element.cmpTransform.local.translateY(-0.5);
       level.appendChild(element);
       
@@ -601,7 +590,7 @@ namespace Game {
       
       element = new Element("Grass_Right");
       element.cmpTransform.local.translateX(19.5);
-      element.cmpTransform.local.translateY(1);
+      element.cmpTransform.local.translateY(1.0);
       level.appendChild(element);
       
       element = new Element("Grass_Right");
@@ -611,11 +600,11 @@ namespace Game {
       
       element = new Element("Grass_Right");
       element.cmpTransform.local.translateX(19.5);
-      element.cmpTransform.local.translateY(0);
+      element.cmpTransform.local.translateY(0.0);
       level.appendChild(element);
       
       element = new Element("Grass_Top_Right");
-      element.cmpTransform.local.translateX(20);
+      element.cmpTransform.local.translateX(20.0);
       element.cmpTransform.local.translateY(-0.5);
       level.appendChild(element);
       
@@ -627,7 +616,7 @@ namespace Game {
       // Block 10
       element = new Element("Grass_All");
       element.cmpTransform.local.translateX(15.5);
-      element.cmpTransform.local.translateY(0.7);
+      element.cmpTransform.local.translateY(0.7.0);
       level.appendChild(element);
 
       // Block 11
@@ -653,7 +642,7 @@ namespace Game {
 
       // Block 12
       element = new Element("Grass_Top_Down_Left");
-      element.cmpTransform.local.translateX(24);
+      element.cmpTransform.local.translateX(24.0);
       element.cmpTransform.local.translateY(0.75);
       level.appendChild(element);
       
@@ -664,7 +653,7 @@ namespace Game {
 
       // Block 13
       element = new Element("Grass_Top_Down_Left");
-      element.cmpTransform.local.translateX(26);
+      element.cmpTransform.local.translateX(26.0);
       element.cmpTransform.local.translateY(0.25);
       level.appendChild(element);
       
@@ -674,13 +663,13 @@ namespace Game {
       level.appendChild(element);
       
       element = new Element("Grass_Top_Down_Right");
-      element.cmpTransform.local.translateX(27);
+      element.cmpTransform.local.translateX(27.0);
       element.cmpTransform.local.translateY(0.25);
       level.appendChild(element);
 
       // Block 14
       element = new Element("Grass_Top_Left");
-      element.cmpTransform.local.translateX(28);
+      element.cmpTransform.local.translateX(28.0);
       element.cmpTransform.local.translateY(-0.5);
       level.appendChild(element);
       
@@ -696,32 +685,32 @@ namespace Game {
       
       element = new Element("Grass_Left");
       element.cmpTransform.local.translateX(28.5);
-      element.cmpTransform.local.translateY(0);
+      element.cmpTransform.local.translateY(0.0);
       level.appendChild(element);
       
       element = new Element("Grass_Top_Right");
-      element.cmpTransform.local.translateX(29);
+      element.cmpTransform.local.translateX(29.0);
       element.cmpTransform.local.translateY(0.5);
       level.appendChild(element);
       
       element = new Element("Dirt_All");
-      element.cmpTransform.local.translateX(29);
+      element.cmpTransform.local.translateX(29.0);
       element.cmpTransform.local.translateY(-0.5);
       level.appendChild(element);
       
       element = new Element("Corner_Top_Right");
-      element.cmpTransform.local.translateX(29);
-      element.cmpTransform.local.translateY(0);
+      element.cmpTransform.local.translateX(29.0);
+      element.cmpTransform.local.translateY(0.0);
       level.appendChild(element);
       
       element = new Element("Grass_Top");
       element.cmpTransform.local.translateX(29.5);
-      element.cmpTransform.local.translateY(0);
+      element.cmpTransform.local.translateY(0.0);
       level.appendChild(element);
       
       element = new Element("Grass_Top_Right");
-      element.cmpTransform.local.translateX(30);
-      element.cmpTransform.local.translateY(0);
+      element.cmpTransform.local.translateX(30.0);
+      element.cmpTransform.local.translateY(0.0);
       level.appendChild(element);
       
       element = new Element("Grass_Top_Right");
@@ -730,7 +719,7 @@ namespace Game {
       level.appendChild(element);
       
       element = new Element("Corner_Top_Right");
-      element.cmpTransform.local.translateX(30);
+      element.cmpTransform.local.translateX(30.0);
       element.cmpTransform.local.translateY(-0.5);
       level.appendChild(element);
       
@@ -741,7 +730,7 @@ namespace Game {
 
       // Block 15
       element = new Element("Grass_Top_Left");
-      element.cmpTransform.local.translateX(33);
+      element.cmpTransform.local.translateX(33.0);
       element.cmpTransform.local.translateY(-0.5);
       level.appendChild(element);
       
@@ -751,14 +740,14 @@ namespace Game {
       level.appendChild(element);
       
       element = new Element("Grass_Top_Right");
-      element.cmpTransform.local.translateX(34);
+      element.cmpTransform.local.translateX(34.0);
       element.cmpTransform.local.translateY(-0.5);
       level.appendChild(element);
 
       // Block 16
       
       element = new Element("Grass_Top_Down_Left");
-      element.cmpTransform.local.translateX(30);
+      element.cmpTransform.local.translateX(30.0);
       element.cmpTransform.local.translateY(3.5);
       level.appendChild(element);
       
@@ -768,7 +757,7 @@ namespace Game {
       level.appendChild(element);
       
       element = new Element("Grass_Top_Down_Right");
-      element.cmpTransform.local.translateX(31);
+      element.cmpTransform.local.translateX(31.0);
       element.cmpTransform.local.translateY(3.5);
       level.appendChild(element);
 
@@ -782,11 +771,6 @@ namespace Game {
       element = new Element("Grass_Top_Down_Right");
       element.cmpTransform.local.translateX(4.25);
       element.cmpTransform.local.translateY(3.75);
-      level.appendChild(element);
-      
-      element = new Element("Grass_All");
-      element.cmpTransform.local.translateX(4.25);
-      element.cmpTransform.local.translateY(3.25);
       level.appendChild(element);
 
 
@@ -809,7 +793,7 @@ namespace Game {
       level.appendChild(element);
       
       element = new Element("Grass_Top_Down_Left");
-      element.cmpTransform.local.translateX(24);
+      element.cmpTransform.local.translateX(24.0);
       element.cmpTransform.local.translateY(0.75);
       level.appendChild(element);
       
@@ -852,7 +836,7 @@ namespace Game {
         bat = new Bat();
         random = Math.round(Math.random() * levelSize);
         bat.cmpTransform.local.translateX(random);
-        //bat.cmpTransform.local.translateY(0);
+        //bat.cmpTransform.local.translateY(0.0);
         enemies.appendChild(bat);
       }
 
@@ -860,7 +844,7 @@ namespace Game {
         wolf = new Wolf();
         random = Math.round(Math.random() * levelSize);
         wolf.cmpTransform.local.translateX(random);
-        //wolf.cmpTransform.local.translateY(0);
+        //wolf.cmpTransform.local.translateY(0.0);
         enemies.appendChild(wolf);
       }
 
@@ -868,7 +852,7 @@ namespace Game {
         witch = new Witch();
         random = Math.round(Math.random() * levelSize);
         witch.cmpTransform.local.translateX(random);
-        //witch.cmpTransform.local.translateY(0);
+        //witch.cmpTransform.local.translateY(0.0);
         enemies.appendChild(witch);
       }
 
@@ -876,7 +860,7 @@ namespace Game {
         golem = new Golem();
         random = Math.round(Math.random() * levelSize);
         golem.cmpTransform.local.translateX(random);
-        //golem.cmpTransform.local.translateY(0);
+        //golem.cmpTransform.local.translateY(0.0);
         enemies.appendChild(golem);
       }
 
@@ -888,8 +872,8 @@ namespace Game {
       let mesh: ƒ.MeshSprite = new ƒ.MeshSprite();
       let mtr: ƒ.Material = SpriteGenerator.getTextureMaterial("Background", bgImg);
       let background: ƒAid.Node = new ƒAid.Node("Background", ƒ.Matrix4x4.IDENTITY(), mtr, mesh);
-      background.cmpTransform.local.scaleX(12);
-      background.cmpTransform.local.scaleY(6);
+      background.cmpTransform.local.scaleX(12.0);
+      background.cmpTransform.local.scaleY(6.0);
 
       return background;
     }
