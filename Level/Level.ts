@@ -68,13 +68,31 @@ namespace Game {
       }
 
 
-      // Wall Left
-      for (let i = 1; i <= 3; i++) {
+      // Wall Left Grass
+      for (let i = 1; i <= 4; i++) {
         element = new Element("Grass_Right");
         element.cmpTransform.local.translateX(-5.5);
         element.cmpTransform.local.translateY((0.5) * i);
         level.appendChild(element);
+      }
 
+      element = new Element("Grass_Right");
+      element.cmpTransform.local.translateX(-5.5);
+      element.cmpTransform.local.translateY(0.0);
+      level.appendChild(element);
+
+      element = new Element("Grass_Right");
+      element.cmpTransform.local.translateX(-5.5);
+      element.cmpTransform.local.translateY(-0.5);
+      level.appendChild(element);
+
+      element = new Element("Corner_Top_Right");
+      element.cmpTransform.local.translateX(-5.5);
+      element.cmpTransform.local.translateY(-1);
+      level.appendChild(element);
+
+      // Wall Left Dirt
+      for (let i = 1; i <= 3; i++) {
         element = new Element("Dirt_All");
         element.cmpTransform.local.translateX(-5.5 - (i * 0.5));
         element.cmpTransform.local.translateY(-2.0);
@@ -122,13 +140,42 @@ namespace Game {
       }
 
 
-      // Wall Right
-      for (let i = 1; i <= 3; i++) {
+      // Wall Right Grass
+      for (let i = 1; i <= 4; i++) {
         element = new Element("Grass_Left");
         element.cmpTransform.local.translateX(35.5);
         element.cmpTransform.local.translateY((0.5) * i);
         level.appendChild(element);
-        
+      }
+      
+      element = new Element("Grass_Left");
+      element.cmpTransform.local.translateX(35.5);
+      element.cmpTransform.local.translateY(0.0);
+      level.appendChild(element);
+
+      element = new Element("Grass_Left");
+      element.cmpTransform.local.translateX(35.5);
+      element.cmpTransform.local.translateY(-0.5);
+      level.appendChild(element);
+
+      element = new Element("Corner_Top_Left");
+      element.cmpTransform.local.translateX(35.5);
+      element.cmpTransform.local.translateY(-1);
+      level.appendChild(element);
+
+      // // DIRT FLOOR
+      // element = new Element("Dirt_All");
+      // element.cmpTransform.local.translateX(35 + (11 * 0.5));
+      // element.cmpTransform.local.translateY(-1.5);
+      // level.appendChild(element);
+      
+      // element = new Element("Dirt_All");
+      // element.cmpTransform.local.translateX(35 + (11 * 0.5));
+      // element.cmpTransform.local.translateY(-2.0);
+      // level.appendChild(element);
+
+      // Wall Right Dirt
+      for (let i = 1; i <= 3; i++) {
         element = new Element("Dirt_All");
         element.cmpTransform.local.translateX(35.5 + (i * 0.5));
         element.cmpTransform.local.translateY(-2.0);
@@ -174,32 +221,6 @@ namespace Game {
         element.cmpTransform.local.translateY(2);
         level.appendChild(element);
       }
-
-      // // DIRT FLOOR
-      // element = new Element("Dirt_All");
-      // element.cmpTransform.local.translateX(35 + (11 * 0.5));
-      // element.cmpTransform.local.translateY(-1.5);
-      // level.appendChild(element);
-      
-      // element = new Element("Dirt_All");
-      // element.cmpTransform.local.translateX(35 + (11 * 0.5));
-      // element.cmpTransform.local.translateY(-2.0);
-      // level.appendChild(element);
-      
-      // element = new Element("Grass_Left");
-      // element.cmpTransform.local.translateX(35.5);
-      // element.cmpTransform.local.translateY(0);
-      // level.appendChild(element);
-      
-      // element = new Element("Grass_Left");
-      // element.cmpTransform.local.translateX(35.5);
-      // element.cmpTransform.local.translateY(-0.5);
-      // level.appendChild(element);
-      
-      // element = new Element("Corner_Top_Left");
-      // element.cmpTransform.local.translateX(35.5);
-      // element.cmpTransform.local.translateY(-1);
-      // level.appendChild(element);
 
 
       //Platforms
