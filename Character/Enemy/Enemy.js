@@ -2,9 +2,9 @@
 var Game;
 (function (Game) {
     class Enemy extends Game.Character {
+        moveLeft = true;
         constructor() {
             super();
-            this.moveLeft = true;
         }
     }
     Game.Enemy = Enemy;

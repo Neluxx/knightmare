@@ -3,27 +3,11 @@ var Game;
 (function (Game) {
     var ƒ = FudgeCore;
     class Player extends Game.Character {
+        static pivot = ƒ.Matrix4x4.TRANSLATION(ƒ.Vector3.Y(-0.5));
+        inAir;
+        isDead = false;
         constructor() {
             super();
-            this.isDead = false;
-            this.update = (_event) => {
-                if (this.isDying) {
-                    this.show(Game.ACTION.PLAYER_DEAD);
-                    return;
-                }
-                let timeFrame = ƒ.Loop.timeFrameGame / 1000;
-                this.speed.y += Player.gravity.y * timeFrame;
-                let distance = ƒ.Vector3.SCALE(this.speed, timeFrame);
-                this.cmpTransform.local.translate(distance);
-                this.checkCollision();
-                this.checkMobCollision();
-                if (!Game.gameOver) {
-                    if (this.health <= 0) {
-                        Game.gameOver = true;
-                        Game.playMusic(Game.audioGameOver);
-                    }
-                }
-            };
             this.health = Game.data.player.health;
             this.strength = Game.data.player.strength;
             this.attackspeed = Game.data.player.attackspeed; //in ms
@@ -89,6 +73,24 @@ var Game;
                 return;
             this.show(_action);
         }
+        update = (_event) => {
+            if (this.isDying) {
+                this.show(Game.ACTION.PLAYER_DEAD);
+                return;
+            }
+            let timeFrame = ƒ.Loop.timeFrameGame / 1000;
+            this.speed.y += Player.gravity.y * timeFrame;
+            let distance = ƒ.Vector3.SCALE(this.speed, timeFrame);
+            this.cmpTransform.local.translate(distance);
+            this.checkCollision();
+            this.checkMobCollision();
+            if (!Game.gameOver) {
+                if (this.health <= 0) {
+                    Game.gameOver = true;
+                    Game.playMusic(Game.audioGameOver);
+                }
+            }
+        };
         checkCollision() {
             for (let element of Game.level.getChildren()) {
                 let rect = element.getRectElement();
@@ -142,7 +144,6 @@ var Game;
             return rect;
         }
     }
-    Player.pivot = ƒ.Matrix4x4.TRANSLATION(ƒ.Vector3.Y(-0.5));
     Game.Player = Player;
 })(Game || (Game = {}));
 //# sourceMappingURL=Player.js.map

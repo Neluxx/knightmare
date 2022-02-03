@@ -34,7 +34,7 @@ namespace Game {
   }
 
   function startGame(): void {
-    window.open("../Game/game.html", "_self", "fullscreen=yes", true);
+    window.open("../Game/game.html", "_self", "fullscreen=yes");
   }
 
   function playTitlescreen(): void {

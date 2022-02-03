@@ -27,7 +27,7 @@ var Game;
         titlescreen.load();
     }
     function startGame() {
-        window.open("../Game/game.html", "_self", "fullscreen=yes", true);
+        window.open("../Game/game.html", "_self", "fullscreen=yes");
     }
     function playTitlescreen() {
         let mute = document.getElementById("muteButton");

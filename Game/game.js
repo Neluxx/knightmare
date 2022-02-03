@@ -238,7 +238,7 @@ var Game;
     }
     Game.playSound = playSound;
     function startGame() {
-        window.open("game.html", "_self", "fullscreen=yes", true);
+        window.open("game.html", "_self", "fullscreen=yes");
     }
 })(Game || (Game = {}));
 //# sourceMappingURL=game.js.map

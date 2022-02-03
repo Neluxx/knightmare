@@ -293,6 +293,6 @@ namespace Game {
   }
 
   function startGame(): void {
-    window.open("game.html", "_self", "fullscreen=yes", true);
+    window.open("game.html", "_self", "fullscreen=yes");
   }
 }

@@ -3,27 +3,9 @@ var Game;
 (function (Game) {
     var ƒ = FudgeCore;
     class Bat extends Game.Enemy {
+        static pivot = ƒ.Matrix4x4.TRANSLATION(ƒ.Vector3.Y(-0.5));
         constructor() {
             super();
-            this.update = (_event) => {
-                if (this.isDying) {
-                    this.show(Game.ACTION.BAT_DEAD);
-                    return;
-                }
-                if (!this.isDead) {
-                    this.playerDetection();
-                    let timeFrame = ƒ.Loop.timeFrameGame / 1000;
-                    this.speed.y += Game.Player.gravity.y * timeFrame;
-                    let distance = ƒ.Vector3.SCALE(this.speed, timeFrame);
-                    this.cmpTransform.local.translate(distance);
-                    this.checkCollision();
-                    this.checkPlayerCollision();
-                    if (this.health <= 0 && !this.isDead) {
-                        this.isDead = true;
-                        this.act(Game.ACTION.BAT_DIE);
-                    }
-                }
-            };
             this.health = Game.data.bat.health;
             this.strength = Game.data.bat.strength;
             this.attackspeed = Game.data.bat.attackspeed; //in ms
@@ -86,6 +68,25 @@ var Game;
                 }
             }
         }
+        update = (_event) => {
+            if (this.isDying) {
+                this.show(Game.ACTION.BAT_DEAD);
+                return;
+            }
+            if (!this.isDead) {
+                this.playerDetection();
+                let timeFrame = ƒ.Loop.timeFrameGame / 1000;
+                this.speed.y += Game.Player.gravity.y * timeFrame;
+                let distance = ƒ.Vector3.SCALE(this.speed, timeFrame);
+                this.cmpTransform.local.translate(distance);
+                this.checkCollision();
+                this.checkPlayerCollision();
+                if (this.health <= 0 && !this.isDead) {
+                    this.isDead = true;
+                    this.act(Game.ACTION.BAT_DIE);
+                }
+            }
+        };
         checkCollision() {
             for (let element of Game.level.getChildren()) {
                 let rect = element.getRectElement();
@@ -135,7 +136,6 @@ var Game;
             return this.isDead;
         }
     }
-    Bat.pivot = ƒ.Matrix4x4.TRANSLATION(ƒ.Vector3.Y(-0.5));
     Game.Bat = Bat;
 })(Game || (Game = {}));
 //# sourceMappingURL=Bat.js.map

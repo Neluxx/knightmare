@@ -3,9 +3,9 @@ var Game;
 (function (Game) {
     var ƒ = FudgeCore;
     class Element extends Game.Level {
+        pivot = ƒ.Matrix4x4.TRANSLATION(ƒ.Vector3.Y(0.275));
         constructor(name) {
             super();
-            this.pivot = ƒ.Matrix4x4.TRANSLATION(ƒ.Vector3.Y(0.275));
             this.addComponent(new ƒ.ComponentTransform());
             this.setAnimation(Game.SpriteGenerator.tileset[name]);
         }

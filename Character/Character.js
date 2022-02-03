@@ -4,14 +4,21 @@ var Game;
     var ƒ = FudgeCore;
     var ƒAid = FudgeAid;
     class Character extends ƒAid.NodeSprite {
+        node;
+        action;
+        direct;
+        health;
+        strength;
+        attackspeed;
+        canTakeDamage = true;
+        soundPlayed = false;
+        isDead = false;
+        isDying = false;
+        speed = ƒ.Vector3.ZERO();
+        speedMax = new ƒ.Vector2(1.5, 5); //units per second
+        static gravity = ƒ.Vector2.Y(-3);
         constructor() {
             super("Character");
-            this.canTakeDamage = true;
-            this.soundPlayed = false;
-            this.isDead = false;
-            this.isDying = false;
-            this.speed = ƒ.Vector3.ZERO();
-            this.speedMax = new ƒ.Vector2(1.5, 5); //units per second
         }
         show(_action) {
             //show only the animation defined for the action
@@ -20,7 +27,6 @@ var Game;
             this.setAnimation(Game.SpriteGenerator.animations[_action]);
         }
     }
-    Character.gravity = ƒ.Vector2.Y(-3);
     Game.Character = Character;
     let ACTION;
     (function (ACTION) {

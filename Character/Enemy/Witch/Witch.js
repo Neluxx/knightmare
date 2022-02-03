@@ -3,27 +3,9 @@ var Game;
 (function (Game) {
     var ƒ = FudgeCore;
     class Witch extends Game.Enemy {
+        static pivot = ƒ.Matrix4x4.TRANSLATION(ƒ.Vector3.Y(-0.5));
         constructor() {
             super();
-            this.update = (_event) => {
-                if (this.isDying) {
-                    this.show(Game.ACTION.WITCH_DEAD);
-                    return;
-                }
-                if (!this.isDead) {
-                    this.playerDetection();
-                    let timeFrame = ƒ.Loop.timeFrameGame / 1000;
-                    this.speed.y += Game.Player.gravity.y * timeFrame;
-                    let distance = ƒ.Vector3.SCALE(this.speed, timeFrame);
-                    this.cmpTransform.local.translate(distance);
-                    this.checkCollision();
-                    this.checkPlayerCollision();
-                    if (this.health <= 0 && !this.isDead) {
-                        this.isDead = true;
-                        this.act(Game.ACTION.WITCH_DIE);
-                    }
-                }
-            };
             this.health = Game.data.witch.health;
             this.strength = Game.data.witch.strength;
             this.attackspeed = Game.data.witch.attackspeed; //in ms
@@ -81,6 +63,25 @@ var Game;
                 this.act(Game.ACTION.WITCH_IDLE);
             }
         }
+        update = (_event) => {
+            if (this.isDying) {
+                this.show(Game.ACTION.WITCH_DEAD);
+                return;
+            }
+            if (!this.isDead) {
+                this.playerDetection();
+                let timeFrame = ƒ.Loop.timeFrameGame / 1000;
+                this.speed.y += Game.Player.gravity.y * timeFrame;
+                let distance = ƒ.Vector3.SCALE(this.speed, timeFrame);
+                this.cmpTransform.local.translate(distance);
+                this.checkCollision();
+                this.checkPlayerCollision();
+                if (this.health <= 0 && !this.isDead) {
+                    this.isDead = true;
+                    this.act(Game.ACTION.WITCH_DIE);
+                }
+            }
+        };
         checkCollision() {
             for (let element of Game.level.getChildren()) {
                 let rect = element.getRectElement();
@@ -130,7 +131,6 @@ var Game;
             return this.isDead;
         }
     }
-    Witch.pivot = ƒ.Matrix4x4.TRANSLATION(ƒ.Vector3.Y(-0.5));
     Game.Witch = Witch;
 })(Game || (Game = {}));
 //# sourceMappingURL=Witch.js.map

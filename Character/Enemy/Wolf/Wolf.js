@@ -3,28 +3,10 @@ var Game;
 (function (Game) {
     var ƒ = FudgeCore;
     class Wolf extends Game.Enemy {
+        static pivot = ƒ.Matrix4x4.TRANSLATION(ƒ.Vector3.Y(-0.5));
+        idle = true;
         constructor() {
             super();
-            this.idle = true;
-            this.update = (_event) => {
-                if (this.isDying) {
-                    this.show(Game.ACTION.WOLF_DEAD);
-                    return;
-                }
-                if (!this.isDead) {
-                    this.playerDetection();
-                    let timeFrame = ƒ.Loop.timeFrameGame / 1000;
-                    this.speed.y += Game.Player.gravity.y * timeFrame;
-                    let distance = ƒ.Vector3.SCALE(this.speed, timeFrame);
-                    this.cmpTransform.local.translate(distance);
-                    this.checkCollision();
-                    this.checkPlayerCollision();
-                    if (this.health <= 0 && !this.isDead) {
-                        this.isDead = true;
-                        this.act(Game.ACTION.WOLF_DIE);
-                    }
-                }
-            };
             this.health = Game.data.wolf.health;
             this.strength = Game.data.wolf.strength;
             this.attackspeed = Game.data.wolf.attackspeed; //in ms
@@ -98,6 +80,25 @@ var Game;
                 }
             }
         }
+        update = (_event) => {
+            if (this.isDying) {
+                this.show(Game.ACTION.WOLF_DEAD);
+                return;
+            }
+            if (!this.isDead) {
+                this.playerDetection();
+                let timeFrame = ƒ.Loop.timeFrameGame / 1000;
+                this.speed.y += Game.Player.gravity.y * timeFrame;
+                let distance = ƒ.Vector3.SCALE(this.speed, timeFrame);
+                this.cmpTransform.local.translate(distance);
+                this.checkCollision();
+                this.checkPlayerCollision();
+                if (this.health <= 0 && !this.isDead) {
+                    this.isDead = true;
+                    this.act(Game.ACTION.WOLF_DIE);
+                }
+            }
+        };
         checkCollision() {
             for (let element of Game.level.getChildren()) {
                 let rect = element.getRectElement();
@@ -147,7 +148,6 @@ var Game;
             return this.isDead;
         }
     }
-    Wolf.pivot = ƒ.Matrix4x4.TRANSLATION(ƒ.Vector3.Y(-0.5));
     Game.Wolf = Wolf;
 })(Game || (Game = {}));
 //# sourceMappingURL=Wolf.js.map

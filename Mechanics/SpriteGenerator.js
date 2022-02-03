@@ -4,6 +4,9 @@ var Game;
     var ƒ = FudgeCore;
     var ƒAid = FudgeAid;
     class SpriteGenerator extends ƒAid.NodeSprite {
+        static animations;
+        static tileset;
+        static hearts;
         static generateAnimations(_spritesheet) {
             SpriteGenerator.animations = {};
             let sprite;
