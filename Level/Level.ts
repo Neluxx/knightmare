@@ -616,7 +616,7 @@ namespace Game {
       // Block 10
       element = new Element("Grass_All");
       element.cmpTransform.local.translateX(15.5);
-      element.cmpTransform.local.translateY(0.7.0);
+      element.cmpTransform.local.translateY(0.7);
       level.appendChild(element);
 
       // Block 11

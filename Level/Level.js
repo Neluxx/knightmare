@@ -495,7 +495,7 @@ var Game;
             // Block 10
             element = new Game.Element("Grass_All");
             element.cmpTransform.local.translateX(15.5);
-            element.cmpTransform.local.translateY(0.7, .0);
+            element.cmpTransform.local.translateY(0.7);
             level.appendChild(element);
             // Block 11
             element = new Game.Element("Grass_Top_Down_Left");
