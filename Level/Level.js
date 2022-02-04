@@ -55,12 +55,16 @@ var Game;
                 level.appendChild(element);
             }
             // Wall Left Grass
-            for (let i = 1; i <= 4; i++) {
+            for (let i = 1; i <= 3; i++) {
                 element = new Game.Element("Grass_Right");
                 element.cmpTransform.local.translateX(-5.5);
                 element.cmpTransform.local.translateY((0.5) * i);
                 level.appendChild(element);
             }
+            element = new Game.Element("Grass_Top_Right");
+            element.cmpTransform.local.translateX(-5.5);
+            element.cmpTransform.local.translateY(2.0);
+            level.appendChild(element);
             element = new Game.Element("Grass_Right");
             element.cmpTransform.local.translateX(-5.5);
             element.cmpTransform.local.translateY(0.0);
@@ -73,9 +77,17 @@ var Game;
             element.cmpTransform.local.translateX(-5.5);
             element.cmpTransform.local.translateY(-1.0);
             level.appendChild(element);
+            element = new Game.Element("Dirt_All");
+            element.cmpTransform.local.translateX(-5.5);
+            element.cmpTransform.local.translateY(-1.5);
+            level.appendChild(element);
+            element = new Game.Element("Dirt_All");
+            element.cmpTransform.local.translateX(-5.5);
+            element.cmpTransform.local.translateY(-2.0);
+            level.appendChild(element);
             // Wall Left Dirt
             for (let i = 1; i <= 3; i++) {
-                element = new Game.Element("Dirt_All");
+                element = new Game.Element("Grass_Top");
                 element.cmpTransform.local.translateX(-5.5 - (i * 0.5));
                 element.cmpTransform.local.translateY(2.0);
                 level.appendChild(element);
@@ -113,12 +125,16 @@ var Game;
                 level.appendChild(element);
             }
             // Wall Right Grass
-            for (let i = 1; i <= 4; i++) {
+            for (let i = 1; i <= 3; i++) {
                 element = new Game.Element("Grass_Left");
                 element.cmpTransform.local.translateX(35.5);
                 element.cmpTransform.local.translateY((0.5) * i);
                 level.appendChild(element);
             }
+            element = new Game.Element("Grass_Top_Left");
+            element.cmpTransform.local.translateX(35.5);
+            element.cmpTransform.local.translateY(2.0);
+            level.appendChild(element);
             element = new Game.Element("Grass_Left");
             element.cmpTransform.local.translateX(35.5);
             element.cmpTransform.local.translateY(0.0);
@@ -131,9 +147,17 @@ var Game;
             element.cmpTransform.local.translateX(35.5);
             element.cmpTransform.local.translateY(-1.0);
             level.appendChild(element);
+            element = new Game.Element("Dirt_All");
+            element.cmpTransform.local.translateX(35.5);
+            element.cmpTransform.local.translateY(-1.5);
+            level.appendChild(element);
+            element = new Game.Element("Dirt_All");
+            element.cmpTransform.local.translateX(35.5);
+            element.cmpTransform.local.translateY(-2.0);
+            level.appendChild(element);
             // Wall Right Dirt
             for (let i = 1; i <= 3; i++) {
-                element = new Game.Element("Dirt_All");
+                element = new Game.Element("Grass_Top");
                 element.cmpTransform.local.translateX(35.5 + (i * 0.5));
                 element.cmpTransform.local.translateY(2.0);
                 level.appendChild(element);
